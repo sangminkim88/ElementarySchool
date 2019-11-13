@@ -17,7 +17,7 @@
             <ColumnDefinition Width="50*"/>
         </Grid.ColumnDefinitions>
         <Button Content="Window" HorizontalAlignment="Left" Margin="14,64,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click"/>
-        <Button Content="Control" HorizontalAlignment="Left" Margin="61,69,0,0" VerticalAlignment="Top" Width="75" Grid.Column="1" Click="Button_Click_1"/>
+        <Button Content="test" HorizontalAlignment="Left" Margin="61,69,0,0" VerticalAlignment="Top" Width="75" Grid.Column="1" Click="Button_Click_1"/>
         <DockPanel Grid.Column="2" LastChildFill="True">
             <StackPanel x:Name="panel" DockPanel.Dock="Bottom" Orientation="Horizontal" HorizontalAlignment="Right">
             </StackPanel>
