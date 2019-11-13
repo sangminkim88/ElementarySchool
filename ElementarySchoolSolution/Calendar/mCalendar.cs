@@ -1,34 +1,31 @@
-﻿namespace CommonControl.Controls
+﻿namespace Calendar
 {
-    using CommonControl.Models;
     using System;
     using System.Collections.ObjectModel;
     using System.ComponentModel;
     using System.Windows;
     using System.Windows.Controls;
 
-    public class Calendar : Control
+    public class mCalendar : Control
     {
         #region Fields
 
-        public static readonly DependencyProperty CurrentDateProperty = DependencyProperty.Register("CurrentDate", typeof(DateTime), typeof(Calendar));
+        public static readonly DependencyProperty CurrentDateProperty = DependencyProperty.Register("CurrentDate", typeof(DateTime), typeof(mCalendar));
 
         #endregion
 
         #region Constructors
 
-        static Calendar()
+        static mCalendar()
         {
-            DefaultStyleKeyProperty.OverrideMetadata(typeof(Calendar), new FrameworkPropertyMetadata(typeof(Calendar)));
+            DefaultStyleKeyProperty.OverrideMetadata(typeof(mCalendar), new FrameworkPropertyMetadata(typeof(mCalendar)));
         }
 
-        public Calendar()
+        public mCalendar()
         {
             DataContext = this;
             CurrentDate = DateTime.Today;
 
-            //this won't work in Australia where they start the week with Monday. So remember to test in other 
-            //places if you plan on using it. 
             DayNames = new ObservableCollection<string> { "Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat" };
 
             Days = new ObservableCollection<Day>();

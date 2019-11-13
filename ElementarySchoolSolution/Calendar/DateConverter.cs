@@ -1,20 +1,18 @@
-﻿namespace CommonControl.Converters
-{
-    using System;
-    using System.Globalization;
-    using System.Windows.Data;
+﻿using System;
+using System.Globalization;
+using System.Windows.Data;
 
+namespace Jarloo.Calendar
+{
     public class DateConverter : IValueConverter
     {
-        #region Methods
-
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            DateTime date = (DateTime)value;
+            DateTime date = (DateTime) value;
 
-            string param = (string)parameter;
+            string param = (string) parameter;
 
-            switch (param.ToUpper())
+            switch(param.ToUpper())
             {
                 case "MONTH":
                     return date.Month;
@@ -31,7 +29,5 @@
         {
             throw new NotImplementedException();
         }
-
-        #endregion
     }
 }

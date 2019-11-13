@@ -1,7 +1,7 @@
 ﻿using WpfBase.Bases;
 using WpfBase.Managers;
 
-namespace SampleProject.VIews
+namespace SampleProject.Views
 {
     /// <summary>
     /// Interaction logic for UserControl1.xaml

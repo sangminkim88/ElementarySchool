@@ -1,4 +1,4 @@
-﻿namespace CommonControl.Models
+﻿namespace Calendar
 {
     using System;
     using System.ComponentModel;

@@ -9,9 +9,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfBase", "WpfBase\WpfBase.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SampleProject", "SampleProject\SampleProject.csproj", "{EABB04A3-D25D-4F10-BB54-228F7FA4F2CB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommonControl", "CommonControl\CommonControl.csproj", "{EDD2B5B5-BFDD-437F-BE57-0E4AD268DBE9}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Attendance", "Attendance\Attendance.csproj", "{94FFB225-CFCD-4524-A926-A69DB81BD58A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Controls", "Controls", "{38324B7A-EE3E-406C-8D74-5D9A4C35FBA6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Calendar", "Calendar\Calendar.csproj", "{31C3B4A7-504B-4EFF-BACC-C8F2FFE5AF6F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -31,17 +33,20 @@ Global
 		{EABB04A3-D25D-4F10-BB54-228F7FA4F2CB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EABB04A3-D25D-4F10-BB54-228F7FA4F2CB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EABB04A3-D25D-4F10-BB54-228F7FA4F2CB}.Release|Any CPU.Build.0 = Release|Any CPU
-		{EDD2B5B5-BFDD-437F-BE57-0E4AD268DBE9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{EDD2B5B5-BFDD-437F-BE57-0E4AD268DBE9}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{EDD2B5B5-BFDD-437F-BE57-0E4AD268DBE9}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{EDD2B5B5-BFDD-437F-BE57-0E4AD268DBE9}.Release|Any CPU.Build.0 = Release|Any CPU
 		{94FFB225-CFCD-4524-A926-A69DB81BD58A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{94FFB225-CFCD-4524-A926-A69DB81BD58A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{94FFB225-CFCD-4524-A926-A69DB81BD58A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{94FFB225-CFCD-4524-A926-A69DB81BD58A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{31C3B4A7-504B-4EFF-BACC-C8F2FFE5AF6F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{31C3B4A7-504B-4EFF-BACC-C8F2FFE5AF6F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{31C3B4A7-504B-4EFF-BACC-C8F2FFE5AF6F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{31C3B4A7-504B-4EFF-BACC-C8F2FFE5AF6F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{31C3B4A7-504B-4EFF-BACC-C8F2FFE5AF6F} = {38324B7A-EE3E-406C-8D74-5D9A4C35FBA6}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {39433921-4417-4661-AB4C-39DA63240E9D}

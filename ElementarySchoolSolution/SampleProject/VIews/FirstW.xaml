@@ -1,10 +1,10 @@
-﻿<base:WindowBase x:Class="SampleProject.VIews.FirstW"
+﻿<base:WindowBase x:Class="SampleProject.Views.FirstW"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:viewModels="clr-namespace:SampleProject.ViewModels"
-             xmlns:local="clr-namespace:SampleProject.VIews"
+             xmlns:local="clr-namespace:SampleProject.Views"
              xmlns:base="clr-namespace:WpfBase.Bases;assembly=WpfBase"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
@@ -12,7 +12,7 @@
         <viewModels:FirstWVM/>
     </Window.DataContext>
     <Grid>
-        <Button Content="First" HorizontalAlignment="Left" Margin="154,135,0,0" VerticalAlignment="Top" Width="75"/>
-
+        <!--<Button Content="First" HorizontalAlignment="Left" Margin="154,135,0,0" VerticalAlignment="Top" Width="75"/>-->
+        <!--<common:Calendar></common:Calendar>-->
     </Grid>
 </base:WindowBase>

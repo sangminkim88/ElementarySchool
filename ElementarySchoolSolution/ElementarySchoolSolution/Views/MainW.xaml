@@ -10,11 +10,11 @@
     <Window.DataContext>
         <viewModels:MainWVM/>
     </Window.DataContext>
-    <Grid HorizontalAlignment="Left" Height="259" Margin="77,54,0,0" VerticalAlignment="Top" Width="534">
+    <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="25*"/>
-            <ColumnDefinition Width="55*"/>
-            <ColumnDefinition Width="55*"/>
+            <ColumnDefinition Width="25*"/>
+            <ColumnDefinition Width="50*"/>
         </Grid.ColumnDefinitions>
         <Button Content="Window" HorizontalAlignment="Left" Margin="14,64,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click"/>
         <Button Content="Control" HorizontalAlignment="Left" Margin="61,69,0,0" VerticalAlignment="Top" Width="75" Grid.Column="1" Click="Button_Click_1"/>

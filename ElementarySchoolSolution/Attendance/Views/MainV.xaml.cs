@@ -22,5 +22,6 @@ namespace Attendance.Views
         {
             ViewManager.AddValue(typeof(MainV), this);
         }
+
     }
 }

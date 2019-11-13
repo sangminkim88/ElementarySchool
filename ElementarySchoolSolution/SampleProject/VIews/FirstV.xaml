@@ -1,10 +1,10 @@
-﻿<bases:ViewBase x:Class="SampleProject.VIews.FirstV"
+﻿<bases:ViewBase x:Class="SampleProject.Views.FirstV"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:viewModels="clr-namespace:SampleProject.ViewModels"
-             xmlns:local="clr-namespace:SampleProject.VIews"
+             xmlns:local="clr-namespace:SampleProject.Views"
              xmlns:bases="clr-namespace:WpfBase.Bases;assembly=WpfBase"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">

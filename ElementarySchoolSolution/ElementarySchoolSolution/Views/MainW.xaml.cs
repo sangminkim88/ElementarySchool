@@ -1,9 +1,7 @@
 ﻿namespace TestSolution.Views
 {
-    using SampleProject.VIews;
-    using System.ComponentModel;
+    using SampleProject.Views;
     using WpfBase.Bases;
-    using WpfBase.Interface;
     using WpfBase.Managers;
 
     public partial class MainW : WindowBase
