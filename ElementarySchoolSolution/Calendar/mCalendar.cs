@@ -24,11 +24,7 @@
         public mCalendar()
         {
             DataContext = this;
-            CurrentDate = DateTime.Today;
 
-            DayNames = new ObservableCollection<string> { "Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat" };
-
-            Days = new ObservableCollection<Day>();
             BuildCalendar(DateTime.Today);
         }
 
@@ -41,16 +37,10 @@
         #endregion
 
         #region Properties
+        
+        public ObservableCollection<string> DayNames { get; set; } = new ObservableCollection<string> { "일", "월", "화", "수", "목", "금", "토" };
 
-        public DateTime CurrentDate
-        {
-            get { return (DateTime)GetValue(CurrentDateProperty); }
-            set { SetValue(CurrentDateProperty, value); }
-        }
-
-        public ObservableCollection<string> DayNames { get; set; }
-
-        public ObservableCollection<Day> Days { get; set; }
+        public ObservableCollection<Day> Days { get; set; } = new ObservableCollection<Day>();
 
         #endregion
 

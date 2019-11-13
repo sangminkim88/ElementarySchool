@@ -37,7 +37,7 @@ namespace Calendar
 
             DateTime targetDate = new DateTime(year, month, 1);
 
-            //this.calendar.BuildCalendar(targetDate);
+            this.calendar?.BuildCalendar(targetDate);
         }
     }
 }

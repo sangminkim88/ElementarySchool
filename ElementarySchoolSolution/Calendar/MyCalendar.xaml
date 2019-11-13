@@ -30,6 +30,6 @@
             <Image x:Name="nextButton" Source="images/move_next.png" Margin="18,8,0,8" PreviewMouseUp="Image_PreviewMouseUp"/>
             <Label Content="{Binding Year}" Margin="40,8,0,8" FontSize="18"/>
         </StackPanel>
-        <local:mCalendar  x:Name="calendar" Grid.Row="1"/>
+        <local:mCalendar x:Name="calendar" Grid.Row="1"/>
     </Grid>
 </UserControl>
