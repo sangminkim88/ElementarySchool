@@ -1,26 +1,63 @@
 ﻿<bases:WindowBase x:Class="TestSolution.Views.MainW"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:viewModels="clr-namespace:TestSolution.ViewModels"
-        xmlns:bases="clr-namespace:WpfBase.Bases;assembly=WpfBase"
-        mc:Ignorable="d"
-        Height="450" Width="800" WindowStyle="None">
+                  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                  xmlns:ctrl="clr-namespace:Common.Controls;assembly=Common"
+                  xmlns:viewModels="clr-namespace:TestSolution.ViewModels"
+                  xmlns:bases="clr-namespace:WpfBase.Bases;assembly=WpfBase"
+                  mc:Ignorable="d"
+        MinHeight="450" MinWidth="800" Height="1024" Width="1600"                  
+        WindowStartupLocation="CenterScreen"
+        ShowInTaskbar="True" WindowState="Normal" 
+        WindowStyle="None" Background="#FF1B0C1E" AllowsTransparency="True"
+        >
     <Window.DataContext>
         <viewModels:MainWVM/>
     </Window.DataContext>
     <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="25*"/>
-            <ColumnDefinition Width="25*"/>
-            <ColumnDefinition Width="50*"/>
-        </Grid.ColumnDefinitions>
-        <Button Content="Window" HorizontalAlignment="Left" Margin="14,64,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click"/>
-        <Button Content="test" HorizontalAlignment="Left" Margin="61,69,0,0" VerticalAlignment="Top" Width="75" Grid.Column="1" Click="Button_Click_1"/>
-        <DockPanel Grid.Column="2" LastChildFill="True">
-            <StackPanel x:Name="panel" DockPanel.Dock="Bottom" Orientation="Horizontal" HorizontalAlignment="Right">
-            </StackPanel>
-        </DockPanel>
+        <ctrl:RightPanel VerticalAlignment="Top" Panel.ZIndex="100" Margin="0,10,10,0">
+            <ctrl:WindowMinButton Margin="0,-5,5,0"
+                                              Command="{Binding CommandWindowMin, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}" CommandParameter="Minimized"/>
+            <ctrl:WindowMaxButton Margin="2,-5,2,0"
+                                              Command="{Binding CommandWindowMax, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}" CommandParameter="Maximized"/>
+            <ctrl:WindowCloseButton Margin="0,-5,0,0"
+                                                Command="{Binding CommandWindowClose, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"/>
+        </ctrl:RightPanel>
+        <StackPanel x:Name="menuPanel" Height="130" VerticalAlignment="Top" Margin="0,40,0,0" Orientation="Horizontal">
+                <Image Source="/Common;Component/Images/attendance.png" Width="100" Height="100" RenderTransformOrigin="0.448,1.625" Opacity="0.4" Margin="20,0,0,0">
+                    <Image.InputBindings>
+                        <MouseBinding Gesture="LeftClick" Command="{Binding ShowMenu}"/>
+                    </Image.InputBindings>
+                </Image>
+        </StackPanel>
+        <StackPanel Name="pnlRightMenu" HorizontalAlignment="Right" Margin="0,40,10,0" >
+            <Grid>
+                <Image Visibility="{Binding IsMenuShow}" x:Name="downMenu" Source="/Common;Component/Images/down_arrow.png" Width="60" Height="60" RenderTransformOrigin="0.448,1.625" Opacity="0.4">
+                    <Image.InputBindings>
+                        <MouseBinding Gesture="LeftClick" Command="{Binding ShowMenu}"/>
+                    </Image.InputBindings>
+                </Image>
+                <Image Source="/Common;Component/Images/up_arrow.png" Width="60" Height="60" RenderTransformOrigin="0.448,1.625" Opacity="0.4">
+                    <Image.Style>
+                        <Style>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding ElementName=downMenu, Path=Visibility}" Value="Visible">
+                                    <Setter Property="Button.Visibility" Value="Hidden"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Image.Style>
+                    <Image.InputBindings>
+                        <MouseBinding Gesture="LeftClick" Command="{Binding ShowMenu}"/>
+                    </Image.InputBindings>
+                </Image>
+            </Grid>
+        </StackPanel>
+        <Grid x:Name="mainStage">
+            
+        </Grid>
+        
+        
     </Grid>
 </bases:WindowBase>

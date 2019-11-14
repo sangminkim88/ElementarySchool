@@ -103,6 +103,10 @@
       <Project>{31c3b4a7-504b-4eff-bacc-c8f2ffe5af6f}</Project>
       <Name>Calendar</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Common\Common.csproj">
+      <Project>{ad9d11af-6161-4481-94f7-bf8dfb7b1466}</Project>
+      <Name>Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SampleProject\SampleProject.csproj">
       <Project>{eabb04a3-d25d-4f10-bb54-228f7fa4f2cb}</Project>
       <Name>SampleProject</Name>
@@ -111,6 +115,11 @@
       <Project>{c27dfd4a-71bc-454f-beae-fdb3ae2690c9}</Project>
       <Name>WpfBase</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Views\down_arrow.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

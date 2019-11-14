@@ -1,0 +1,100 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"    
+    xmlns:control="clr-namespace:Common.Controls"
+    >
+
+    <Style TargetType="control:RightPanel">
+        <Setter Property="Orientation" Value="Horizontal"/>
+        <Setter Property="HorizontalAlignment" Value="Right"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="Margin" Value="0,0,10,0"/>
+    </Style>
+
+    <Style TargetType="Button" x:Key="ButtonWindowStyle">
+        <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+        <Setter Property="Background" Value="{DynamicResource Brush.White}" />
+        <Setter Property="Foreground" Value="{DynamicResource Brush_Foreground}" />
+        <Setter Property="Cursor" Value="Hand" />
+        <Setter Property="Width" Value="24"/>
+        <Setter Property="Height" Value="24"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Grid>
+                        <Border x:Name="brd" BorderThickness="0" VerticalAlignment="Center" HorizontalAlignment="Center" SnapsToDevicePixels="True" CornerRadius="3"
+                                Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}">
+                            <ContentPresenter Content="{TemplateBinding Content}" x:Name="cp" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" IsHitTestVisible="False" Focusable="False" />
+                        </Border>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="true"/>
+                        <Trigger Property="IsPressed" Value="true"/>
+                        <Trigger Property="IsEnabled" Value="false">
+                            <Setter Property="Opacity" Value="0.3" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style TargetType="control:WindowMinButton" BasedOn="{StaticResource ButtonWindowStyle}">
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate>
+                    <Path Fill="{TemplateBinding Foreground}">
+                        <Path.Data>
+                            <PathGeometry Figures="m 9.999999 16.999962 c 0 0 9.999962 0 9.999962 0 0 0 0 2.000006 0 2.000006 0 0 -9.999962 0 -9.999962 0 0 0 0 -2.000006 0 -2.000006 z" FillRule="NonZero" />
+                        </Path.Data>
+                    </Path>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style TargetType="control:WindowMaxButton" BasedOn="{StaticResource ButtonWindowStyle}">
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate>
+                    <Path Fill="{TemplateBinding Foreground}">
+                        <Path.Data>
+                            <PathGeometry Figures="m 19.999924 9.999942 c 0 0 -9.999962 0 -9.999962 0 0 0 0 10.000026 0 10.000026 0 0 9.999962 0 9.999962 0 0 0 0 -10.000026 0 -10.000026 z m -0.999985 3.00004 c 0 0 0 6.000016 0 6.000016 0 0 -7.999992 0 -7.999992 0 0 0 0 -6.000016 0 -6.000016 0 0 7.999992 0 7.999992 0 z" FillRule="EvenOdd" />
+                        </Path.Data>
+                    </Path>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding WindowState, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}}" Value="Maximized">
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate>
+                            <Path Fill="{TemplateBinding Foreground}">
+                                <Path.Data>
+                                    <PathGeometry Figures="m 9.999999 19.999999 c 0 0 0 -9.5 0 -9.5 0 0 -1 0 -1 0 0 0 0 10.500001 0 10.500001 0 0 10.5 0 10.5 0 0 0 0 -1.000001 0 -1.000001 0 0 -9.5 0 -9.5 0 z M 21 8.999999 c 0 0 -10 0 -10 0 0 0 0 10.000001 0 10.000001 0 0 10 0 10 0 0 0 0 -10.000001 0 -10.000001 z m -1.000001 3 c 0 0 0 6 0 6 0 0 -8 0 -8 0 0 0 0 -6 0 -6 0 0 8 0 8 0 z" FillRule="EvenOdd" />
+                                </Path.Data>
+                            </Path>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+    <Style TargetType="control:WindowCloseButton" BasedOn="{StaticResource ButtonWindowStyle}">
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate>
+                    <Path Fill="{TemplateBinding Foreground}">
+                        <Path.Data>
+                            <PathGeometry Figures="m 20.000499 11.374249 c 0 0 -1.376 -1.375001 -1.376 -1.375001 0 0 -3.625 3.625001 -3.625 3.625001 0 0 -3.625 -3.625001 -3.625 -3.625001 0 0 -1.375 1.375001 -1.375 1.375001 0 0 3.625 3.625501 3.625 3.625501 0 0 -3.625 3.625 -3.625 3.625 0 0 1.375 1.376 1.375 1.376 0 0 3.625 -3.625501 3.625 -3.625501 0 0 3.625 3.625501 3.625 3.625501 0 0 1.376 -1.376 1.376 -1.376 0 0 -3.625 -3.625 -3.625 -3.625 0 0 3.625 -3.625501 3.625 -3.625501 z" FillRule="NonZero" />
+                        </Path.Data>
+                    </Path>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+</ResourceDictionary>

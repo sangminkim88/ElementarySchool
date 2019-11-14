@@ -12,7 +12,7 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <StackPanel Grid.Row="0" Orientation="Horizontal">
-            <Image x:Name="prevButton" Source="images/move_prev.png" Margin="30,8,0,8" PreviewMouseUp="Image_PreviewMouseUp"/>
+            <Image x:Name="prevButton" Source="/Common;Component/Images/move_prev.png" Margin="30,8,0,8" PreviewMouseUp="Image_PreviewMouseUp"/>
             <ComboBox x:Name="monthCombo" Margin="18,8,0,8" MinWidth="30" Width="70" SelectedIndex="0" FontSize="18" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" SelectionChanged="ComboBox_SelectionChanged">
                 <ComboBoxItem Content="1"></ComboBoxItem>
                 <ComboBoxItem Content="2"></ComboBoxItem>
@@ -27,7 +27,7 @@
                 <ComboBoxItem Content="11"></ComboBoxItem>
                 <ComboBoxItem Content="12"></ComboBoxItem>
             </ComboBox>
-            <Image x:Name="nextButton" Source="images/move_next.png" Margin="18,8,0,8" PreviewMouseUp="Image_PreviewMouseUp"/>
+            <Image x:Name="nextButton" Source="/Common;Component/Images/move_next.png" Margin="18,8,0,8" PreviewMouseUp="Image_PreviewMouseUp"/>
             <Label Content="{Binding Year}" Margin="40,8,0,8" FontSize="18"/>
         </StackPanel>
         <local:mCalendar x:Name="calendar" Grid.Row="1"/>

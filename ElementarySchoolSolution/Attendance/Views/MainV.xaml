@@ -8,7 +8,7 @@
              xmlns:bases="clr-namespace:WpfBase.Bases;assembly=WpfBase"
              xmlns:control="clr-namespace:Calendar;assembly=Calendar"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="450" d:DesignWidth="800" Background="White">
     <UserControl.DataContext>
         <viewModels:MainVM />
     </UserControl.DataContext>

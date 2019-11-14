@@ -1,4 +1,5 @@
-﻿using WpfBase.Bases;
+﻿using System.Windows;
+using WpfBase.Bases;
 using WpfBase.Managers;
 
 namespace SampleProject.Views

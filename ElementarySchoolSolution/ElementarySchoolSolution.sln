@@ -15,6 +15,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Controls", "Controls", "{38
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Calendar", "Calendar\Calendar.csproj", "{31C3B4A7-504B-4EFF-BACC-C8F2FFE5AF6F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common", "Common\Common.csproj", "{AD9D11AF-6161-4481-94F7-BF8DFB7B1466}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -41,12 +43,17 @@ Global
 		{31C3B4A7-504B-4EFF-BACC-C8F2FFE5AF6F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{31C3B4A7-504B-4EFF-BACC-C8F2FFE5AF6F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{31C3B4A7-504B-4EFF-BACC-C8F2FFE5AF6F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AD9D11AF-6161-4481-94F7-BF8DFB7B1466}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AD9D11AF-6161-4481-94F7-BF8DFB7B1466}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AD9D11AF-6161-4481-94F7-BF8DFB7B1466}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AD9D11AF-6161-4481-94F7-BF8DFB7B1466}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{31C3B4A7-504B-4EFF-BACC-C8F2FFE5AF6F} = {38324B7A-EE3E-406C-8D74-5D9A4C35FBA6}
+		{AD9D11AF-6161-4481-94F7-BF8DFB7B1466} = {38324B7A-EE3E-406C-8D74-5D9A4C35FBA6}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {39433921-4417-4661-AB4C-39DA63240E9D}

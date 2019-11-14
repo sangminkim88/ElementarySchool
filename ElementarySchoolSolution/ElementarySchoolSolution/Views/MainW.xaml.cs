@@ -36,8 +36,8 @@
 
         private void Button_Click_1(object sender, System.Windows.RoutedEventArgs e)
         {
-            Attendance.Views.MainV view = new Attendance.Views.MainV();
-            this.panel.Children.Add(view);
+
+            this.mainStage.Children.Add(new Calendar.MyCalendar());
         }
     }
 }

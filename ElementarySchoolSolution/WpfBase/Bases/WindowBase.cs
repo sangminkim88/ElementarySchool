@@ -17,6 +17,7 @@
 
             CommandWindowMin = new RelayCommand(OnWindowMin);
             CommandWindowMax = new RelayCommand(OnWindowMax);
+            CommandWindowClose = new RelayCommand(OnWindowClose);
 
             LocationChanged += Window_LocationChanged;
         }
@@ -86,6 +87,11 @@
                 return;
 
             this.Title_MouseLeftButtonDown(this, mouseArgs);
+        }
+
+        private void OnWindowClose(object obj)
+        {
+            this.Close();
         }
 
         private void OnWindowMax(object obj)
