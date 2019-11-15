@@ -2,6 +2,7 @@
 {
     using SampleProject.Views;
     using System.Windows.Controls;
+    using System.Windows.Input;
     using System.Windows.Media.Animation;
     using WpfBase.Bases;
     using WpfBase.Managers;
@@ -67,6 +68,22 @@
             var tmp = this.mainStage.Children[0];
             this.mainStage.Children[0] = this.mainStage.Children[1];
             this.mainStage.Children[1] = tmp;
+        }
+
+        private void Grid_MouseEnter(object sender, System.Windows.Input.MouseEventArgs e)
+        {
+            if(this.Cursor != Cursors.Wait)
+            {
+                Mouse.OverrideCursor = Cursors.Hand;
+            }
+        }
+
+        private void Grid_MouseLeave(object sender, System.Windows.Input.MouseEventArgs e)
+        {
+            if (this.Cursor != Cursors.Wait)
+            {
+                Mouse.OverrideCursor = Cursors.Arrow;
+            }
         }
     }
 }

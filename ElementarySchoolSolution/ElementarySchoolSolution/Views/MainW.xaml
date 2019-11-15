@@ -27,7 +27,7 @@
         </Storyboard>
     </Window.Resources>
     <Grid>
-        <Grid Margin="0,0,0,5" Background="Transparent" Panel.ZIndex="99" Height="20" VerticalAlignment="Top">
+        <Grid Margin="0,0,0,5" Background="Transparent" Panel.ZIndex="99" Height="20" VerticalAlignment="Top" MouseEnter="Grid_MouseEnter" MouseLeave="Grid_MouseLeave">
             <i:Interaction.Triggers>
                 <i:EventTrigger EventName="MouseLeftButtonDown">
                     <common:EventToCommand Command="{Binding CommandMouseLeftButtonDown, RelativeSource={RelativeSource AncestorType=Window}}" PassEventArgsToCommand="True"/>
