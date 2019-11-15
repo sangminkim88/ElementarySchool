@@ -7,9 +7,9 @@ namespace Attendance.Views
     /// <summary>
     /// Interaction logic for UserControl1.xaml
     /// </summary>
-    public partial class MainV : ViewBase
+    public partial class AttendceMainV : ViewBase
     {
-        public MainV()
+        public AttendceMainV()
         {
             InitializeComponent();
         }
@@ -20,8 +20,12 @@ namespace Attendance.Views
 
         public override void EndInit()
         {
-            ViewManager.AddValue(typeof(MainV), this);
+            ViewManager.AddValue(typeof(AttendceMainV), this);
         }
 
+        private void Test_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            this.test.Content = int.Parse(this.test.Content.ToString()) + 1;
+        }
     }
 }

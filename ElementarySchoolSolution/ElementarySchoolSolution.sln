@@ -17,6 +17,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Calendar", "Calendar\Calend
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common", "Common\Common.csproj", "{AD9D11AF-6161-4481-94F7-BF8DFB7B1466}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Consult", "Consult\Consult.csproj", "{553D7DA7-6603-4DDA-8433-55385D04D041}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -47,6 +49,10 @@ Global
 		{AD9D11AF-6161-4481-94F7-BF8DFB7B1466}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AD9D11AF-6161-4481-94F7-BF8DFB7B1466}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AD9D11AF-6161-4481-94F7-BF8DFB7B1466}.Release|Any CPU.Build.0 = Release|Any CPU
+		{553D7DA7-6603-4DDA-8433-55385D04D041}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{553D7DA7-6603-4DDA-8433-55385D04D041}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{553D7DA7-6603-4DDA-8433-55385D04D041}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{553D7DA7-6603-4DDA-8433-55385D04D041}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

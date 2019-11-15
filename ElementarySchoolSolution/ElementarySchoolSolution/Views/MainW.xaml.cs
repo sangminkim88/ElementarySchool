@@ -1,6 +1,8 @@
 ﻿namespace TestSolution.Views
 {
     using SampleProject.Views;
+    using System.Windows.Controls;
+    using System.Windows.Media.Animation;
     using WpfBase.Bases;
     using WpfBase.Managers;
 
@@ -33,11 +35,38 @@
         }
 
         #endregion
+        
+        private void MenuShow_PreviewMouseLeftButtonUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            this.downMenu.Visibility = this.downMenu.Visibility.Equals(System.Windows.Visibility.Visible) ?
+                System.Windows.Visibility.Collapsed : System.Windows.Visibility.Visible;
+
+            string animationName = this.downMenu.Visibility.Equals(System.Windows.Visibility.Visible) ?
+                "sbHideMenu" : "sbShowMenu";
+
+            Storyboard sb = Resources[animationName] as Storyboard;
+            sb.Begin(this.menuPanel);
+
+        }
+
+
+        private void menuButton_MouseLeave(object sender, System.Windows.Input.MouseEventArgs e)
+        {
+            Image image = sender as Image;
+            image.Opacity = 0.4;
+        }
+
+        private void menuButton_MouseEnter(object sender, System.Windows.Input.MouseEventArgs e)
+        {
+            Image image = sender as Image;
+            image.Opacity = 0.9;
+        }
 
         private void Button_Click_1(object sender, System.Windows.RoutedEventArgs e)
         {
-
-            this.mainStage.Children.Add(new Calendar.MyCalendar());
+            var tmp = this.mainStage.Children[0];
+            this.mainStage.Children[0] = this.mainStage.Children[1];
+            this.mainStage.Children[1] = tmp;
         }
     }
 }

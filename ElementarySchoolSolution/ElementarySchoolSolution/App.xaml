@@ -8,13 +8,6 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="pack://application:,,,/Common;component/Themes/Resources.xaml"/>
             </ResourceDictionary.MergedDictionaries>
-
-            <Storyboard x:Key="sbShowMenu" >
-                <ThicknessAnimation Storyboard.TargetProperty="Margin" From="0,0,-350,0" To="0,0,0,0" DecelerationRatio=".9" Duration="0:0:1" />
-            </Storyboard>
-            <Storyboard x:Key="sbHideMenu">
-                <ThicknessAnimation Storyboard.TargetProperty="Margin" From="0,0,0,0" To="0,0,-350,0" AccelerationRatio=".9" Duration="0:0:1" />
-            </Storyboard>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

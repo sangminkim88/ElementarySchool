@@ -35,6 +35,19 @@
                 return false;
         }
 
+        public static bool RemoveValue(Type type)
+        {
+            if (Keys.ContainsKey(type))
+            {
+                // 없으면 추가
+                Keys[type] = null;
+                Keys.Remove(type);
+                return true;
+            }
+            else
+                return false;
+        }
+
         public static void Cleanup()
         {
             foreach (var v in Keys.ToList())
@@ -60,7 +73,10 @@
             {
                 // 없으면 생성
                 v = Activator.CreateInstance(type) as T;
-                Keys.Add(type, v);
+                if (!Keys.ContainsKey(type))
+                {
+                    Keys.Add(type, v);
+                }
             }
 
             return v;

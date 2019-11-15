@@ -67,7 +67,14 @@
     <Resource Include="Images\down_arrow.png" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Images\attendance.png" />
+    <Resource Include="Images\attendance.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\cancel.png" />
+    <Resource Include="Images\okay.png" />
+    <Resource Include="Images\warning.png" />
+    <Resource Include="Images\consult.png" />
+    <Resource Include="Images\elementary_school.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

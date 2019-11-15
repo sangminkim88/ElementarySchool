@@ -6,58 +6,81 @@
                   xmlns:ctrl="clr-namespace:Common.Controls;assembly=Common"
                   xmlns:viewModels="clr-namespace:TestSolution.ViewModels"
                   xmlns:bases="clr-namespace:WpfBase.Bases;assembly=WpfBase"
+                  xmlns:common="clr-namespace:WpfBase.Common;assembly=WpfBase"
+                  xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
                   mc:Ignorable="d"
         MinHeight="450" MinWidth="800" Height="1024" Width="1600"                  
         WindowStartupLocation="CenterScreen"
-        ShowInTaskbar="True" WindowState="Normal" 
+        ShowInTaskbar="True" WindowState="Normal" ResizeMode="CanResizeWithGrip"
         WindowStyle="None" Background="#FF1B0C1E" AllowsTransparency="True"
+        Title="초등학교에선 무슨일이!?"
         >
     <Window.DataContext>
         <viewModels:MainWVM/>
     </Window.DataContext>
+    <Window.Resources>
+        <Storyboard x:Key="sbShowMenu" >
+            <ThicknessAnimation Storyboard.TargetProperty="Margin" From="0,-130,0,0" To="0,0,0,0" DecelerationRatio=".9" Duration="0:0:1" />
+        </Storyboard>
+        <Storyboard x:Key="sbHideMenu">
+            <ThicknessAnimation Storyboard.TargetProperty="Margin" From="0,0,0,0" To="0,-130,0,0" AccelerationRatio=".9" Duration="0:0:1" />
+        </Storyboard>
+    </Window.Resources>
     <Grid>
+        <Grid Margin="0,0,0,5" Background="Transparent" Panel.ZIndex="99" Height="20" VerticalAlignment="Top">
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="MouseLeftButtonDown">
+                    <common:EventToCommand Command="{Binding CommandMouseLeftButtonDown, RelativeSource={RelativeSource AncestorType=Window}}" PassEventArgsToCommand="True"/>
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+        </Grid>
+
         <ctrl:RightPanel VerticalAlignment="Top" Panel.ZIndex="100" Margin="0,10,10,0">
-            <ctrl:WindowMinButton Margin="0,-5,5,0"
+            <ctrl:WindowMinButton Margin="0,-5,5,0" Foreground="White"
                                               Command="{Binding CommandWindowMin, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}" CommandParameter="Minimized"/>
-            <ctrl:WindowMaxButton Margin="2,-5,2,0"
+            <ctrl:WindowMaxButton Margin="2,-5,2,0" Foreground="White"
                                               Command="{Binding CommandWindowMax, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}" CommandParameter="Maximized"/>
-            <ctrl:WindowCloseButton Margin="0,-5,0,0"
+            <ctrl:WindowCloseButton Margin="0,-5,0,0" Foreground="White"
                                                 Command="{Binding CommandWindowClose, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"/>
         </ctrl:RightPanel>
-        <StackPanel x:Name="menuPanel" Height="130" VerticalAlignment="Top" Margin="0,40,0,0" Orientation="Horizontal">
-                <Image Source="/Common;Component/Images/attendance.png" Width="100" Height="100" RenderTransformOrigin="0.448,1.625" Opacity="0.4" Margin="20,0,0,0">
-                    <Image.InputBindings>
-                        <MouseBinding Gesture="LeftClick" Command="{Binding ShowMenu}"/>
-                    </Image.InputBindings>
+        <StackPanel x:Name="menuPanel" Orientation="Vertical" Margin="0,-130,0,0" Panel.ZIndex="98">
+            <StackPanel x:Name="menuImagePanel" Background="Lavender" Height="130" VerticalAlignment="Top" Orientation="Horizontal" Opacity="0.8">
+                <Image Source="/Common;Component/Images/attendance.png"  Width="100" Height="100" Opacity="0.4" Margin="20,0,0,0" ToolTip="출결" MouseEnter="menuButton_MouseEnter" MouseLeave="menuButton_MouseLeave">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="MouseLeftButtonUp">
+                            <common:EventToCommand Command="{Binding CommandShowMainViews}" PassEventArgsToCommand="True"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
                 </Image>
-        </StackPanel>
-        <StackPanel Name="pnlRightMenu" HorizontalAlignment="Right" Margin="0,40,10,0" >
-            <Grid>
-                <Image Visibility="{Binding IsMenuShow}" x:Name="downMenu" Source="/Common;Component/Images/down_arrow.png" Width="60" Height="60" RenderTransformOrigin="0.448,1.625" Opacity="0.4">
-                    <Image.InputBindings>
-                        <MouseBinding Gesture="LeftClick" Command="{Binding ShowMenu}"/>
-                    </Image.InputBindings>
+                <Image Source="/Common;Component/Images/consult.png"  Width="100" Height="100" Opacity="0.4" Margin="20,0,0,0" ToolTip="상담" MouseEnter="menuButton_MouseEnter" MouseLeave="menuButton_MouseLeave">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="MouseLeftButtonUp">
+                            <common:EventToCommand Command="{Binding CommandShowMainViews}" PassEventArgsToCommand="True"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
                 </Image>
-                <Image Source="/Common;Component/Images/up_arrow.png" Width="60" Height="60" RenderTransformOrigin="0.448,1.625" Opacity="0.4">
-                    <Image.Style>
-                        <Style>
-                            <Style.Triggers>
-                                <DataTrigger Binding="{Binding ElementName=downMenu, Path=Visibility}" Value="Visible">
-                                    <Setter Property="Button.Visibility" Value="Hidden"/>
-                                </DataTrigger>
-                            </Style.Triggers>
-                        </Style>
-                    </Image.Style>
-                    <Image.InputBindings>
-                        <MouseBinding Gesture="LeftClick" Command="{Binding ShowMenu}"/>
-                    </Image.InputBindings>
-                </Image>
-            </Grid>
+            </StackPanel>
+            <StackPanel Name="pnlRightMenu" HorizontalAlignment="Right" Margin="0,40,10,0" >
+                <Grid>
+                    <Image Visibility="{Binding IsMenuShow}" x:Name="downMenu" Source="/Common;Component/Images/down_arrow.png" Width="60" Height="60" RenderTransformOrigin="0.448,1.625" Opacity="0.4" PreviewMouseLeftButtonUp="MenuShow_PreviewMouseLeftButtonUp" MouseEnter="menuButton_MouseEnter" MouseLeave="menuButton_MouseLeave" ToolTip="메뉴 보기"/>
+                    <Image Source="/Common;Component/Images/up_arrow.png" Width="60" Height="60" RenderTransformOrigin="0.448,1.625" Opacity="0.4"  PreviewMouseLeftButtonUp="MenuShow_PreviewMouseLeftButtonUp" MouseLeave="menuButton_MouseLeave" MouseEnter="menuButton_MouseEnter" ToolTip="메뉴 숨기기">
+                        <Image.Style>
+                            <Style>
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding ElementName=downMenu, Path=Visibility}" Value="Visible">
+                                        <Setter Property="Button.Visibility" Value="Hidden"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Image.Style>
+                    </Image>
+                </Grid>
+            </StackPanel>
         </StackPanel>
         <Grid x:Name="mainStage">
-            
+
         </Grid>
-        
-        
+
+
     </Grid>
 </bases:WindowBase>

@@ -3,9 +3,9 @@
     using WpfBase.Bases;
     using WpfBase.Managers;
 
-    public class MainVM : ViewModelBase
+    public class AttendanceMainVM : ViewModelBase
     {
-        public MainVM()
+        public AttendanceMainVM()
         {
 
         }
@@ -15,7 +15,7 @@
 
         public override void EndInit()
         {
-            ViewModelManager.AddValue(typeof(MainVM), this);
+            ViewModelManager.AddValue(typeof(AttendanceMainVM), this);
         }
     }
 }

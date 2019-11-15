@@ -8,17 +8,16 @@ namespace Calendar
     /// </summary>
     public partial class MyCalendar : UserControl
     {
-        private int year = 2019;
-
         public int Year
         {
-            get { return year; }
-            set { year = value; }
+            get { return int.Parse(yearLabel.Content.ToString()); }
+            set { yearLabel.Content = value; }
         }
 
         public MyCalendar()
         {
             InitializeComponent();
+            this.monthCombo.SelectedIndex = DateTime.Today.Month - 1;
         }
 
         private void Image_PreviewMouseUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
@@ -26,16 +25,29 @@ namespace Calendar
             string name = (sender as Image).Name;
 
             int i = name.Equals("prevButton") ? -1 : 1;
-            monthCombo.SelectedIndex = monthCombo.SelectedIndex + i;
+            if (monthCombo.SelectedIndex + i > 11)
+            {
+                this.yearLabel.Content = int.Parse(this.yearLabel.Content.ToString()) + 1;
+                monthCombo.SelectedIndex = 0;
+            }
+            else if (monthCombo.SelectedIndex + i < 0)
+            {
+                this.yearLabel.Content = int.Parse(this.yearLabel.Content.ToString()) - 1;
+                monthCombo.SelectedIndex = 11;
+            }
+            else
+            {
+                monthCombo.SelectedIndex = monthCombo.SelectedIndex + i;
+            }
         }
 
         private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (monthCombo.SelectedItem == null) return;
+            if (this.yearLabel == null) return;
 
             int month = monthCombo.SelectedIndex + 1;
 
-            DateTime targetDate = new DateTime(year, month, 1);
+            DateTime targetDate = new DateTime(Year, month, 1);
 
             this.calendar?.BuildCalendar(targetDate);
         }
