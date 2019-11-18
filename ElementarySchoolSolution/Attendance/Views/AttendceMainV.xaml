@@ -19,7 +19,7 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <control:MyCalendar Grid.Column="0"/>
-        <GridSplitter Grid.Column="1" Width="5" HorizontalAlignment="Center" VerticalAlignment="Stretch"/>
+        <GridSplitter Grid.Column="1" Width="5" HorizontalAlignment="Center" VerticalAlignment="Stretch" MouseEnter="GridSplitter_MouseEnter" MouseLeave="GridSplitter_MouseLeave"/>
         <Button x:Name="test" Grid.Column="2" Content="0" Click="Test_Click"/>
     </Grid>
 </bases:ViewBase>
