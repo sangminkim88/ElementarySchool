@@ -59,6 +59,35 @@
                         </i:EventTrigger>
                     </i:Interaction.Triggers>
                 </Image>
+
+                <Button Background="Red" Click="Button_Click_2">
+                    <!--<ToggleButton.Style>
+                        <Style TargetType="{x:Type ToggleButton}">
+                            <Style.Triggers>
+                                <Trigger Property="IsChecked" Value="True">
+                                    <Setter Property="Background" Value="Red" />
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </ToggleButton.Style>-->
+                    <Image Source="/Common;Component/Images/consult.png"  Width="100" Height="100" Opacity="0.4" Margin="20,0,0,0" ToolTip="상담" MouseEnter="menuButton_MouseEnter" MouseLeave="menuButton_MouseLeave">
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="MouseLeftButtonUp">
+                                <common:EventToCommand Command="{Binding CommandShowMainViews}" PassEventArgsToCommand="True"/>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                    </Image>
+                </Button>
+                <ToggleButton IsChecked="True">
+                    <Image Source="/Common;Component/Images/consult.png"  Width="100" Height="100" Opacity="0.4" Margin="20,0,0,0" ToolTip="상담" MouseEnter="menuButton_MouseEnter" MouseLeave="menuButton_MouseLeave">
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="MouseLeftButtonUp">
+                                <common:EventToCommand Command="{Binding CommandShowMainViews}" PassEventArgsToCommand="True"/>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                    </Image>
+
+                </ToggleButton>
             </StackPanel>
             <StackPanel Name="pnlRightMenu" HorizontalAlignment="Right" Margin="0,40,10,0" >
                 <Grid>

@@ -62,11 +62,9 @@
             image.Opacity = 0.9;
         }
 
-        private void Button_Click_1(object sender, System.Windows.RoutedEventArgs e)
+        private void Button_Click_2(object sender, System.Windows.RoutedEventArgs e)
         {
-            var tmp = this.mainStage.Children[0];
-            this.mainStage.Children[0] = this.mainStage.Children[1];
-            this.mainStage.Children[1] = tmp;
+
         }
     }
 }
