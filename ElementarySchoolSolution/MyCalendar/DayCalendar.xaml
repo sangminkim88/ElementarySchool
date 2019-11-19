@@ -28,7 +28,7 @@
 
         <DockPanel>
             <StackPanel Orientation="Horizontal" DockPanel.Dock="Top" FlowDirection="RightToLeft">
-                <TextBlock TextAlignment="Right" Text="{Binding Date}" FontSize="14" Margin="5,5,5,5" >
+                <TextBlock TextAlignment="Right" Text="{Binding Date.Day}" FontSize="14" Margin="5,5,5,5" >
                     <TextBlock.Style>
                         <Style TargetType="{x:Type TextBlock}">
                             <Style.Triggers>

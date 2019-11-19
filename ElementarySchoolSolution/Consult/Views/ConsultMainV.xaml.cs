@@ -12,6 +12,7 @@ namespace Consult.Views
         public ConsultMainV()
         {
             InitializeComponent();
+            this.Title = "상담관리";
         }
 
         public override void BeginInit()

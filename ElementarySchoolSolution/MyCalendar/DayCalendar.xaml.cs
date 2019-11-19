@@ -8,7 +8,7 @@
     {
         #region Fields
 
-        private int date;
+        private DateTime date;
 
         private bool isTargetMonth;
 
@@ -38,7 +38,7 @@
 
         #region Properties
 
-        public int Date
+        public DateTime Date
         {
             get { return date; }
             set { date = value; RaisePropertyChanged("Date"); }

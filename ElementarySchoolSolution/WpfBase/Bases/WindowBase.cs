@@ -56,7 +56,7 @@
             {
                 if (WindowState == WindowState.Maximized)
                 {
-                    Window_Minimize(sender, e);
+                    WindowState = WindowState.Normal;
                 }
                 else if (WindowState != WindowState.Maximized)
                 {
@@ -65,14 +65,12 @@
             }
             else
             {
-                if (WindowState is WindowState.Maximized) WindowState = WindowState.Normal;
-                DragMove();
+                if (WindowState is WindowState.Normal) DragMove();                
             }
         }
 
         protected virtual void Window_Minimize(object sender, RoutedEventArgs e)
         {
-            WindowState = WindowState.Minimized;
         }
 
         protected virtual void Window_Restore(object sender, RoutedEventArgs e)

@@ -1,20 +1,42 @@
-﻿
-using System;
-using System.Windows.Input;
-using WpfBase.Bases;
-using WpfBase.Managers;
-
-namespace Attendance.Views
+﻿namespace Attendance.Views
 {
-    /// <summary>
-    /// Interaction logic for UserControl1.xaml
-    /// </summary>
+    using Microsoft.Win32;
+    using System.Windows;
+    using System.Windows.Input;
+    using WpfBase.Bases;
+    using WpfBase.Managers;
+
     public partial class AttendceMainV : ViewBase
     {
+        #region Fields
+
+        private string currentFilePath;
+
+        private bool isModified;
+
+        #endregion
+
+        #region Constructors
+
         public AttendceMainV()
         {
             InitializeComponent();
+            this.Title = "출석관리";
         }
+
+        #endregion
+
+        #region Properties
+
+        public bool IsModified
+        {
+            get { return isModified; }
+            set { isModified = value; }
+        }
+
+        #endregion
+
+        #region Methods
 
         public override void BeginInit()
         {
@@ -25,14 +47,18 @@ namespace Attendance.Views
             ViewManager.AddValue(typeof(AttendceMainV), this);
         }
 
-        private void Test_Click(object sender, System.Windows.RoutedEventArgs e)
+        private void Export_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-            this.test.Content = int.Parse(this.test.Content.ToString()) + 1;
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            saveFileDialog.Filter = "dat Files (*.dat)|*.dat|All Files (*.*)|*.*";
+            if (saveFileDialog.ShowDialog() == true)
+            {
+                //string a = saveFileDialog.FileName;
+            }
         }
 
         private void GridSplitter_MouseEnter(object sender, System.Windows.Input.MouseEventArgs e)
         {
-
             if (this.Cursor != Cursors.Wait)
             {
                 Mouse.OverrideCursor = Cursors.SizeWE;
@@ -45,15 +71,39 @@ namespace Attendance.Views
             {
                 Mouse.OverrideCursor = Cursors.Arrow;
             }
-
         }
 
-        private void MyCalendar_DayClicked(object sender, MyCalendar.DayClickedEventArgs e)
+        private void Import_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-            MyCalendar.MyCalendar calendar = sender as MyCalendar.MyCalendar;
-            Console.WriteLine(calendar.Year);
-            Console.WriteLine(calendar.Month);
-            Console.WriteLine(e.date);
+            if (this.isModified)
+            {
+                MessageBoxResult messageBoxResult = MessageBox.Show("수정사항이 있습니다. 저장하시겠습니까?", "경고",
+                    MessageBoxButton.YesNo, MessageBoxImage.Warning, MessageBoxResult.No);
+
+                if (messageBoxResult.Equals(MessageBoxResult.Cancel))
+                {
+                    return;
+                }
+                else if (messageBoxResult.Equals(MessageBoxResult.Yes))
+                {
+                    this.Save_Click(null, null);
+                }
+
+                OpenFileDialog openFileDialog = new OpenFileDialog();
+                openFileDialog.Filter = "dat Files (*.dat)|*.dat|All Files (*.*)|*.*";
+
+                if (openFileDialog.ShowDialog().Equals(true))
+                {
+                    this.currentFilePath = openFileDialog.FileName;
+
+                }
+            }
         }
+
+        private void Save_Click(object sender, RoutedEventArgs e)
+        {
+        }
+        #endregion
     }
 }
+

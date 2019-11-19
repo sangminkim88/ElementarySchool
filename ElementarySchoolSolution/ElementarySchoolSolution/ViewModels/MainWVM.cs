@@ -3,27 +3,52 @@
     using Attendance.Views;
     using Consult.Views;
     using System;
+    using System.Reflection;
     using System.Windows;
     using System.Windows.Controls;
     using System.Windows.Input;
+    using System.Windows.Media;
     using TestSolution.Views;
     using WpfBase.Bases;
     using WpfBase.Common;
     using WpfBase.Managers;
-    using System.Linq;
-    using System.Windows.Media;
-    using System.Reflection;
 
     public class MainWVM : ViewModelBase
     {
+        #region Fields
+
+        private string DEFAULT_TITLE = "초등학교에선 무슨일이!?";
+
         private static Brush ACTIVE_COLOR = new SolidColorBrush(Colors.Purple);
+
         private static Brush UNACTIVE_COLOR = new SolidColorBrush(Colors.Pink);
 
-        public ICommand CommandShowMainViews { get; private set; }
+        private Brush attendanceColor;
+
+        private Brush businessLogColor;
+
+        private Brush consultColor;
 
         private WpfBase.Bases.ViewBase prevView;
 
-        private Brush attendanceColor;
+        private string title;
+
+        #endregion
+
+        #region Constructors
+
+        public MainWVM()
+        {
+            CommandShowMainViews = new RelayCommand(ExecuteShowMainViews);
+            this.AttendanceColor = UNACTIVE_COLOR;
+            this.ConsultColor = UNACTIVE_COLOR;
+            this.BusinessLogColor = UNACTIVE_COLOR;
+            this.title = DEFAULT_TITLE;
+        }
+
+        #endregion
+
+        #region Properties
 
         public Brush AttendanceColor
         {
@@ -31,7 +56,13 @@
             set { SetValue(ref attendanceColor, value); }
         }
 
-        private Brush consultColor;
+        public Brush BusinessLogColor
+        {
+            get { return businessLogColor; }
+            set { businessLogColor = value; }
+        }
+
+        public ICommand CommandShowMainViews { get; private set; }
 
         public Brush ConsultColor
         {
@@ -39,27 +70,22 @@
             set { SetValue(ref consultColor, value); }
         }
 
-        private Brush businessLogColor;
-
-        public Brush BusinessLogColor
+        public string Title
         {
-            get { return businessLogColor; }
-            set { businessLogColor = value; }
+            get { return title; }
+            set { SetValue(ref title, value); }
         }
 
+        #endregion
 
+        #region Methods
 
-        /// <summary>
-        /// Executes ShowAttendance
-        /// </summary>
-        private void ExecuteShowMainViews(object o)
+        private static void getView(object o, MainW mainW, out Type type, out PropertyInfo backColorProperty)
         {
             RoutedEventArgs e = o as RoutedEventArgs;
-            MainW mainW = ViewManager.GetValue(typeof(MainW)) as MainW;
-
             int index = mainW.menuImagePanel.Children.IndexOf(e.Source as Button);
-            Type type = null;
-            PropertyInfo backColorProperty = null;
+            type = null;
+            backColorProperty = null;
             switch (index)
             {
                 case 0:
@@ -75,9 +101,27 @@
                     backColorProperty = typeof(MainWVM).GetProperty("BusinessLogColor");
                     break;
             }
+        }
+
+        public override void BeginInit()
+        {
+        }
+
+        public override void EndInit()
+        {
+            ViewModelManager.AddValue(typeof(MainWVM), this);
+        }
+
+        private void ExecuteShowMainViews(object o)
+        {
+            MainW mainW = ViewManager.GetValue(typeof(MainW)) as MainW;
+            Type type;
+            PropertyInfo backColorProperty;
+            getView(o, mainW, out type, out backColorProperty);
 
             WpfBase.Bases.ViewBase mainV = ViewManager.GetValue(type, false) as WpfBase.Bases.ViewBase;
 
+            //처음 생성 시
             if (mainV == null)
             {
                 mainV = ViewManager.GetValue(type) as WpfBase.Bases.ViewBase;
@@ -97,7 +141,9 @@
 
                 mainW.mainStage.Children.Add(mainV);
                 backColorProperty.SetValue(this, ACTIVE_COLOR);
+                this.Title = mainV.Title;
             }
+            //이미 생성된 이후
             else
             {
                 if (mainV.Visibility.Equals(Visibility.Collapsed))
@@ -116,7 +162,7 @@
                     }
 
                     mainV.Visibility = Visibility.Visible;
-
+                    this.Title = mainV.Title;
                 }
                 else
                 {
@@ -131,10 +177,12 @@
                         if (mainW.mainStage.Children.Count.Equals(0))
                         {
                             this.prevView = null;
+                            this.Title = DEFAULT_TITLE;
                         }
                         else
                         {
                             this.prevView.Visibility = Visibility.Visible;
+                            this.Title = prevView.Title;
                         }
                         backColorProperty.SetValue(this, UNACTIVE_COLOR);
                     }
@@ -142,25 +190,6 @@
             }
         }
 
-
-        public MainWVM()
-        {
-            CommandShowMainViews = new RelayCommand(ExecuteShowMainViews);
-            this.AttendanceColor = UNACTIVE_COLOR;
-            this.ConsultColor = UNACTIVE_COLOR;
-            this.BusinessLogColor = UNACTIVE_COLOR;
-        }
-
-        public override void BeginInit()
-        {
-        }
-
-        public override void EndInit()
-        {
-            ViewModelManager.AddValue(typeof(MainWVM), this);
-        }
-
-
-
+        #endregion
     }
 }

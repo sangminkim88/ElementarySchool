@@ -7,19 +7,52 @@
              xmlns:local="clr-namespace:Attendance.Views"
              xmlns:bases="clr-namespace:WpfBase.Bases;assembly=WpfBase"
              xmlns:control="clr-namespace:MyCalendar;assembly=MyCalendar"
+             xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+             xmlns:command="clr-namespace:WpfBase.Common;assembly=WpfBase"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800" Background="White">
+             d:DesignHeight="450" d:DesignWidth="800" Background="White"
+                >
     <UserControl.DataContext>
         <viewModels:AttendanceMainVM />
     </UserControl.DataContext>
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/Common;component/Resources/Resources.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="5"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <control:MyCalendar Grid.Column="0" DayClicked="MyCalendar_DayClicked"/>
+        <control:MyCalendar Grid.Column="0">
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="DayClicked">
+                    <command:EventToCommand Command="{Binding CalendarDayClickedCommand}" PassEventArgsToCommand="True"/>
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+        </control:MyCalendar>
         <GridSplitter Grid.Column="1" Width="5" HorizontalAlignment="Center" VerticalAlignment="Stretch" MouseEnter="GridSplitter_MouseEnter" MouseLeave="GridSplitter_MouseLeave"/>
-        <Button x:Name="test" Grid.Column="2" Content="0" Click="Test_Click"/>
+        <Grid Grid.Column="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,100,0">
+                <Button Content="Import" Width="50" Height="30" Margin="0,0,10,0" Style="{DynamicResource ButtonWindowStyle}" Click="Import_Click"/>
+                <Button Content="Export" Width="50" Height="30" Margin="0,0,10,0" Style="{DynamicResource ButtonWindowStyle}" Click="Export_Click"/>
+                <Button Content="저장" Width="50" Height="30" Margin="0,0,10,0" Style="{DynamicResource ButtonWindowStyle}" Click="Save_Click"/>
+            </StackPanel>
+
+
+        </Grid>
     </Grid>
 </bases:ViewBase>
