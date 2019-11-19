@@ -88,20 +88,20 @@
                 {
                     this.Save_Click(null, null);
                 }
+            }
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "dat Files (*.dat)|*.dat|All Files (*.*)|*.*";
 
-                OpenFileDialog openFileDialog = new OpenFileDialog();
-                openFileDialog.Filter = "dat Files (*.dat)|*.dat|All Files (*.*)|*.*";
+            if (openFileDialog.ShowDialog().Equals(true))
+            {
+                this.currentFilePath = openFileDialog.FileName;
 
-                if (openFileDialog.ShowDialog().Equals(true))
-                {
-                    this.currentFilePath = openFileDialog.FileName;
-
-                }
             }
         }
 
         private void Save_Click(object sender, RoutedEventArgs e)
         {
+            test
         }
         #endregion
     }
