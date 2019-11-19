@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{AD9D11AF-6161-4481-94F7-BF8DFB7B1466}</ProjectGuid>
+    <ProjectGuid>{9172FF91-306F-4602-B1F3-98D13194063C}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Common</RootNamespace>
-    <AssemblyName>Common</AssemblyName>
+    <RootNamespace>MyCalendar</RootNamespace>
+    <AssemblyName>MyCalendar</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -45,44 +45,29 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controls\TextBoxes.cs" />
-    <Compile Include="Controls\Buttons.cs" />
-    <Compile Include="Controls\Panels.cs" />
-    <Compile Include="Enums\Enums.cs" />
-    <Compile Include="Models\AttendanceRecord.cs" />
-    <Compile Include="Models\Student.cs" />
+    <Compile Include="DayCalendar.xaml.cs">
+      <DependentUpon>DayCalendar.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MyCalendar.xaml.cs">
+      <DependentUpon>MyCalendar.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Page Include="Themes\Resources.xaml">
-      <Generator>MSBuild:Compile</Generator>
+    <Page Include="DayCalendar.xaml">
       <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MyCalendar.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\move_next.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\move_prev.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\up_arrow.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\down_arrow.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\attendance.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\cancel.png" />
-    <Resource Include="Images\okay.png" />
-    <Resource Include="Images\warning.png" />
-    <Resource Include="Images\consult.png" />
-    <Resource Include="Images\elementary_school.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\businessLog.png" />
+    <ProjectReference Include="..\Common\Common.csproj">
+      <Project>{ad9d11af-6161-4481-94f7-bf8dfb7b1466}</Project>
+      <Name>Common</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

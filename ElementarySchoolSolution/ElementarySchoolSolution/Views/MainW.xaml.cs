@@ -55,19 +55,22 @@
         {
             Image image = sender as Image;
             image.Opacity = 0.4;
+            if (image.Name.Equals("businessLog"))
+            {
+                image.Opacity = 0.6;
+            }
         }
 
         private void menuButton_MouseEnter(object sender, System.Windows.Input.MouseEventArgs e)
         {
             Image image = sender as Image;
-            image.Opacity = 0.9;
+            image.Opacity = 0.7;
+            if (image.Name.Equals("businessLog"))
+            {
+                image.Opacity = 1.0;
+            }
         }
-
-        private void Button_Click_2(object sender, System.Windows.RoutedEventArgs e)
-        {
-
-        }
-
+        
         private void Grid_MouseEnter(object sender, System.Windows.Input.MouseEventArgs e)
         {
             if(this.Cursor != Cursors.Wait)

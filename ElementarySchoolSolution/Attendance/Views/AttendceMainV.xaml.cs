@@ -1,4 +1,5 @@
 ﻿
+using System;
 using System.Windows.Input;
 using WpfBase.Bases;
 using WpfBase.Managers;
@@ -45,6 +46,14 @@ namespace Attendance.Views
                 Mouse.OverrideCursor = Cursors.Arrow;
             }
 
+        }
+
+        private void MyCalendar_DayClicked(object sender, MyCalendar.DayClickedEventArgs e)
+        {
+            MyCalendar.MyCalendar calendar = sender as MyCalendar.MyCalendar;
+            Console.WriteLine(calendar.Year);
+            Console.WriteLine(calendar.Month);
+            Console.WriteLine(e.date);
         }
     }
 }

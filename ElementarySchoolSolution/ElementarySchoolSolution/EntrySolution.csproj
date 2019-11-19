@@ -109,10 +109,6 @@
       <Project>{94ffb225-cfcd-4524-a926-a69db81bd58a}</Project>
       <Name>Attendance</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Calendar\Calendar.csproj">
-      <Project>{31c3b4a7-504b-4eff-bacc-c8f2ffe5af6f}</Project>
-      <Name>Calendar</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Common\Common.csproj">
       <Project>{ad9d11af-6161-4481-94f7-bf8dfb7b1466}</Project>
       <Name>Common</Name>
@@ -120,6 +116,10 @@
     <ProjectReference Include="..\Consult\Consult.csproj">
       <Project>{553D7DA7-6603-4DDA-8433-55385D04D041}</Project>
       <Name>Consult</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MyCalendar\MyCalendar.csproj">
+      <Project>{9172ff91-306f-4602-b1f3-98d13194063c}</Project>
+      <Name>MyCalendar</Name>
     </ProjectReference>
     <ProjectReference Include="..\SampleProject\SampleProject.csproj">
       <Project>{eabb04a3-d25d-4f10-bb54-228f7fa4f2cb}</Project>

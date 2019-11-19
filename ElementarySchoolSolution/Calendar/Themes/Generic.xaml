@@ -36,7 +36,7 @@
                                 </ItemsControl.ItemsPanel>
                             </ItemsControl>
 
-                            <ItemsControl ItemsSource="{Binding Days}">                               
+                            <ItemsControl ItemsSource="{Binding Days}" HorizontalAlignment="Center">                               
                                 <ItemsControl.ItemTemplate>
                                     <DataTemplate>                                        
                                         <!--Box-->

@@ -6,7 +6,7 @@ namespace Calendar
     /// <summary>
     /// Interaction logic for MyCalendar.xaml
     /// </summary>
-    public partial class MyCalendar : UserControl
+    public partial class OldCalendar : UserControl
     {
         public int Year
         {
@@ -14,7 +14,7 @@ namespace Calendar
             set { yearLabel.Content = value; }
         }
 
-        public MyCalendar()
+        public OldCalendar()
         {
             InitializeComponent();
             this.monthCombo.SelectedIndex = DateTime.Today.Month - 1;
