@@ -99,10 +99,5 @@
         <TextBlock Grid.Column="4" Grid.Row="1" Text="목" Style="{DynamicResource dayNameStyle}"/>
         <TextBlock Grid.Column="5" Grid.Row="1" Text="금" Style="{DynamicResource dayNameStyle}"/>
         <TextBlock Grid.Column="6" Grid.Row="1" Text="토" Style="{DynamicResource dayNameStyle}"/>
-
-        <!--<test:DayCalendar Grid.Column="0" Grid.Row="2" x:Name="day0"/>
-        <test:DayCalendar Grid.Column="1" Grid.Row="2" x:Name="day1"/>
-        <test:DayCalendar Grid.Column="2" Grid.Row="2" x:Name="day2"/>-->
-
     </Grid>
 </UserControl>

@@ -5,6 +5,7 @@
     using System.Collections.Generic;
     using System.ComponentModel;
     using System.Windows.Controls;
+    using System.Windows.Media;
 
     public partial class DayCalendar : Border, INotifyPropertyChanged
     {
@@ -70,7 +71,13 @@
 
         private void InnerBorder_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-            Clicked(this, new DayClickedEventArgs(this.date));
+            var parent = VisualTreeHelper.GetParent(this);
+            while (!(parent is MyCalendar))
+            {
+                parent = VisualTreeHelper.GetParent(parent);
+            }
+            //parent.
+            //Clicked(this, new DayClickedEventArgs(this.date, parent));
         }
 
         private void RaisePropertyChanged(string propertyName)

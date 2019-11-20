@@ -4,22 +4,24 @@
     using System;
     using System.Collections.Generic;
     using System.Windows.Controls;
-    using System.Windows.Input;
+    using System.Windows.Media;
 
     public class DayClickedEventArgs : EventArgs
     {
         #region Constructors
 
-        public DayClickedEventArgs(DateTime date)
+        public DayClickedEventArgs(DateTime date, MyCalendar calendar)
         {
-            this.date = date;
+            this.Date = date;
+            this.Calendar = calendar;
         }
 
         #endregion
 
         #region Properties
 
-        public DateTime date { get; private set; }
+        public DateTime Date { get; private set; }
+        public MyCalendar Calendar { get; private set; }
 
         #endregion
     }
@@ -67,6 +69,9 @@
         #endregion
 
         #region Properties
+
+        public List<AttendanceRecord> AttendanceRecords { get; private set; }
+
         public int Month
         {
             get { return this.monthCombo.SelectedIndex + 1; }
@@ -111,26 +116,6 @@
             this.ComboBox_SelectionChanged(null, null);
         }
 
-        private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            if (this.dayCalendars.Count.Equals(0)) return;
-
-            int month = monthCombo.SelectedIndex + 1;
-
-            DateTime targetDate = new DateTime(Year, month, 1);
-
-            this.BuildCalendar(targetDate);
-        }
-
-        private void DayClickedEvent(object sender, DayClickedEventArgs e)
-        {
-            if (DayClicked == null) return;
-
-            DayClicked(this, new DayClickedEventArgs((sender as DayCalendar).Date));
-        }
-
-        #endregion
-
         private void Button_Click(object sender, System.Windows.RoutedEventArgs e)
         {
             string name = (sender as Button).Name;
@@ -151,5 +136,25 @@
                 monthCombo.SelectedIndex = monthCombo.SelectedIndex + i;
             }
         }
+
+        private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (this.dayCalendars.Count.Equals(0)) return;
+
+            int month = monthCombo.SelectedIndex + 1;
+
+            DateTime targetDate = new DateTime(Year, month, 1);
+
+            this.BuildCalendar(targetDate);
+        }
+
+        private void DayClickedEvent(object sender, DayClickedEventArgs e)
+        {
+            if (DayClicked == null) return;
+
+            DayClicked(this, new DayClickedEventArgs((sender as DayCalendar).Date, this));
+        }
+
+        #endregion
     }
 }

@@ -10,7 +10,7 @@
              xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
              xmlns:command="clr-namespace:WpfBase.Common;assembly=WpfBase"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800" Background="White"
+             d:DesignHeight="450" d:DesignWidth="1300" Background="White"
                 >
     <UserControl.DataContext>
         <viewModels:AttendanceMainVM />
@@ -47,15 +47,9 @@
                 <RowDefinition/>
             </Grid.RowDefinitions>
             <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,100,0">
-                <Button Content="Import" Width="50" Height="30" Margin="0,0,10,0" Style="{DynamicResource ButtonWindowStyle}" Click="Import_Click"/>
-                <Button Content="Export" Width="50" Height="30" Margin="0,0,10,0" Style="{DynamicResource ButtonWindowStyle}" Click="Export_Click"/>
-                <Button Content="저장" Width="50" Height="30" Margin="0,0,10,0" Style="{DynamicResource ButtonWindowStyle}">
-                    <i:Interaction.Triggers>
-                        <i:EventTrigger EventName="Click">
-                            <command:EventToCommand Command="{Binding SaveCommand}" PassEventArgsToCommand="false"/>
-                        </i:EventTrigger>
-                    </i:Interaction.Triggers>
-                </Button>
+                <Button Content="Import" Width="50" Height="30" Margin="0,0,10,0" Style="{DynamicResource ButtonWindowStyle}" Command="{Binding ImportCommand}" CommandParameter="{Binding ElementName=calendar}"/>
+                <Button Content="Export" Width="50" Height="30" Margin="0,0,10,0" Style="{DynamicResource ButtonWindowStyle}" Command="{Binding ExportCommand}"/>
+                <Button Content="저장" Width="50" Height="30" Margin="0,0,10,0" Style="{DynamicResource ButtonWindowStyle}" Command="{Binding SaveCommand}"/>
             </StackPanel>
 
 
