@@ -88,21 +88,24 @@
                 {
                     this.Save_Click(null, null);
                 }
+            }
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "dat Files (*.dat)|*.dat|All Files (*.*)|*.*";
 
-                OpenFileDialog openFileDialog = new OpenFileDialog();
-                openFileDialog.Filter = "dat Files (*.dat)|*.dat|All Files (*.*)|*.*";
+            if (openFileDialog.ShowDialog().Equals(true))
+            {
+                this.currentFilePath = openFileDialog.FileName;
 
-                if (openFileDialog.ShowDialog().Equals(true))
-                {
-                    this.currentFilePath = openFileDialog.FileName;
-
-                }
             }
         }
 
         private void Save_Click(object sender, RoutedEventArgs e)
         {
+<<<<<<< HEAD
             //testc in company
+=======
+            test
+>>>>>>> cb754d3c4d13a918152cdd9bb303cfed7ffe5196
         }
         #endregion
     }
