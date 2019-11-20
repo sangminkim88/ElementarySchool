@@ -1,10 +1,13 @@
 ﻿namespace Common.Models
 {
+    using Common.Enums;
     using System;
 
     public class AttendanceRecord
     {
         #region Fields
+
+        private eAttendance _eAttendance;
 
         private DateTime date;
 
@@ -13,6 +16,21 @@
         private Student studentRecord;
 
         private bool submitDocument;
+
+        #endregion
+
+        #region Constructors
+
+        public AttendanceRecord()
+        {
+            this.date = DateTime.Today.AddDays(1);
+            this.studentRecord = new Student();
+            this.studentRecord.Name = "test";
+            this.studentRecord.Number = "010";
+            this.studentRecord.Sex = Enums.eSex.남성;
+            this.submitDocument = false;
+            this.EAttendance = eAttendance.Lateness;
+        }
 
         #endregion
 
@@ -28,6 +46,12 @@
         {
             get { return documentTitle; }
             set { documentTitle = value; }
+        }
+
+        public eAttendance EAttendance
+        {
+            get { return _eAttendance; }
+            set { _eAttendance = value; }
         }
 
         public Student StudentRecord

@@ -64,7 +64,7 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Button}">
                     <Grid>
-                        <Border x:Name="brd" BorderThickness="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" SnapsToDevicePixels="True" CornerRadius="3"
+                        <Border x:Name="brd" BorderThickness="0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" SnapsToDevicePixels="True" CornerRadius="3"
                                 Background="{TemplateBinding Background}"
                                 BorderBrush="{TemplateBinding BorderBrush}">
                             <ContentPresenter Content="{TemplateBinding Content}" x:Name="cp" VerticalAlignment="Center" HorizontalAlignment="Center" IsHitTestVisible="False" Focusable="False" />
@@ -73,6 +73,7 @@
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="true">
                             <Setter Property="Opacity" Value="0.3" />
+                            <Setter Property="Cursor" Value="Hand"/>
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>

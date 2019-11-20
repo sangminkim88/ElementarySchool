@@ -2,12 +2,14 @@
 {
     using Attendance.Views;
     using Consult.Views;
+    using ElementarySchoolSolution.Properties;
     using System;
     using System.Reflection;
     using System.Windows;
     using System.Windows.Controls;
     using System.Windows.Input;
     using System.Windows.Media;
+    using System.Windows.Media.Imaging;
     using TestSolution.Views;
     using WpfBase.Bases;
     using WpfBase.Common;
@@ -16,8 +18,6 @@
     public class MainWVM : ViewModelBase
     {
         #region Fields
-
-        private string DEFAULT_TITLE = "초등학교에선 무슨일이!?";
 
         private static Brush ACTIVE_COLOR = new SolidColorBrush(Colors.Purple);
 
@@ -28,6 +28,8 @@
         private Brush businessLogColor;
 
         private Brush consultColor;
+
+        private string DEFAULT_TITLE = "초등학교에선 무슨일이!?";
 
         private WpfBase.Bases.ViewBase prevView;
 

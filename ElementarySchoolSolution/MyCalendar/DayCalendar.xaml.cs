@@ -1,6 +1,8 @@
 ﻿namespace MyCalendar
 {
+    using Common.Models;
     using System;
+    using System.Collections.Generic;
     using System.ComponentModel;
     using System.Windows.Controls;
 
@@ -14,7 +16,7 @@
 
         private bool isToday;
 
-        private string notes;
+        private List<AttendanceRecord> attendanceRecords = new List<AttendanceRecord>();
 
         #endregion
 
@@ -56,10 +58,10 @@
             set { isToday = value; RaisePropertyChanged("IsToday"); }
         }
 
-        public string Notes
+        public List<AttendanceRecord> AttendanceRecords
         {
-            get { return notes; }
-            set { notes = value; RaisePropertyChanged("Notes"); }
+            get { return attendanceRecords; }
+            set { attendanceRecords = value; RaisePropertyChanged("AttendanceRecords"); }
         }
 
         #endregion

@@ -1,5 +1,6 @@
 ﻿namespace MyCalendar
 {
+    using Common.Models;
     using System;
     using System.Collections.Generic;
     using System.Windows.Controls;
@@ -27,6 +28,8 @@
     {
         #region Fields
 
+        private List<AttendanceRecord> attendanceRecords = new List<AttendanceRecord>();
+
         private List<DayCalendar> dayCalendars = new List<DayCalendar>();
 
         #endregion
@@ -52,7 +55,7 @@
                 tmp.SetValue(Grid.RowProperty, 2 + (i / 7));
                 mainGrid.Children.Add(tmp);
             }
-            this.buildCalendar(DateTime.Today);
+            this.BuildCalendar(DateTime.Today);
         }
 
         #endregion
@@ -64,7 +67,6 @@
         #endregion
 
         #region Properties
-
         public int Month
         {
             get { return this.monthCombo.SelectedIndex + 1; }
@@ -86,7 +88,7 @@
             return Convert.ToInt32(dow.ToString("D"));
         }
 
-        private void buildCalendar(DateTime targetDate)
+        public void BuildCalendar(DateTime targetDate)
         {
             DateTime d = new DateTime(targetDate.Year, targetDate.Month, 1);
             int offset = DayOfWeekNumber(d.DayOfWeek);
@@ -98,8 +100,15 @@
                 this.dayCalendars[box].IsToday = (d == DateTime.Today);
                 this.dayCalendars[box].IsTargetMonth = (targetDate.Month == d.Month);
                 this.dayCalendars[box].Clicked += DayClickedEvent;
+                this.dayCalendars[box].AttendanceRecords = attendanceRecords.FindAll(x => x.Date.Equals(d));
                 d = d.AddDays(1);
             }
+        }
+
+        public void BuildCalendarOutCaller(List<AttendanceRecord> attendanceRecords)
+        {
+            this.attendanceRecords = attendanceRecords;
+            this.ComboBox_SelectionChanged(null, null);
         }
 
         private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -110,7 +119,7 @@
 
             DateTime targetDate = new DateTime(Year, month, 1);
 
-            this.buildCalendar(targetDate);
+            this.BuildCalendar(targetDate);
         }
 
         private void DayClickedEvent(object sender, DayClickedEventArgs e)
@@ -120,9 +129,11 @@
             DayClicked(this, new DayClickedEventArgs((sender as DayCalendar).Date));
         }
 
-        private void Image_PreviewMouseUp(object sender, MouseButtonEventArgs e)
+        #endregion
+
+        private void Button_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-            string name = (sender as Image).Name;
+            string name = (sender as Button).Name;
 
             int i = name.Equals("prevButton") ? -1 : 1;
             if (monthCombo.SelectedIndex + i > 11)
@@ -140,7 +151,5 @@
                 monthCombo.SelectedIndex = monthCombo.SelectedIndex + i;
             }
         }
-
-        #endregion
     }
 }

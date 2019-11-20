@@ -28,7 +28,7 @@
             <ColumnDefinition Width="5"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <control:MyCalendar Grid.Column="0">
+        <control:MyCalendar x:Name="calendar" Grid.Column="0">
             <i:Interaction.Triggers>
                 <i:EventTrigger EventName="DayClicked">
                     <command:EventToCommand Command="{Binding CalendarDayClickedCommand}" PassEventArgsToCommand="True"/>
@@ -49,7 +49,13 @@
             <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,100,0">
                 <Button Content="Import" Width="50" Height="30" Margin="0,0,10,0" Style="{DynamicResource ButtonWindowStyle}" Click="Import_Click"/>
                 <Button Content="Export" Width="50" Height="30" Margin="0,0,10,0" Style="{DynamicResource ButtonWindowStyle}" Click="Export_Click"/>
-                <Button Content="저장" Width="50" Height="30" Margin="0,0,10,0" Style="{DynamicResource ButtonWindowStyle}" Click="Save_Click"/>
+                <Button Content="저장" Width="50" Height="30" Margin="0,0,10,0" Style="{DynamicResource ButtonWindowStyle}">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="Click">
+                            <command:EventToCommand Command="{Binding SaveCommand}" PassEventArgsToCommand="false"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </Button>
             </StackPanel>
 
 

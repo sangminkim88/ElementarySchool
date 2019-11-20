@@ -18,6 +18,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Consult", "Consult\Consult.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyCalendar", "MyCalendar\MyCalendar.csproj", "{9172FF91-306F-4602-B1F3-98D13194063C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileManager", "FileManager\FileManager.csproj", "{9A1C9830-C4C8-432A-84F6-9ADC1CD44513}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -52,6 +54,10 @@ Global
 		{9172FF91-306F-4602-B1F3-98D13194063C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9172FF91-306F-4602-B1F3-98D13194063C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9172FF91-306F-4602-B1F3-98D13194063C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9A1C9830-C4C8-432A-84F6-9ADC1CD44513}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9A1C9830-C4C8-432A-84F6-9ADC1CD44513}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9A1C9830-C4C8-432A-84F6-9ADC1CD44513}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9A1C9830-C4C8-432A-84F6-9ADC1CD44513}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -59,6 +65,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{AD9D11AF-6161-4481-94F7-BF8DFB7B1466} = {38324B7A-EE3E-406C-8D74-5D9A4C35FBA6}
 		{9172FF91-306F-4602-B1F3-98D13194063C} = {38324B7A-EE3E-406C-8D74-5D9A4C35FBA6}
+		{9A1C9830-C4C8-432A-84F6-9ADC1CD44513} = {38324B7A-EE3E-406C-8D74-5D9A4C35FBA6}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {39433921-4417-4661-AB4C-39DA63240E9D}

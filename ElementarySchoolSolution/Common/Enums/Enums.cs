@@ -11,4 +11,11 @@ namespace Common.Enums
         남성,
         여성,
     }
+    public enum eAttendance
+    {
+        Absence,
+        Lateness,
+        EarlyLeave,
+        StudyTrip,
+    }
 }

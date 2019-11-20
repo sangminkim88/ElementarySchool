@@ -61,6 +61,10 @@
       <Project>{ad9d11af-6161-4481-94f7-bf8dfb7b1466}</Project>
       <Name>Common</Name>
     </ProjectReference>
+    <ProjectReference Include="..\FileManager\FileManager.csproj">
+      <Project>{9A1C9830-C4C8-432A-84F6-9ADC1CD44513}</Project>
+      <Name>FileManager</Name>
+    </ProjectReference>
     <ProjectReference Include="..\MyCalendar\MyCalendar.csproj">
       <Project>{9172ff91-306f-4602-b1f3-98d13194063c}</Project>
       <Name>MyCalendar</Name>

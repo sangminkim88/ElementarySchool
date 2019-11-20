@@ -4,10 +4,14 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:MyCalendar"
+             xmlns:common="clr-namespace:Common.Converters;assembly=Common"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800"
              BorderBrush="Black" BorderThickness="1" Padding="0"        
         >
+    <Border.Resources>
+        <common:CAttendanceConverter x:Key="CAttendanceConverter" />
+    </Border.Resources>
     <Border Name="InnerBorder" BorderThickness="2" MouseLeftButtonDown="InnerBorder_MouseLeftButtonDown" >
         <Border.Style>
             <Style TargetType="{x:Type Border}">
@@ -40,7 +44,27 @@
                     </TextBlock.Style>
                 </TextBlock>
             </StackPanel>
-            <TextBox IsEnabled="False" Text="{Binding Notes, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" AcceptsReturn="True" TextWrapping="Wrap" BorderThickness="0" ScrollViewer.VerticalScrollBarVisibility="Auto" Background="{x:Null}" Foreground="White" />
+            <ListView ItemsSource="{Binding AttendanceRecords}" BorderThickness="0" ScrollViewer.VerticalScrollBarVisibility="Auto" Background="{x:Null}" Foreground="White" >
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Margin="0,2">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="10"/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition Width="10"/>
+                            </Grid.ColumnDefinitions>                           
+                            <Image Grid.Column="0" Source="{Binding EAttendance, Converter={StaticResource CAttendanceConverter}}" Width="10" Height="10" Margin="0,0,5,0"/>
+                            <TextBlock Grid.Column="1" Text="{Binding StudentRecord.Name}" Margin="0,0,5,0"/>
+                            <Image x:Name="checkIcon" Grid.Column="2" Source="/Common;component/Images/check.png" Width="10" Height="10" Visibility="Collapsed" />
+                        </Grid>
+                        <DataTemplate.Triggers >
+                            <DataTrigger Binding="{Binding SunmitDocument}" Value="True">
+                                <Setter Property="Visibility" TargetName="checkIcon" Value="Visible"/>
+                            </DataTrigger>
+                        </DataTemplate.Triggers>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListView>
         </DockPanel>
     </Border>
 </Border>

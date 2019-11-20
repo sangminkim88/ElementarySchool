@@ -1,5 +1,6 @@
 ﻿namespace Attendance.Views
 {
+    using Attendance.ViewModels;
     using Microsoft.Win32;
     using System.Windows;
     using System.Windows.Input;
@@ -75,38 +76,32 @@
 
         private void Import_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-            if (this.isModified)
-            {
-                MessageBoxResult messageBoxResult = MessageBox.Show("수정사항이 있습니다. 저장하시겠습니까?", "경고",
-                    MessageBoxButton.YesNo, MessageBoxImage.Warning, MessageBoxResult.No);
+            (DataContext as AttendanceMainVM).SetCalendarData(this.calendar);            
 
-                if (messageBoxResult.Equals(MessageBoxResult.Cancel))
-                {
-                    return;
-                }
-                else if (messageBoxResult.Equals(MessageBoxResult.Yes))
-                {
-                    this.Save_Click(null, null);
-                }
-            }
-            OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.Filter = "dat Files (*.dat)|*.dat|All Files (*.*)|*.*";
+            //if (this.isModified)
+            //{
+            //    MessageBoxResult messageBoxResult = MessageBox.Show("수정사항이 있습니다. 저장하시겠습니까?", "경고",
+            //        MessageBoxButton.YesNo, MessageBoxImage.Warning, MessageBoxResult.No);
 
-            if (openFileDialog.ShowDialog().Equals(true))
-            {
-                this.currentFilePath = openFileDialog.FileName;
+            //    if (messageBoxResult.Equals(MessageBoxResult.Cancel))
+            //    {
+            //        return;
+            //    }
+            //    else if (messageBoxResult.Equals(MessageBoxResult.Yes))
+            //    {
+            //        (DataContext as AttendanceMainVM).SaveCommand.Execute(null);
+            //    }
+            //}
+            //OpenFileDialog openFileDialog = new OpenFileDialog();
+            //openFileDialog.Filter = "dat Files (*.dat)|*.dat|All Files (*.*)|*.*";
 
-            }
+            //if (openFileDialog.ShowDialog().Equals(true))
+            //{
+            //    this.currentFilePath = openFileDialog.FileName;
+
+            //}
         }
 
-        private void Save_Click(object sender, RoutedEventArgs e)
-        {
-<<<<<<< HEAD
-            //testc in company
-=======
-            test
->>>>>>> cb754d3c4d13a918152cdd9bb303cfed7ffe5196
-        }
         #endregion
     }
 }
