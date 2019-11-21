@@ -3,14 +3,14 @@
     using Common.Models;
     using System;
     using System.Collections.Generic;
+    using System.Windows;
     using System.Windows.Controls;
-    using System.Windows.Media;
 
     public class DayClickedEventArgs : EventArgs
     {
         #region Constructors
 
-        public DayClickedEventArgs(DateTime date, MyCalendar calendar)
+        public DayClickedEventArgs(DateTime date, DependencyObject calendar)
         {
             this.Date = date;
             this.Calendar = calendar;
@@ -20,8 +20,9 @@
 
         #region Properties
 
+        public DependencyObject Calendar { get; private set; }
+
         public DateTime Date { get; private set; }
-        public MyCalendar Calendar { get; private set; }
 
         #endregion
     }
@@ -55,6 +56,7 @@
 
                 tmp.SetValue(Grid.ColumnProperty, i % 7);
                 tmp.SetValue(Grid.RowProperty, 2 + (i / 7));
+                tmp.Clicked += DayClickedEvent;
                 mainGrid.Children.Add(tmp);
             }
             this.BuildCalendar(DateTime.Today);
@@ -69,9 +71,7 @@
         #endregion
 
         #region Properties
-
-        public List<AttendanceRecord> AttendanceRecords { get; private set; }
-
+        
         public int Month
         {
             get { return this.monthCombo.SelectedIndex + 1; }
@@ -95,6 +95,7 @@
 
         public void BuildCalendar(DateTime targetDate)
         {
+
             DateTime d = new DateTime(targetDate.Year, targetDate.Month, 1);
             int offset = DayOfWeekNumber(d.DayOfWeek);
             if (offset != 1) d = d.AddDays(-offset);
@@ -104,7 +105,6 @@
                 this.dayCalendars[box].Date = d;
                 this.dayCalendars[box].IsToday = (d == DateTime.Today);
                 this.dayCalendars[box].IsTargetMonth = (targetDate.Month == d.Month);
-                this.dayCalendars[box].Clicked += DayClickedEvent;
                 this.dayCalendars[box].AttendanceRecords = attendanceRecords.FindAll(x => x.Date.Equals(d));
                 d = d.AddDays(1);
             }

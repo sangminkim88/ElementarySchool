@@ -47,9 +47,9 @@
                 <RowDefinition/>
             </Grid.RowDefinitions>
             <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,100,0">
-                <Button Content="Import" Width="50" Height="30" Margin="0,0,10,0" Style="{DynamicResource ButtonWindowStyle}" Command="{Binding ImportCommand}" CommandParameter="{Binding ElementName=calendar}"/>
-                <Button Content="Export" Width="50" Height="30" Margin="0,0,10,0" Style="{DynamicResource ButtonWindowStyle}" Command="{Binding ExportCommand}"/>
-                <Button Content="저장" Width="50" Height="30" Margin="0,0,10,0" Style="{DynamicResource ButtonWindowStyle}" Command="{Binding SaveCommand}"/>
+                <Button Content="Import" Height="30" Margin="0,0,10,0" Style="{StaticResource ButtonWindowStyle}" Command="{Binding ImportCommand}" CommandParameter="{Binding ElementName=calendar}"/>
+                <Button Content="Export" Height="30" Margin="0,0,10,0" Style="{StaticResource ButtonWindowStyle}" Command="{Binding ExportCommand}"/>
+                <Button Content="저장" Height="30" Margin="0,0,10,0" Style="{StaticResource ButtonWindowStyle}" Command="{Binding SaveCommand}"/>
             </StackPanel>
 
 

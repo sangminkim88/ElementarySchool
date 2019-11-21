@@ -76,8 +76,7 @@
             {
                 parent = VisualTreeHelper.GetParent(parent);
             }
-            //parent.
-            //Clicked(this, new DayClickedEventArgs(this.date, parent));
+            Clicked(this, new DayClickedEventArgs(this.date, parent));
         }
 
         private void RaisePropertyChanged(string propertyName)

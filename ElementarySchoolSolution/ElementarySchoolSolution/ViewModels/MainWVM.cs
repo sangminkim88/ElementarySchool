@@ -1,15 +1,15 @@
 ﻿namespace TestSolution.ViewModels
 {
     using Attendance.Views;
+    using BusinessLog.Views;
     using Consult.Views;
-    using ElementarySchoolSolution.Properties;
+    using Settings.Views;
     using System;
     using System.Reflection;
     using System.Windows;
     using System.Windows.Controls;
     using System.Windows.Input;
     using System.Windows.Media;
-    using System.Windows.Media.Imaging;
     using TestSolution.Views;
     using WpfBase.Bases;
     using WpfBase.Common;
@@ -33,6 +33,8 @@
 
         private WpfBase.Bases.ViewBase prevView;
 
+        private Brush settingsColor;
+
         private string title;
 
         #endregion
@@ -42,9 +44,12 @@
         public MainWVM()
         {
             CommandShowMainViews = new RelayCommand(ExecuteShowMainViews);
+
             this.AttendanceColor = UNACTIVE_COLOR;
             this.ConsultColor = UNACTIVE_COLOR;
             this.BusinessLogColor = UNACTIVE_COLOR;
+            this.SettingsColor = UNACTIVE_COLOR;
+
             this.title = DEFAULT_TITLE;
         }
 
@@ -61,7 +66,7 @@
         public Brush BusinessLogColor
         {
             get { return businessLogColor; }
-            set { businessLogColor = value; }
+            set { SetValue(ref businessLogColor,value); }
         }
 
         public ICommand CommandShowMainViews { get; private set; }
@@ -70,6 +75,12 @@
         {
             get { return consultColor; }
             set { SetValue(ref consultColor, value); }
+        }
+
+        public Brush SettingsColor
+        {
+            get { return settingsColor; }
+            set { SetValue(ref settingsColor ,value); }
         }
 
         public string Title
@@ -99,8 +110,12 @@
                     backColorProperty = typeof(MainWVM).GetProperty("ConsultColor");
                     break;
                 case 2:
-                    type = typeof(ConsultMainV).Assembly.GetType("Consult.Views.BusinessLogMainV");
+                    type = typeof(BusinessLogMainV).Assembly.GetType("BusinessLog.Views.BusinessLogMainV");
                     backColorProperty = typeof(MainWVM).GetProperty("BusinessLogColor");
+                    break;
+                default:
+                    type = typeof(SettingsMainV).Assembly.GetType("Settings.Views.SettingsMainV");
+                    backColorProperty = typeof(MainWVM).GetProperty("SettingsColor");
                     break;
             }
         }

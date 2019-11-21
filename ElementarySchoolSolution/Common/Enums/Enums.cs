@@ -1,21 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Common.Enums
 {
-    public enum eSex
+    public enum EAttendance
     {
-        남성,
-        여성,
-    }
-    public enum eAttendance
-    {
-        Absence,
-        Lateness,
-        EarlyLeave,
-        StudyTrip,
+        결석,
+        지각,
+        조퇴,
+        현장학습,          
     }
 }

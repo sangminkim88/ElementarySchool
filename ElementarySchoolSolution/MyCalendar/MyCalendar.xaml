@@ -50,7 +50,7 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <StackPanel Grid.Row="0" Orientation="Horizontal" Grid.ColumnSpan="5">
-            <Button x:Name="prevButton" Background="LightSlateGray" Style="{DynamicResource ButtonWindowStyle}" Width="40" Height="40" Margin="50,0,0,0" Click="Button_Click">
+            <Button x:Name="prevButton" Background="LightSlateGray" Style="{StaticResource ButtonWindowStyle}" Width="40" Height="40" Margin="50,0,0,0" Click="Button_Click">
                 <Image Source="/Common;Component/Images/move_prev.png" />
             </Button>
             <ComboBox x:Name="monthCombo" Margin="18,8,0,8" MinWidth="30" Width="70" SelectedIndex="0" FontSize="18" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" SelectionChanged="ComboBox_SelectionChanged">
@@ -67,7 +67,7 @@
                 <ComboBoxItem Content="11"></ComboBoxItem>
                 <ComboBoxItem Content="12"></ComboBoxItem>
             </ComboBox>
-            <Button x:Name="nextButton" Background="LightSlateGray" Style="{DynamicResource ButtonWindowStyle}" Width="40" Height="40" Margin="18,0,0,0" Click="Button_Click">
+            <Button x:Name="nextButton" Background="LightSlateGray" Style="{StaticResource ButtonWindowStyle}" Width="40" Height="40" Margin="18,0,0,0" Click="Button_Click">
                 <Image Source="/Common;Component/Images/move_next.png" />
             </Button>
             <Label x:Name="yearLabel" Content="2019" Margin="40,8,0,8" FontSize="18" Foreground="White"/>

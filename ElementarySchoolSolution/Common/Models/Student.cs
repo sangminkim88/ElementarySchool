@@ -8,9 +8,35 @@
 
         private string name;
 
-        private string number;
+        private string note;
 
-        private eSex sex;
+        private int number;
+
+        private string parent;
+
+        private string parentNumber;
+
+        #endregion
+
+        #region Constructors
+
+        public Student()
+        {
+        }
+
+        public Student(string name)
+        {
+            this.name = name;
+        }
+
+        public Student(int number, string name, string parent, string parentNumber, string note)
+        {
+            this.number = number;
+            this.name = name;
+            this.parent = parent;
+            this.parentNumber = parentNumber;
+            this.note = note;
+        }
 
         #endregion
 
@@ -22,16 +48,28 @@
             set { name = value; }
         }
 
-        public string Number
+        public string Note
+        {
+            get { return note; }
+            set { note = value; }
+        }
+
+        public int Number
         {
             get { return number; }
             set { number = value; }
         }
 
-        public eSex Sex
+        public string Parent
         {
-            get { return sex; }
-            set { sex = value; }
+            get { return parent; }
+            set { parent = value; }
+        }
+
+        public string ParentNumber
+        {
+            get { return parentNumber; }
+            set { parentNumber = value; }
         }
 
         #endregion

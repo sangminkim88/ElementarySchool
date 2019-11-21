@@ -29,16 +29,6 @@
             ViewManager.AddValue(typeof(AttendceMainV), this);
         }
 
-        private void Export_Click(object sender, System.Windows.RoutedEventArgs e)
-        {
-            SaveFileDialog saveFileDialog = new SaveFileDialog();
-            saveFileDialog.Filter = "dat Files (*.dat)|*.dat|All Files (*.*)|*.*";
-            if (saveFileDialog.ShowDialog() == true)
-            {
-                XmlManager.Serialize(this.calendar.AttendanceRecords, saveFileDialog.FileName);
-            }
-        }
-
         private void GridSplitter_MouseEnter(object sender, System.Windows.Input.MouseEventArgs e)
         {
             if (this.Cursor != Cursors.Wait)

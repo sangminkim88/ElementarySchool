@@ -1,9 +1,11 @@
 ﻿namespace Attendance.ViewModels
 {
+    using Attendance.Popups;
     using Common.Models;
     using FileManager;
     using Microsoft.Win32;
     using MyCalendar;
+    using System;
     using System.Collections.Generic;
     using System.Windows;
     using System.Windows.Input;
@@ -130,9 +132,16 @@
 
         private void OmCalendarDayClicked(object obj)
         {
-            var mouseArgs = obj as MouseButtonEventArgs;
+            DayClickedEventArgs mouseArgs = obj as DayClickedEventArgs;
             if (mouseArgs == null) return;
 
+            AttendancePopup popup = new AttendancePopup(mouseArgs.Date);
+            if (popup.ShowDialog().Value)
+            {
+                this.AttendanceRecords.Add(new AttendanceRecord(mouseArgs.Date, new Student(popup.Name), 
+                    popup.Attendance, popup.DocumentTitle, popup.SubmitDocument));
+                (mouseArgs.Calendar as MyCalendar).BuildCalendarOutCaller(this.AttendanceRecords);
+            }
         }
 
         #endregion

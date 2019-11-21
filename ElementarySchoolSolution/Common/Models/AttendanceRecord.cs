@@ -7,7 +7,7 @@
     {
         #region Fields
 
-        private eAttendance _eAttendance;
+        private EAttendance _eAttendance;
 
         private DateTime date;
 
@@ -23,13 +23,15 @@
 
         public AttendanceRecord()
         {
-            this.date = DateTime.Today.AddDays(1);
-            this.studentRecord = new Student();
-            this.studentRecord.Name = "test";
-            this.studentRecord.Number = "010";
-            this.studentRecord.Sex = Enums.eSex.남성;
-            this.submitDocument = false;
-            this.EAttendance = eAttendance.Lateness;
+        }
+
+        public AttendanceRecord(DateTime date, Student student, EAttendance eAttendance, string documentTitle, bool submitDocument)
+        {
+            this.date = date;
+            this.studentRecord = student;
+            this._eAttendance = eAttendance;
+            this.documentTitle = documentTitle;
+            this.submitDocument = submitDocument;
         }
 
         #endregion
@@ -48,7 +50,7 @@
             set { documentTitle = value; }
         }
 
-        public eAttendance EAttendance
+        public EAttendance EAttendance
         {
             get { return _eAttendance; }
             set { _eAttendance = value; }

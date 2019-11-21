@@ -6,9 +6,42 @@
              xmlns:local="clr-namespace:Attendance.Popups"
              xmlns:ctrl="clr-namespace:Common.Controls;assembly=Common"
              mc:Ignorable="d" WindowState="Normal" WindowStyle="None"
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="150" d:DesignWidth="350" ResizeMode="NoResize"
+        Height="150" Width="350" BorderThickness="3" BorderBrush="Red"
+        >
     <Grid>
-        <DatePicker HorizontalAlignment="Left" Margin="95,59,0,0" VerticalAlignment="Top" Text="11.12.19" SelectedDateFormat="Short" IsEnabled="False"/>
-        <ctrl:WaterMarkTextBox WaterMark="프로젝트 명을 입력하세요." Text="{Binding Path=DataContext.NewProjectName, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Column="0" Grid.Row="0" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Right">
+            <Label x:Name="yearLabel" Content="2019"/>
+            <Label Content="년" />
+            <Label x:Name="monthLabel" Content="11"/>
+            <Label Content="월"/>
+            <Label x:Name="dayLabel" Content="21"/>
+            <Label Content="일"/>
+        </StackPanel>
+        <StackPanel Grid.Column="1" Grid.Row="0" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
+            <Label Content="이름" Margin="10,0,0,0" />
+            <ComboBox x:Name="nameCombo" Margin="10,0,0,0" Width="100"></ComboBox>
+        </StackPanel>
+        <StackPanel Grid.Column="0" Grid.Row="1" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Right">
+            <Label Content="구분" />
+            <ComboBox x:Name="attendanceCombo" Margin="10,0,0,0" Width="100" SelectionChanged="AttendanceCombo_SelectionChanged"></ComboBox>
+        </StackPanel>
+        <StackPanel x:Name="documentPanel" Grid.Column="1" Grid.Row="1" Orientation="Horizontal" VerticalAlignment="Center" Visibility="Collapsed">
+            <ctrl:WaterMarkTextBox x:Name="documentTitle" WaterMark="제출서류" Margin="10,0,0,0" />
+            <CheckBox x:Name="submitDocument" VerticalAlignment="Center"/>
+        </StackPanel>
+        <StackPanel Grid.Row="2" Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0,0,0,10">
+            <Button Content="추가" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Style="{StaticResource ButtonWindowStyle}" Click="AddButton_Click"/>
+            <Button Content="취소" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="10,0,0,0" Style="{StaticResource ButtonWindowStyle}" Click="CancelButton_Click"/>
+        </StackPanel>
     </Grid>
 </Window>
