@@ -74,21 +74,21 @@
         </StackPanel>
         <StackPanel Grid.Column="5" Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Left">
             <StackPanel Orientation="Horizontal">
-                <Image Source="/Common;component/Images/redCircle.png" Width="10" Height="10"/>
+                <Ellipse Fill="Red" Width="10" Height="10" />
                 <Label Content="결석" Foreground="White"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
-                <Image Source="/Common;component/Images/yellowCircle.png" Width="10" Height="10"/>
+                <Ellipse Fill="Yellow" Width="10" Height="10" />
                 <Label Content="지각" Foreground="White"/>
             </StackPanel>
         </StackPanel>
         <StackPanel Grid.Column="6" Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Left">
             <StackPanel Orientation="Horizontal">
-                <Image Source="/Common;component/Images/greenCircle.png" Width="10" Height="10"/>
+                <Ellipse Fill="Green" Width="10" Height="10" />
                 <Label Content="조퇴" Foreground="White"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
-                <Image Source="/Common;component/Images/blueCircle.png" Width="10" Height="10"/>
+                <Ellipse Fill="Blue" Width="10" Height="10" />
                 <Label Content="현장학습" Foreground="White"/>
             </StackPanel>
         </StackPanel>

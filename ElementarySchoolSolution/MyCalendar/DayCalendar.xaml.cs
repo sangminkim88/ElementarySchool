@@ -17,7 +17,7 @@
 
         private bool isToday;
 
-        private List<AttendanceRecord> attendanceRecords = new List<AttendanceRecord>();
+        private List<ICalendarData> calendarData = new List<ICalendarData>();
 
         #endregion
 
@@ -34,6 +34,8 @@
         #region Events
 
         public event EventHandler<DayClickedEventArgs> Clicked;
+        public event EventHandler<DayClickedEventArgs> DeleteEvent;
+        public event EventHandler<DayClickedEventArgs> ModifyEvent;
 
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -59,10 +61,10 @@
             set { isToday = value; RaisePropertyChanged("IsToday"); }
         }
 
-        public List<AttendanceRecord> AttendanceRecords
+        public List<ICalendarData> CalendarData
         {
-            get { return attendanceRecords; }
-            set { attendanceRecords = value; RaisePropertyChanged("AttendanceRecords"); }
+            get { return calendarData; }
+            set { calendarData = value; RaisePropertyChanged("CalendarData"); }
         }
 
         #endregion
@@ -90,5 +92,15 @@
         }
 
         #endregion
+
+        private void Grid_MouseLeftButtonUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            //ModifyEvent();
+        }
+
+        private void MenuItem_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            //DeleteEvent(this, new DayClickedEventArgs(this.date, parent));
+        }
     }
 }

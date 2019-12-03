@@ -44,18 +44,23 @@
                     </TextBlock.Style>
                 </TextBlock>
             </StackPanel>
-            <ListView ItemsSource="{Binding AttendanceRecords}" BorderThickness="0" ScrollViewer.VerticalScrollBarVisibility="Auto" Background="{x:Null}" Foreground="White" >
+            <ListView ItemsSource="{Binding CalendarData}" BorderThickness="0" ScrollViewer.VerticalScrollBarVisibility="Auto" Background="{x:Null}" Foreground="White" >
                 <ListBox.ItemTemplate>
                     <DataTemplate>
-                        <Grid Margin="0,2">
+                        <Grid Margin="0,2" ToolTip="{Binding DocumentTitle}" MouseLeftButtonUp="Grid_MouseLeftButtonUp">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="10"/>
                                 <ColumnDefinition/>
                                 <ColumnDefinition Width="10"/>
-                            </Grid.ColumnDefinitions>                           
-                            <Image Grid.Column="0" Source="{Binding EAttendance, Converter={StaticResource CAttendanceConverter}}" Width="10" Height="10" Margin="0,0,5,0"/>
+                            </Grid.ColumnDefinitions>
+                            <Ellipse Fill="{Binding EAttendance, Converter={StaticResource CAttendanceConverter}}" Grid.Column="0" Width="10" Height="10" Margin="0,0,5,0"/>
                             <TextBlock Grid.Column="1" Text="{Binding StudentRecord.Name}" Margin="0,0,5,0"/>
                             <Image x:Name="checkIcon" Grid.Column="2" Source="/Common;component/Images/check.png" Width="10" Height="10" Visibility="Collapsed" />
+                            <Grid.ContextMenu>
+                                <ContextMenu>
+                                    <MenuItem Header="삭제" Click="MenuItem_Click"/>
+                                </ContextMenu>
+                            </Grid.ContextMenu>
                         </Grid>
                         <DataTemplate.Triggers >
                             <DataTrigger Binding="{Binding SunmitDocument}" Value="True">

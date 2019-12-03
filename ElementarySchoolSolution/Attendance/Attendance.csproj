@@ -34,6 +34,7 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Models\AttendanceRecord.cs" />
     <Compile Include="Popups\AttendancePopup.xaml.cs">
       <DependentUpon>AttendancePopup.xaml</DependentUpon>
     </Compile>

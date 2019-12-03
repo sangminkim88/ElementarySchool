@@ -24,7 +24,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BusinessLog", "BusinessLog\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Settings", "Settings\Settings.csproj", "{D3BC5788-1E27-421A-8994-4DF43113D9AC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PieControls", "C:\Users\USER\Downloads\PieControls_Code\PieControls_Code\PieControls\PieControls.csproj", "{CEC6E596-D667-4068-BF48-188825F52C82}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PieControls", "PieControls\PieControls.csproj", "{CEC6E596-D667-4068-BF48-188825F52C82}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

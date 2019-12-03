@@ -3,6 +3,7 @@
     using System;
     using System.Globalization;
     using System.Windows.Data;
+    using System.Windows.Media;
     using System.Windows.Media.Imaging;
 
     public class CAttendanceConverter : IValueConverter
@@ -11,21 +12,21 @@
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             EAttendance tmp = (EAttendance)value;
-            BitmapImage returnData;
+            SolidColorBrush returnData;
 
             switch (value)
-            {
+            {             
                 case EAttendance.결석:
-                    returnData = new BitmapImage(new Uri("/Common;component/Images/redCircle.png", UriKind.Relative));
+                    returnData = Brushes.Red;
                     break;
                 case EAttendance.지각:
-                    returnData = new BitmapImage(new Uri("/Common;component/Images/yellowCircle.png", UriKind.Relative));
+                    returnData = Brushes.Yellow;
                     break;
                 case EAttendance.조퇴:
-                    returnData = new BitmapImage(new Uri("/Common;component/Images/greenCircle.png", UriKind.Relative));
+                    returnData = Brushes.Green;
                     break;
                 case EAttendance.현장학습:
-                    returnData = new BitmapImage(new Uri("/Common;component/Images/blueCircle.png", UriKind.Relative));
+                    returnData = Brushes.Blue;
                     break;
                 default:
                     returnData = null;

@@ -1,8 +1,11 @@
-﻿namespace Common.Models
+﻿namespace Attendance.Models
 {
+    using Common;
+    using Common.Models;
+    using MyCalendar;
     using System;
 
-    public class AttendanceRecord
+    public class AttendanceRecord : ICalendarData
     {
         #region Fields
 
@@ -61,7 +64,7 @@
             set { studentRecord = value; }
         }
 
-        public bool SunmitDocument
+        public bool SubmitDocument
         {
             get { return submitDocument; }
             set { submitDocument = value; }

@@ -1,15 +1,18 @@
 ﻿namespace Attendance.Popups
 {
     using Common;
+    using Common.Models;
     using System;
+    using System.Collections.Generic;
     using System.Linq;
     using System.Windows;
 
     public partial class AttendancePopup : Window
     {
+        private List<Student> students;
         #region Constructors
 
-        public AttendancePopup(DateTime date)
+        public AttendancePopup(DateTime date, List<Student> students)
         {
             InitializeComponent();
 
@@ -17,9 +20,12 @@
             this.monthLabel.Content = date.Month;
             this.dayLabel.Content = date.Day;
 
+            this.students = students;
+
             attendanceCombo.ItemsSource = Enum.GetValues(typeof(EAttendance)).Cast<EAttendance>();
 
             this.attendanceCombo.SelectedIndex = 0;
+            this.nameCombo.ItemsSource = students.Select(x=>x.Name);
             this.nameCombo.SelectedIndex = 0;
         }
 
@@ -37,9 +43,9 @@
             get { return this.documentTitle.Text; }
         }
 
-        public string Name
+        public Student SelectedStudent
         {
-            get { return this.nameCombo.Text; }
+            get { return this.students.Find(x=>x.Name.Equals(this.nameCombo.Text)); }
         }
 
         public bool SubmitDocument

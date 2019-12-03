@@ -15,6 +15,7 @@
         public AttendanceMainV()
         {
             InitializeComponent();
+            this.DataContext = new AttendanceMainVM(this.calendar);
             this.Title = "출석관리";
             var tmp = Enum.GetNames(typeof(EAttendance)).ToList();
             tmp.Insert(0, string.Empty);
@@ -35,6 +36,18 @@
             ViewManager.AddValue(typeof(AttendanceMainV), this);
         }
 
+        private void EndDatePicker_SelectedDateChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+        {
+            if (this.endDatePicker?.SelectedDate != null)
+            {
+                DateTime dateTime = (DateTime)this.endDatePicker?.SelectedDate;
+                if (dateTime < this.startDatePicker?.SelectedDate)
+                {
+                    this.startDatePicker.SelectedDate = dateTime;
+                }
+            }
+        }
+
         private void GridSplitter_MouseEnter(object sender, System.Windows.Input.MouseEventArgs e)
         {
             if (this.Cursor != Cursors.Wait)
@@ -51,8 +64,6 @@
             }
         }
 
-        #endregion
-
         private void StartDatePicker_SelectedDateChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
         {
             if (this.startDatePicker?.SelectedDate != null)
@@ -65,16 +76,6 @@
             }
         }
 
-        private void EndDatePicker_SelectedDateChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
-        {
-            if (this.endDatePicker?.SelectedDate != null)
-            {
-                DateTime dateTime = (DateTime)this.endDatePicker?.SelectedDate;
-                if (dateTime < this.startDatePicker?.SelectedDate)
-                {
-                    this.startDatePicker.SelectedDate = dateTime;
-                }
-            }
-        }
+        #endregion
     }
 }

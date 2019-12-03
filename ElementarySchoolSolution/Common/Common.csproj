@@ -51,9 +51,9 @@
     <Compile Include="Controls\TextBoxes.cs" />
     <Compile Include="Controls\Buttons.cs" />
     <Compile Include="Controls\Panels.cs" />
+    <Compile Include="Converters\CBoolToBrushConverter.cs" />
     <Compile Include="Converters\CAttendanceConverter.cs" />
     <Compile Include="Enums.cs" />
-    <Compile Include="Models\AttendanceRecord.cs" />
     <Compile Include="Models\Student.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -91,12 +91,6 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\businessLog.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\blueCircle.png" />
-    <Resource Include="Images\greenCircle.png" />
-    <Resource Include="Images\redCircle.png" />
-    <Resource Include="Images\yellowCircle.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\check.png" />

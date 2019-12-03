@@ -31,7 +31,7 @@
     {
         #region Fields
 
-        private List<AttendanceRecord> attendanceRecords = new List<AttendanceRecord>();
+        private List<ICalendarData> calendarData = new List<ICalendarData>();
 
         private List<DayCalendar> dayCalendars = new List<DayCalendar>();
 
@@ -95,7 +95,6 @@
 
         public void BuildCalendar(DateTime targetDate)
         {
-
             DateTime d = new DateTime(targetDate.Year, targetDate.Month, 1);
             int offset = DayOfWeekNumber(d.DayOfWeek);
             if (offset != 1) d = d.AddDays(-offset);
@@ -105,14 +104,14 @@
                 this.dayCalendars[box].Date = d;
                 this.dayCalendars[box].IsToday = (d == DateTime.Today);
                 this.dayCalendars[box].IsTargetMonth = (targetDate.Month == d.Month);
-                this.dayCalendars[box].AttendanceRecords = attendanceRecords.FindAll(x => x.Date.Equals(d));
+                this.dayCalendars[box].CalendarData = calendarData.FindAll(x => x.Date.Equals(d));
                 d = d.AddDays(1);
             }
         }
 
-        public void BuildCalendarOutCaller(List<AttendanceRecord> attendanceRecords)
+        public void BuildCalendarOutCaller(List<ICalendarData> calendarData)
         {
-            this.attendanceRecords = attendanceRecords;
+            this.calendarData = calendarData;
             this.ComboBox_SelectionChanged(null, null);
         }
 
