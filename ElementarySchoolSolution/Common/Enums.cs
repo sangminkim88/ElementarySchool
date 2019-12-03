@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Common.Enums
+namespace Common
 {
     public enum EAttendance
     {
@@ -13,5 +13,15 @@ namespace Common.Enums
         지각,
         조퇴,
         현장학습,          
+    }
+
+    public enum EConfigSection
+    {
+        Students,
+        Attendance,
+    }
+    public enum EConfigKey
+    {
+        FilePath,
     }
 }

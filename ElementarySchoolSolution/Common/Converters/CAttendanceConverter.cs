@@ -1,6 +1,5 @@
 ﻿namespace Common.Converters
 {
-    using Common.Enums;
     using System;
     using System.Globalization;
     using System.Windows.Data;

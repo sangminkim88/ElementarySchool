@@ -1,5 +1,6 @@
 ﻿namespace Settings.ViewModels
 {
+    using Common;
     using Common.Models;
     using FileManager;
     using Microsoft.Win32;
@@ -27,6 +28,13 @@
             Export = new RelayCommand(ExcuteExport);
             Save = new RelayCommand(ExcuteSave);
             Initial = new RelayCommand(ExcuteInitial);
+
+            this.CurrentStudentFilePath = ConfigManager.ReadProfileString(EConfigSection.Students.ToString(), 
+                EConfigKey.FilePath.ToString(), this.CurrentStudentFilePath);
+            if (this.CurrentStudentFilePath != null || !this.CurrentStudentFilePath.Equals(string.Empty))
+            {
+                this.setStudents(XmlManager.Deserialize(this.CurrentStudentFilePath, this.Students.GetType()) as ObservableCollection<Student>);
+            }
         }
 
         #endregion
@@ -87,15 +95,19 @@
             if (!this.CurrentStudentFilePath.Length.Equals(0) && MessageBox.Show("변경한 내용은 저장되지 않습니다. 그래도 진행하시겠습니까?", "경고",
                MessageBoxButton.YesNo, MessageBoxImage.Warning).Equals(MessageBoxResult.No))
             {
-
+                return;
             }
             OpenFileDialog openFileDialog = new OpenFileDialog();
             openFileDialog.Filter = "dat Files (*.dat)|*.dat|All Files (*.*)|*.*";
 
             if (openFileDialog.ShowDialog().Equals(true))
             {
-                this.Students = XmlManager.Deserialize(openFileDialog.FileName, this.Students.GetType()) as ObservableCollection<Student>;
+                this.setStudents(XmlManager.Deserialize(openFileDialog.FileName, this.Students.GetType()) as ObservableCollection<Student>);
+
                 this.CurrentStudentFilePath = openFileDialog.FileName;
+
+                ConfigManager.WriteProfileString(EConfigSection.Students.ToString(), 
+                    EConfigKey.FilePath.ToString(), this.CurrentStudentFilePath);
             }
         }
 
@@ -109,7 +121,7 @@
             if (MessageBox.Show("변경한 내용은 저장되지 않습니다. 그래도 진행하시겠습니까?", "경고",
                 MessageBoxButton.YesNo, MessageBoxImage.Warning).Equals(MessageBoxResult.Yes))
             {
-                this.Students = XmlManager.Deserialize(this.CurrentStudentFilePath, this.Students.GetType()) as ObservableCollection<Student>;
+                this.setStudents(XmlManager.Deserialize(this.CurrentStudentFilePath, this.Students.GetType()) as ObservableCollection<Student>);                
             }
         }
 
@@ -125,6 +137,17 @@
                 MessageBoxButton.YesNo, MessageBoxImage.Information).Equals(MessageBoxResult.Yes))
             {
                 XmlManager.Serialize(this.Students, this.CurrentStudentFilePath);
+                ConfigManager.WriteProfileString(EConfigSection.Students.ToString(), 
+                    EConfigKey.FilePath.ToString(), this.CurrentStudentFilePath);
+            }
+        }
+
+        private void setStudents(ObservableCollection<Student> data)
+        {
+            this.Students.Clear();
+            foreach (var item in data)
+            {
+                this.Students.Add(item);
             }
         }
 

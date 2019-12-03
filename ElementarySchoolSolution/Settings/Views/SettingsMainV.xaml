@@ -13,15 +13,15 @@
     </UserControl.DataContext>
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="100"/>
+            <ColumnDefinition Width="150"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <Border BorderThickness="2" BorderBrush="Pink">
             <StackPanel Orientation="Vertical" Grid.Column="0" HorizontalAlignment="Stretch">
-                <Button Content="학생정보" Style="{StaticResource ButtonWindowStyle}" Margin="0,30,0,0" Height="20" Width="96" Command="{Binding ShowStudent}" CommandParameter="{Binding ElementName=settingMainStage}"/>
+                <Button Content="학생정보" Style="{StaticResource ButtonWindowStyle}" Margin="0,30,0,0" Width="145" Command="{Binding ShowStudent}" CommandParameter="{Binding ElementName=settingMainStage}" FontSize="20"/>
             </StackPanel>
         </Border>
-        <Grid Grid.Column="1" x:Name="settingMainStage" Margin="0,100,0,0">
+        <Grid Grid.Column="1" x:Name="settingMainStage" Margin="0,30,0,0">
             <local:StudentManageV/>
         </Grid>
     </Grid>

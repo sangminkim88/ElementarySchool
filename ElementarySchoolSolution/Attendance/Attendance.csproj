@@ -39,8 +39,8 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\AttendanceMainVM.cs" />
-    <Compile Include="Views\AttendceMainV.xaml.cs">
-      <DependentUpon>AttendceMainV.xaml</DependentUpon>
+    <Compile Include="Views\AttendanceMainV.xaml.cs">
+      <DependentUpon>AttendanceMainV.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -51,7 +51,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\AttendceMainV.xaml">
+    <Page Include="Views\AttendanceMainV.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

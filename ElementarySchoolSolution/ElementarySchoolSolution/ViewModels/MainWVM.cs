@@ -102,7 +102,7 @@
             switch (index)
             {
                 case 0:
-                    type = typeof(AttendceMainV).Assembly.GetType("Attendance.Views.AttendceMainV");
+                    type = typeof(AttendanceMainV).Assembly.GetType("Attendance.Views.AttendanceMainV");
                     backColorProperty = typeof(MainWVM).GetProperty("AttendanceColor");
                     break;
                 case 1:

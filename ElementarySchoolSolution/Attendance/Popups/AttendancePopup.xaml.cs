@@ -1,6 +1,6 @@
 ﻿namespace Attendance.Popups
 {
-    using Common.Enums;
+    using Common;
     using System;
     using System.Linq;
     using System.Windows;

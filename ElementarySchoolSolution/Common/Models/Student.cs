@@ -1,7 +1,5 @@
 ﻿namespace Common.Models
 {
-    using Common.Enums;
-
     public class Student
     {
         #region Fields

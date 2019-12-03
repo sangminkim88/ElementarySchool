@@ -1,6 +1,5 @@
 ﻿namespace Common.Models
 {
-    using Common.Enums;
     using System;
 
     public class AttendanceRecord

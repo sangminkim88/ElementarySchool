@@ -52,7 +52,7 @@
     <Compile Include="Controls\Buttons.cs" />
     <Compile Include="Controls\Panels.cs" />
     <Compile Include="Converters\CAttendanceConverter.cs" />
-    <Compile Include="Enums\Enums.cs" />
+    <Compile Include="Enums.cs" />
     <Compile Include="Models\AttendanceRecord.cs" />
     <Compile Include="Models\Student.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
