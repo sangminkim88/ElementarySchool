@@ -58,12 +58,12 @@
                             <Image x:Name="checkIcon" Grid.Column="2" Source="/Common;component/Images/check.png" Width="10" Height="10" Visibility="Collapsed" />
                             <Grid.ContextMenu>
                                 <ContextMenu>
-                                    <MenuItem Header="삭제" Click="MenuItem_Click"/>
+                                    <MenuItem Header="삭제" Click="MenuItem_Click" Tag="{Binding RelativeSource={RelativeSource AncestorType={x:Type Grid}}}"/>
                                 </ContextMenu>
                             </Grid.ContextMenu>
                         </Grid>
                         <DataTemplate.Triggers >
-                            <DataTrigger Binding="{Binding SunmitDocument}" Value="True">
+                            <DataTrigger Binding="{Binding SubmitDocument}" Value="True">
                                 <Setter Property="Visibility" TargetName="checkIcon" Value="Visible"/>
                             </DataTrigger>
                         </DataTemplate.Triggers>

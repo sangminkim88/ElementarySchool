@@ -34,8 +34,8 @@
         #region Events
 
         public event EventHandler<DayClickedEventArgs> Clicked;
-        public event EventHandler<DayClickedEventArgs> DeleteEvent;
-        public event EventHandler<DayClickedEventArgs> ModifyEvent;
+        public event EventHandler<DayModifyEventArgs> Delete;
+        public event EventHandler<DayModifyEventArgs> Modify;
 
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -95,12 +95,24 @@
 
         private void Grid_MouseLeftButtonUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-            //ModifyEvent();
+            var parent = VisualTreeHelper.GetParent(this);
+            while (!(parent is MyCalendar))
+            {
+                parent = VisualTreeHelper.GetParent(parent);
+            }
+            Modify(this, new DayModifyEventArgs((sender as Grid).DataContext, parent));
         }
 
         private void MenuItem_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-            //DeleteEvent(this, new DayClickedEventArgs(this.date, parent));
+            var parent = VisualTreeHelper.GetParent(this);
+            while (!(parent is MyCalendar))
+            {
+                parent = VisualTreeHelper.GetParent(parent);
+            }
+
+            Delete(this, new DayModifyEventArgs((sender as MenuItem).DataContext, parent));
         }
+
     }
 }

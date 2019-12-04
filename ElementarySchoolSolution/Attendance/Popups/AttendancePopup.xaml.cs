@@ -1,5 +1,6 @@
 ﻿namespace Attendance.Popups
 {
+    using Attendance.Models;
     using Common;
     using Common.Models;
     using System;
@@ -9,16 +10,39 @@
 
     public partial class AttendancePopup : Window
     {
+        #region Fields
+
         private List<Student> students;
+
+        #endregion
+
         #region Constructors
+
+        public AttendancePopup(AttendanceRecord attendanceRecord, List<Student> students)
+        {
+            InitializeComponent();
+
+            this.datePicker.SelectedDate = attendanceRecord.Date;
+
+            this.students = students;
+            this.nameCombo.ItemsSource = students.Select(x => x.Name);
+            this.nameCombo.SelectedIndex = this.nameCombo.Items.IndexOf(attendanceRecord.StudentRecord.Name);
+
+            this.attendanceCombo.ItemsSource = Enum.GetValues(typeof(EAttendance)).Cast<EAttendance>();
+            this.attendanceCombo.SelectedIndex = this.attendanceCombo.Items.IndexOf(attendanceRecord.EAttendance);
+
+            this.documentTitle.Text = attendanceRecord.DocumentTitle;
+
+            this.submitDocument.IsChecked = attendanceRecord.SubmitDocument;
+
+            this.addButton.Content = "수정";
+        }
 
         public AttendancePopup(DateTime date, List<Student> students)
         {
             InitializeComponent();
 
-            this.yearLabel.Content = date.Year;
-            this.monthLabel.Content = date.Month;
-            this.dayLabel.Content = date.Day;
+            this.datePicker.SelectedDate = date;
 
             this.students = students;
 
@@ -33,14 +57,14 @@
 
         #region Properties
 
-        public EAttendance Attendance
-        {
-            get { return (EAttendance)this.attendanceCombo.SelectedIndex; }
-        }
-
         public string DocumentTitle
         {
             get { return this.documentTitle.Text; }
+        }
+
+        public EAttendance EAttendance
+        {
+            get { return (EAttendance)this.attendanceCombo.SelectedIndex; }
         }
 
         public Student SelectedStudent
@@ -63,13 +87,6 @@
             this.DialogResult = true;
         }
 
-        private void CancelButton_Click(object sender, RoutedEventArgs e)
-        {
-            this.DialogResult = false;
-        }
-
-        #endregion
-
         private void AttendanceCombo_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
         {
             if(this.attendanceCombo.SelectedItem.Equals(EAttendance.결석) || 
@@ -82,5 +99,12 @@
                 this.documentPanel.Visibility = Visibility.Collapsed;
             }
         }
+
+        private void CancelButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.DialogResult = false;
+        }
+
+        #endregion
     }
 }

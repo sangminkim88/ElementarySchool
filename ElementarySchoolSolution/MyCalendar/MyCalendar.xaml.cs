@@ -27,6 +27,26 @@
         #endregion
     }
 
+    public class DayModifyEventArgs : EventArgs
+    {
+        #region Constructors
+
+        public DayModifyEventArgs(object dataContext, DependencyObject calendar)
+        {
+            this.DataContext = dataContext;
+            this.Calendar = calendar;
+        }
+
+        #endregion
+
+        #region Properties
+        public DependencyObject Calendar { get; private set; }
+
+        public object DataContext { get; private set; }
+
+        #endregion
+    }
+
     public partial class MyCalendar : UserControl
     {
         #region Fields
@@ -57,6 +77,8 @@
                 tmp.SetValue(Grid.ColumnProperty, i % 7);
                 tmp.SetValue(Grid.RowProperty, 2 + (i / 7));
                 tmp.Clicked += DayClickedEvent;
+                tmp.Modify += DayModifyEvent;
+                tmp.Delete += DayDeleteEvent;
                 mainGrid.Children.Add(tmp);
             }
             this.BuildCalendar(DateTime.Today);
@@ -67,6 +89,8 @@
         #region Events
 
         public event EventHandler<DayClickedEventArgs> DayClicked;
+        public event EventHandler<DayModifyEventArgs> DayModify;
+        public event EventHandler<DayModifyEventArgs> DayDelete;
 
         #endregion
 
@@ -152,6 +176,19 @@
             if (DayClicked == null) return;
 
             DayClicked(this, new DayClickedEventArgs((sender as DayCalendar).Date, this));
+        }
+
+        private void DayModifyEvent(object sender, DayModifyEventArgs e)
+        {
+            if (DayModify == null) return;
+
+            DayModify(this, new DayModifyEventArgs(e.DataContext, this));
+        }
+        private void DayDeleteEvent(object sender, DayModifyEventArgs e)
+        {
+            if (DayDelete == null) return;
+
+            DayDelete(this, new DayModifyEventArgs(e.DataContext, this));
         }
 
         #endregion

@@ -20,12 +20,8 @@
             <RowDefinition Height="50"/>
         </Grid.RowDefinitions>
         <StackPanel Grid.Column="0" Grid.Row="0" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Right">
-            <Label x:Name="yearLabel" Content="2019"/>
-            <Label Content="년" />
-            <Label x:Name="monthLabel" Content="11"/>
-            <Label Content="월"/>
-            <Label x:Name="dayLabel" Content="21"/>
-            <Label Content="일"/>
+            <Label Content="일시"/>
+            <DatePicker x:Name="datePicker" Margin="10,0,0,0" Width="100" SelectedDateFormat="Short"></DatePicker>
         </StackPanel>
         <StackPanel Grid.Column="1" Grid.Row="0" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
             <Label Content="이름" Margin="10,0,0,0" />
@@ -40,7 +36,7 @@
             <CheckBox x:Name="submitDocument" VerticalAlignment="Center"/>
         </StackPanel>
         <StackPanel Grid.Row="2" Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0,0,0,10">
-            <Button Content="추가" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Style="{StaticResource ButtonWindowStyle}" Click="AddButton_Click"/>
+            <Button x:Name="addButton" Content="추가" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Style="{StaticResource ButtonWindowStyle}" Click="AddButton_Click"/>
             <Button Content="취소" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="10,0,0,0" Style="{StaticResource ButtonWindowStyle}" Click="CancelButton_Click"/>
         </StackPanel>
     </Grid>

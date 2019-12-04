@@ -25,27 +25,15 @@
 
         private List<ICalendarData> attendanceRecords = new List<ICalendarData>();
 
-        private ObservableCollection<AttendanceRecord> resultAttendance = new ObservableCollection<AttendanceRecord>();
-
-        public ObservableCollection<AttendanceRecord> ResultAttendance
-        {
-            get { return resultAttendance; }
-            set { resultAttendance = value; }
-        }
-               
         private string condition;
 
         private string currentFilePath = string.Empty;
 
-        public string CurrentFilePath
-        {
-            get { return currentFilePath; }
-            set { currentFilePath = value; }
-        }        
-
         private DateTime? endDate;
 
         private bool isEnableView;
+
+        private ObservableCollection<AttendanceRecord> resultAttendance = new ObservableCollection<AttendanceRecord>();
 
         private int selectedAttendanceIndex;
 
@@ -62,6 +50,8 @@
         public AttendanceMainVM(MyCalendar myCalendar)
         {
             CalendarDayClickedCommand = new RelayCommand(OnCalendarDayClicked);
+            CalendarDayModifyCommand = new RelayCommand(OnCalendarDayModify);
+            CalendarDayDeleteCommand = new RelayCommand(OnCalendarDayDelete);
             SaveCommand = new RelayCommand(ExecuteSave);
             ImportCommand = new RelayCommand(ExecuteImport);
             ExportCommand = new RelayCommand(ExecuteExport);
@@ -88,13 +78,13 @@
                 this.IsEnableView = false;
                 return;
             }
-            
+
             this.CurrentFilePath = ConfigManager.ReadProfileString(EConfigSection.Attendance.ToString(),
                 EConfigKey.FilePath.ToString(), this.CurrentFilePath);
             if (!this.CurrentFilePath.Equals(string.Empty))
             {
                 this.attendanceRecords = ((List<AttendanceRecord>)XmlManager.Deserialize(this.CurrentFilePath, typeof(List<AttendanceRecord>))).
-                    ConvertAll(x=>(ICalendarData)x);
+                    ConvertAll(x => (ICalendarData)x);
                 myCalendar.BuildCalendarOutCaller(this.attendanceRecords);
             }
         }
@@ -104,7 +94,7 @@
         #region Properties
 
         public ICommand AddConditionCommand { get; private set; }
-        
+
         public List<ICalendarData> AttendanceRecords
         {
             get { return attendanceRecords; }
@@ -112,6 +102,10 @@
         }
 
         public ICommand CalendarDayClickedCommand { get; private set; }
+
+        public ICommand CalendarDayDeleteCommand { get; private set; }
+
+        public ICommand CalendarDayModifyCommand { get; private set; }
 
         public ICommand ClearConditionCommand { get; private set; }
 
@@ -121,6 +115,12 @@
         {
             get { return condition; }
             set { SetValue(ref condition, value); }
+        }
+
+        public string CurrentFilePath
+        {
+            get { return currentFilePath; }
+            set { currentFilePath = value; }
         }
 
         public DateTime? EndDate
@@ -137,6 +137,12 @@
         {
             get { return isEnableView; }
             set { SetValue(ref isEnableView, value); }
+        }
+
+        public ObservableCollection<AttendanceRecord> ResultAttendance
+        {
+            get { return resultAttendance; }
+            set { resultAttendance = value; }
         }
 
         public ICommand SaveCommand { get; private set; }
@@ -177,15 +183,14 @@
         {
             ViewModelManager.AddValue(typeof(AttendanceMainVM), this);
         }
-        
+
         private void ExecuteAddCondition(object obj)
         {
             Dictionary<string, string> values = new Dictionary<string, string>();
 
-            #region 조건 탐색
             if (!this.SelectedStudentIndex.Equals(0))
             {
-                values.Add("Name",this.Students[this.SelectedStudentIndex].Name);
+                values.Add("Name", this.Students[this.SelectedStudentIndex].Name);
             }
             if (!this.SelectedAttendanceIndex.Equals(0))
             {
@@ -199,11 +204,9 @@
             {
                 values.Add("EndDate", this.EndDate.Value.ToString("yy.MM.dd"));
             }
-            #endregion
 
             if (values.Count > 0)
             {
-                #region 조건을 UI에 표현
                 StringBuilder sb = new StringBuilder();
                 for (int i = 0; i < values.Count; i++)
                 {
@@ -226,14 +229,14 @@
                     sb2.Append(sb);
                     this.Condition = sb2.ToString();
                 }
-                #endregion
 
                 List<AttendanceRecord> filtered = new List<AttendanceRecord>();
-                for (int i = 0; i < values.Count; i++)                
+                for (int i = 0; i < values.Count; i++)
                 {
                     List<AttendanceRecord> tmp;
-                    if (i.Equals(0)) {
-                        tmp = this.AttendanceRecords.ConvertAll(x=>(AttendanceRecord)x);
+                    if (i.Equals(0))
+                    {
+                        tmp = this.AttendanceRecords.ConvertAll(x => (AttendanceRecord)x);
                     }
                     else
                     {
@@ -266,9 +269,8 @@
                     this.ResultAttendance.Add(item);
                 }
             }
-
         }
-        
+
         private void ExecuteClearCondition(object obj)
         {
             this.SelectedStudentIndex = 0;
@@ -289,7 +291,7 @@
             saveFileDialog.Filter = "dat Files (*.dat)|*.dat|All Files (*.*)|*.*";
             if (saveFileDialog.ShowDialog() == true)
             {
-                XmlManager.Serialize(this.attendanceRecords.ConvertAll(x=>(AttendanceRecord)x), saveFileDialog.FileName);
+                XmlManager.Serialize(this.attendanceRecords.ConvertAll(x => (AttendanceRecord)x), saveFileDialog.FileName);
             }
         }
 
@@ -300,14 +302,14 @@
             {
                 return;
             }
-            
+
             OpenFileDialog openFileDialog = new OpenFileDialog();
             openFileDialog.Filter = "dat Files (*.dat)|*.dat|All Files (*.*)|*.*";
 
             if (openFileDialog.ShowDialog().Equals(true))
             {
                 this.CurrentFilePath = openFileDialog.FileName;
-                
+
                 this.attendanceRecords = ((List<AttendanceRecord>)XmlManager.Deserialize(this.CurrentFilePath, typeof(List<AttendanceRecord>)))
                     .ConvertAll(x => (ICalendarData)x);
 
@@ -335,7 +337,7 @@
                     this.CurrentFilePath);
             }
         }
-        
+
         private void OnCalendarDayClicked(object obj)
         {
             DayClickedEventArgs mouseArgs = obj as DayClickedEventArgs;
@@ -345,7 +347,47 @@
             if (popup.ShowDialog().Value)
             {
                 this.AttendanceRecords.Add(new AttendanceRecord(mouseArgs.Date, popup.SelectedStudent,
-                    popup.Attendance, popup.DocumentTitle, popup.SubmitDocument));
+                    popup.EAttendance, popup.DocumentTitle, popup.SubmitDocument));
+                (mouseArgs.Calendar as MyCalendar).BuildCalendarOutCaller(this.AttendanceRecords);
+            }
+        }
+
+        private void OnCalendarDayDelete(object obj)
+        {
+            DayModifyEventArgs mouseArgs = obj as DayModifyEventArgs;
+            if (mouseArgs == null) return;
+
+            AttendanceRecord attendanceRecord = mouseArgs.DataContext as AttendanceRecord;
+
+            StringBuilder sb = new StringBuilder();
+            sb.AppendLine(attendanceRecord.Date.ToShortDateString());
+            sb.AppendLine(attendanceRecord.StudentRecord.Name);
+            sb.AppendLine(attendanceRecord.EAttendance.ToString());
+            sb.AppendLine();
+            sb.AppendLine("삭제하시겠습니까?");
+
+            if (MessageBox.Show(sb.ToString(), "확인", MessageBoxButton.YesNo).Equals(MessageBoxResult.Yes))
+            {
+                this.AttendanceRecords.Remove(attendanceRecord);
+                (mouseArgs.Calendar as MyCalendar).BuildCalendarOutCaller(this.AttendanceRecords);
+            }
+        }
+
+        private void OnCalendarDayModify(object obj)
+        {
+            DayModifyEventArgs mouseArgs = obj as DayModifyEventArgs;
+            if (mouseArgs == null) return;
+
+            AttendancePopup popup = new AttendancePopup(mouseArgs.DataContext as AttendanceRecord, this.Students);
+            if (popup.ShowDialog().Value)
+            {
+                AttendanceRecord attendanceRecord = mouseArgs.DataContext as AttendanceRecord;
+                attendanceRecord.Date = popup.datePicker.SelectedDate.Value;
+                attendanceRecord.StudentRecord = popup.SelectedStudent;
+                attendanceRecord.EAttendance = popup.EAttendance;
+                attendanceRecord.DocumentTitle = popup.DocumentTitle;
+                attendanceRecord.SubmitDocument = popup.SubmitDocument;
+
                 (mouseArgs.Calendar as MyCalendar).BuildCalendarOutCaller(this.AttendanceRecords);
             }
         }

@@ -34,6 +34,12 @@
                 <i:EventTrigger EventName="DayClicked">
                     <command:EventToCommand Command="{Binding CalendarDayClickedCommand}" PassEventArgsToCommand="True"/>
                 </i:EventTrigger>
+                <i:EventTrigger EventName="DayModify">
+                    <command:EventToCommand Command="{Binding CalendarDayModifyCommand}" PassEventArgsToCommand="True"/>
+                </i:EventTrigger>
+                <i:EventTrigger EventName="DayDelete">
+                    <command:EventToCommand Command="{Binding CalendarDayDeleteCommand}" PassEventArgsToCommand="True"/>
+                </i:EventTrigger>
             </i:Interaction.Triggers>
         </control:MyCalendar>
         <GridSplitter Grid.Column="1" Width="5" HorizontalAlignment="Center" VerticalAlignment="Stretch" MouseEnter="GridSplitter_MouseEnter" MouseLeave="GridSplitter_MouseLeave"/>
@@ -80,11 +86,11 @@
                 </DockPanel>
                 <DockPanel Grid.Row="1" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Center" LastChildFill="True">
                     <Label Content="시작일" Margin="20,0,0,0" DockPanel.Dock="Left"/>
-                    <DatePicker x:Name="startDatePicker" SelectedDate="{Binding Path=StartDate, StringFormat='yy. MM. dd'}" Margin="8,0,0,0" SelectedDateChanged="StartDatePicker_SelectedDateChanged"/>
+                    <DatePicker x:Name="startDatePicker" SelectedDate="{Binding Path=StartDate}" SelectedDateFormat="Short" Margin="8,0,0,0" SelectedDateChanged="StartDatePicker_SelectedDateChanged"/>
                 </DockPanel>
                 <DockPanel Grid.Row="1" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Center" LastChildFill="True">
                     <Label Content="종료일" Margin="20,0,0,0" DockPanel.Dock="Left"/>
-                    <DatePicker x:Name="endDatePicker" SelectedDate="{Binding Path=EndDate, StringFormat='yy. MM. dd'}" Margin="8,0,0,0" SelectedDateChanged="EndDatePicker_SelectedDateChanged"/>
+                    <DatePicker x:Name="endDatePicker" SelectedDate="{Binding Path=EndDate}" SelectedDateFormat="Short" Margin="8,0,0,0" SelectedDateChanged="EndDatePicker_SelectedDateChanged"/>
                 </DockPanel>
                 <Grid Grid.Column="3" Grid.Row="0" Grid.RowSpan="2" HorizontalAlignment="Stretch" Margin="10,0,0,0">
                     <Grid.RowDefinitions>
