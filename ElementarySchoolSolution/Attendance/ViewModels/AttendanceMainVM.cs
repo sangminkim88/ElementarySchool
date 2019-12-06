@@ -120,7 +120,7 @@
         public string CurrentFilePath
         {
             get { return currentFilePath; }
-            set { currentFilePath = value; }
+            set { SetValue(ref currentFilePath , value); }
         }
 
         public DateTime? EndDate
@@ -224,9 +224,9 @@
                 else
                 {
                     StringBuilder sb2 = new StringBuilder();
-                    sb2.Append(this.Condition);
-                    sb2.Append(" & ");
-                    sb2.Append(sb);
+                    sb2.AppendLine(this.Condition);
+                    sb2.Append(sb.ToString());
+                    //sb2.Append(sb);
                     this.Condition = sb2.ToString();
                 }
 
@@ -347,7 +347,7 @@
             if (popup.ShowDialog().Value)
             {
                 this.AttendanceRecords.Add(new AttendanceRecord(mouseArgs.Date, popup.SelectedStudent,
-                    popup.EAttendance, popup.DocumentTitle, popup.SubmitDocument));
+                    popup.EAttendanceMember, popup.DocumentTitle, popup.SubmitDocument));
                 (mouseArgs.Calendar as MyCalendar).BuildCalendarOutCaller(this.AttendanceRecords);
             }
         }
@@ -384,7 +384,7 @@
                 AttendanceRecord attendanceRecord = mouseArgs.DataContext as AttendanceRecord;
                 attendanceRecord.Date = popup.datePicker.SelectedDate.Value;
                 attendanceRecord.StudentRecord = popup.SelectedStudent;
-                attendanceRecord.EAttendance = popup.EAttendance;
+                attendanceRecord.EAttendance = popup.EAttendanceMember;
                 attendanceRecord.DocumentTitle = popup.DocumentTitle;
                 attendanceRecord.SubmitDocument = popup.SubmitDocument;
 

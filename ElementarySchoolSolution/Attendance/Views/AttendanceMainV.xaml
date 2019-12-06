@@ -117,7 +117,9 @@
                 <DockPanel Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Grid.RowSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" LastChildFill="True">
                     <Label Content="조건식" Margin="20,0,0,0" DockPanel.Dock="Top"/>
                     <Border BorderThickness="1" BorderBrush="Black" Margin="20,0,0,0" >
-                        <TextBlock Text="{Binding Condition}" Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2" TextWrapping="Wrap" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Auto"/>
+                        <ScrollViewer>
+                            <TextBlock Text="{Binding Condition}" Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2" TextWrapping="Wrap"/>
+                        </ScrollViewer>
                     </Border>
                 </DockPanel>
                 <StackPanel Grid.Column="3" Grid.Row="0" Grid.RowSpan="2" HorizontalAlignment="Stretch" Margin="10,0,0,0" Orientation="Vertical" VerticalAlignment="Bottom">

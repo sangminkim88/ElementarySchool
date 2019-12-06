@@ -62,7 +62,7 @@
             get { return this.documentTitle.Text; }
         }
 
-        public EAttendance EAttendance
+        public EAttendance EAttendanceMember
         {
             get { return (EAttendance)this.attendanceCombo.SelectedIndex; }
         }
@@ -83,6 +83,10 @@
 
         private void AddButton_Click(object sender, RoutedEventArgs e)
         {
+            if(this.EAttendanceMember.Equals(EAttendance.지각) || this.EAttendanceMember.Equals(EAttendance.조퇴))
+            {
+                this.submitDocument.IsChecked = true;
+            }
 
             this.DialogResult = true;
         }
@@ -93,10 +97,12 @@
                 this.attendanceCombo.SelectedItem.Equals(EAttendance.현장학습))
             {
                 this.documentPanel.Visibility = Visibility.Visible;
+                this.submitDocument.IsChecked = false;
             }
             else
             {
                 this.documentPanel.Visibility = Visibility.Collapsed;
+                this.submitDocument.IsChecked = true;
             }
         }
 

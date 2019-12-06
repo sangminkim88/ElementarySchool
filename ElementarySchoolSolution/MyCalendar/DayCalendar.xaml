@@ -63,7 +63,7 @@
                             </Grid.ContextMenu>
                         </Grid>
                         <DataTemplate.Triggers >
-                            <DataTrigger Binding="{Binding SubmitDocument}" Value="True">
+                            <DataTrigger Binding="{Binding SubmitDocument}" Value="False">
                                 <Setter Property="Visibility" TargetName="checkIcon" Value="Visible"/>
                             </DataTrigger>
                         </DataTemplate.Triggers>
