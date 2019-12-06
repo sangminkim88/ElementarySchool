@@ -31,7 +31,7 @@
 
             this.CurrentStudentFilePath = ConfigManager.ReadProfileString(EConfigSection.Students.ToString(), 
                 EConfigKey.FilePath.ToString(), this.CurrentStudentFilePath);
-            if (this.CurrentStudentFilePath != null || !this.CurrentStudentFilePath.Equals(string.Empty))
+            if (this.CurrentStudentFilePath != null && !this.CurrentStudentFilePath.Equals(string.Empty))
             {
                 this.setStudents(XmlManager.Deserialize(this.CurrentStudentFilePath, this.Students.GetType()) as ObservableCollection<Student>);
             }

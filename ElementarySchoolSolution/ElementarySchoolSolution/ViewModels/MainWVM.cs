@@ -29,7 +29,7 @@
 
         private Brush consultColor;
 
-        private string DEFAULT_TITLE = "초등학교에선 무슨일이!?";
+        private string DEFAULT_TITLE = "초등학교에선 무슨일이!?  v__1.0";
 
         private WpfBase.Bases.ViewBase prevView;
 
