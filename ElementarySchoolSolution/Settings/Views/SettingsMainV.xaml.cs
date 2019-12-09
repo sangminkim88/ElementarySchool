@@ -1,4 +1,5 @@
 ﻿
+using Settings.ViewModels;
 using WpfBase.Bases;
 using WpfBase.Managers;
 
@@ -13,6 +14,7 @@ namespace Settings.Views
         {
             InitializeComponent();
             this.Title = "설정";
+            this.DataContext = new SettingsMainVM(this.settingMainStage);
         }
 
         public override void BeginInit()

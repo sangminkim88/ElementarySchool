@@ -9,9 +9,6 @@
              xmlns:system="clr-namespace:System;assembly=mscorlib"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800" Background="White">
-    <UserControl.DataContext>
-        <viewModels:SettingsMainVM />
-    </UserControl.DataContext>
     <UserControl.Resources>
         <bases:MyMultiValueConverter x:Key="myMultiValueConverter"/>
     </UserControl.Resources>
@@ -22,22 +19,8 @@
         </Grid.ColumnDefinitions>
         <Border BorderThickness="2" BorderBrush="Pink">
             <StackPanel Orientation="Vertical" Grid.Column="0" HorizontalAlignment="Stretch">
-                <Button x:Name="StudentManageV" Content="학생정보" Style="{StaticResource ButtonWindowStyle}" Margin="0,30,0,0" Width="145" Command="{Binding ShowView}" FontSize="20">
-                    <Button.CommandParameter>
-                        <MultiBinding Converter="{StaticResource myMultiValueConverter}">
-                            <Binding ElementName="settingMainStage"/>
-                            <Binding ElementName="StudentManageV" Path="Name"/>
-                        </MultiBinding>
-                    </Button.CommandParameter>
-                </Button>
-                <Button x:Name="SampleV" Content="Test" Style="{StaticResource ButtonWindowStyle}" Margin="0,10,0,0" Width="145" Command="{Binding ShowView}" FontSize="20">
-                    <Button.CommandParameter>
-                        <MultiBinding Converter="{StaticResource myMultiValueConverter}">
-                            <Binding ElementName="settingMainStage"/>
-                            <Binding ElementName="SampleV" Path="Name"/>
-                        </MultiBinding>
-                    </Button.CommandParameter>
-                </Button>
+                <Button x:Name="StudentManageV" Content="학생정보" Style="{StaticResource ButtonWindowStyle}" Margin="0,30,0,0" Width="145" Command="{Binding ShowView}" CommandParameter="{Binding ElementName=StudentManageV, Path=Name}" FontSize="20"/>
+                <Button x:Name="SampleV" Content="Test" Style="{StaticResource ButtonWindowStyle}" Margin="0,10,0,0" Width="145" Command="{Binding ShowView}"  CommandParameter="{Binding ElementName=SampleV, Path=Name}" FontSize="20"/>
             </StackPanel>
         </Border>
         <Grid Grid.Column="1" x:Name="settingMainStage" Margin="0,30,0,0"/>

@@ -12,9 +12,11 @@
     {
         Students,
         Attendance,
+        Settings,
     }
     public enum EConfigKey
     {
         FilePath,
+        LastView,
     }
 }

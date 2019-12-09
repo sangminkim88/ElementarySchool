@@ -1,5 +1,7 @@
 ﻿namespace Settings.ViewModels
 {
+    using Common;
+    using FileManager;
     using System;
     using System.Windows;
     using System.Windows.Controls;
@@ -10,11 +12,19 @@
 
     public class SettingsMainVM : ViewModelBase
     {
+        private Grid grid;
         #region Constructors
 
-        public SettingsMainVM()
+        public SettingsMainVM(Grid grid)
         {
+            this.grid = grid;
+
             ShowView = new RelayCommand(ExecuteShowView);
+
+            string viewName = string.Empty;
+            viewName = ConfigManager.ReadProfileString(EConfigSection.Settings.ToString(), EConfigKey.LastView.ToString(), viewName);
+
+            this.ExecuteShowView(viewName);
         }
 
         #endregion
@@ -38,28 +48,28 @@
 
         private void ExecuteShowView(object o)
         {
-            var values = (object[])o;
-            Grid grid = (Grid)values[0];
-            string name = (string)values[1];
+            string name = o as string;
             bool isExist = false;
-            foreach (Grid item in grid.Children)
+            foreach (Grid childGrid in this.grid.Children)
             {
-                Grid child = item as Grid;
-                if (item.Name.Equals(name, StringComparison.OrdinalIgnoreCase))
+                if (childGrid.Name.Equals(name, StringComparison.OrdinalIgnoreCase))
                 {
-                    child.Visibility = Visibility.Visible;
+                    childGrid.Visibility = Visibility.Visible;
                     isExist = true;
+
+                    ConfigManager.WriteProfileString(EConfigSection.Settings.ToString(), EConfigKey.LastView.ToString(), name);
                 }
                 else
                 {
-                    child.Visibility = Visibility.Collapsed;
+                    childGrid.Visibility = Visibility.Collapsed;
                 }
             }
 
             if (!isExist)
             {
                 Grid view = Activator.CreateInstance(Type.GetType("Settings.Views." + name)) as Grid;
-                grid.Children.Add(view);
+                this.grid.Children.Add(view);
+                ConfigManager.WriteProfileString(EConfigSection.Settings.ToString(), EConfigKey.LastView.ToString(), name);
             }
         }
 
