@@ -50,6 +50,7 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Bases\MyMultiValueConverter.cs" />
     <Compile Include="Bases\NotifyPropertyBase.cs" />
     <Compile Include="Bases\ViewBase.cs" />
     <Compile Include="Bases\ViewModelBase.cs" />

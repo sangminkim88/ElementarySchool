@@ -55,6 +55,8 @@
             SaveCommand = new RelayCommand(ExecuteSave);
             ImportCommand = new RelayCommand(ExecuteImport);
             ExportCommand = new RelayCommand(ExecuteExport);
+            InitCommand = new RelayCommand(ExecuteInit);
+            AllClearCommand = new RelayCommand(ExecuteAllClear);
             ClearConditionCommand = new RelayCommand(ExecuteClearCondition);
             AddConditionCommand = new RelayCommand(ExecuteAddCondition);
             ClearResultConditionCommand = new RelayCommand(ExecuteClearResultCondition);
@@ -132,6 +134,8 @@
         public ICommand ExportCommand { get; private set; }
 
         public ICommand ImportCommand { get; private set; }
+        public ICommand InitCommand { get; private set; }
+        public ICommand AllClearCommand { get; private set; }
 
         public bool IsEnableView
         {
@@ -291,8 +295,17 @@
             saveFileDialog.Filter = "dat Files (*.dat)|*.dat|All Files (*.*)|*.*";
             if (saveFileDialog.ShowDialog() == true)
             {
-                XmlManager.Serialize(this.attendanceRecords.ConvertAll(x => (AttendanceRecord)x), saveFileDialog.FileName);
-            }
+                string filePath = saveFileDialog.FileName;
+                if (XmlManager.Serialize(this.attendanceRecords.ConvertAll(x => (AttendanceRecord)x), filePath))
+                {
+                    MessageBox.Show("내보내기 되었습니다.", "성공", MessageBoxButton.OK, MessageBoxImage.None);
+                    this.CurrentFilePath = filePath;
+                }
+                else
+                {
+                    MessageBox.Show("내보내기 실패하였습니다.", "실패", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+        }
         }
 
         private void ExecuteImport(object o)
@@ -310,8 +323,15 @@
             {
                 this.CurrentFilePath = openFileDialog.FileName;
 
-                this.attendanceRecords = ((List<AttendanceRecord>)XmlManager.Deserialize(this.CurrentFilePath, typeof(List<AttendanceRecord>)))
-                    .ConvertAll(x => (ICalendarData)x);
+                 var data = XmlManager.Deserialize(this.CurrentFilePath, typeof(List<AttendanceRecord>));
+
+                if(data == null)
+                {
+                    MessageBox.Show("출결정보 파일이 아닙니다.", "에러", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
+
+                this.attendanceRecords = ((List<AttendanceRecord>)data).ConvertAll(x => (ICalendarData)x);
 
                 MyCalendar calendar = o as MyCalendar;
                 calendar.BuildCalendarOutCaller(this.attendanceRecords);
@@ -325,16 +345,49 @@
         {
             if (this.CurrentFilePath.Length.Equals(0))
             {
-                MessageBox.Show("Import된 파일이 없습니다. Export로 먼저 파일을 만드세요.", "실패",
-                    MessageBoxButton.OK, MessageBoxImage.Error);
-                return;
+                this.ExecuteExport(null);
             }
-            if (MessageBox.Show("변경한 내용을 저장하시겠습니까?", "확인",
+            else if(MessageBox.Show("변경한 내용을 저장하시겠습니까?", "확인",
                 MessageBoxButton.YesNo, MessageBoxImage.Information).Equals(MessageBoxResult.Yes))
             {
                 XmlManager.Serialize(this.attendanceRecords.ConvertAll(x => (AttendanceRecord)x), this.CurrentFilePath);
                 ConfigManager.WriteProfileString(EConfigSection.Attendance.ToString(), EConfigKey.FilePath.ToString(),
                     this.CurrentFilePath);
+            }
+        }
+
+        private void ExecuteInit(object o)
+        {
+            if (this.CurrentFilePath.Length.Equals(0))
+            {
+                MessageBox.Show("작업중인 파일이 없습니다.", "실패", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+            if (MessageBox.Show("변경한 내용은 저장되지 않습니다. 그래도 진행하시겠습니까?", "경고",
+                MessageBoxButton.YesNo, MessageBoxImage.Warning).Equals(MessageBoxResult.Yes))
+            {
+                this.attendanceRecords = ((List<AttendanceRecord>)XmlManager.Deserialize(this.CurrentFilePath, typeof(List<AttendanceRecord>)))
+                    .ConvertAll(x => (ICalendarData)x);
+
+                MyCalendar calendar = o as MyCalendar;
+                calendar.BuildCalendarOutCaller(this.attendanceRecords);
+            }
+        }
+
+        private void ExecuteAllClear(object o)
+        {
+            if (MessageBox.Show("모든 내용을 지우시겠습니까?", "경고",
+                MessageBoxButton.YesNo, MessageBoxImage.Warning).Equals(MessageBoxResult.Yes))
+            {
+                this.attendanceRecords.Clear();
+
+                MyCalendar calendar = o as MyCalendar;
+                calendar.BuildCalendarOutCaller(this.attendanceRecords);
+
+                this.ExecuteClearCondition(null);
+                this.ExecuteClearResultCondition(null);
+                this.CurrentFilePath = string.Empty;
+                ConfigManager.WriteProfileString(EConfigSection.Attendance.ToString(), EConfigKey.FilePath.ToString(), this.CurrentFilePath);
             }
         }
 

@@ -7,7 +7,7 @@
              xmlns:local="clr-namespace:Settings.Views"
              xmlns:bases="clr-namespace:WpfBase.Bases;assembly=WpfBase"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="1000" Background="White">
+             d:DesignHeight="450" d:DesignWidth="1000" Background="White" x:Name="studentManageV">
     <Grid.DataContext>
         <viewModels:StudentManageVM />
     </Grid.DataContext>
@@ -28,13 +28,16 @@
         </Grid.RowDefinitions>
         <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" VerticalAlignment="Bottom">
             <Label Content="현재 파일 경로 : " Margin="20,0,0,0"/>
-            <Label Content="{Binding CurrentStudentFilePath}"/>
+            <Label Content="{Binding CurrentFilePath}"/>
         </StackPanel>
-        <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" VerticalAlignment="Center" HorizontalAlignment="Right">
-            <Button Content="Import" Margin="0,0,10,0" Style="{StaticResource ButtonWindowStyle}" Command="{Binding Import}"/>
-            <Button Content="Export" Margin="0,0,20,0" Style="{StaticResource ButtonWindowStyle}" Command="{Binding Export}"/>
-            <Button Content="저장" Margin="0,0,10,0" Style="{StaticResource ButtonWindowStyle}" Command="{Binding Save}"/>
-            <Button Content="초기화" Margin="0,0,20,0" Style="{StaticResource ButtonWindowStyle}" Command="{Binding Initial}"/>
+        <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Left">
+            <Button Content="모두 지우기" Height="30" Width="70" Margin="20,0,0,0" Background="Red" Style="{StaticResource ButtonWindowStyle}" Command="{Binding AllClear}"/>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Right">
+            <Button Content="가져오기" Height="30" Width="70" Margin="0,0,10,0" Style="{StaticResource ButtonWindowStyle}" Command="{Binding Import}"/>
+            <Button Content="내보내기" Height="30" Width="70" Margin="0,0,20,0" Style="{StaticResource ButtonWindowStyle}" Command="{Binding Export}"/>
+            <Button Content="저장" Height="30" Width="70" Margin="0,0,10,0" Style="{StaticResource ButtonWindowStyle}" Command="{Binding Save}"/>
+            <Button Content="초기화" Height="30" Width="70" Margin="0,0,20,0" Style="{StaticResource ButtonWindowStyle}" Command="{Binding Initial}"/>
         </StackPanel>
         <DataGrid x:Name="studentDataGrid" Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2" Margin="20,0,20,20" SelectionMode="Extended" ItemsSource="{Binding Students}" AutoGenerateColumns="False">
             <DataGrid.Columns>

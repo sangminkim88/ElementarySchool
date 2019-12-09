@@ -6,11 +6,15 @@
              xmlns:viewModels="clr-namespace:Settings.ViewModels"
              xmlns:local="clr-namespace:Settings.Views"
              xmlns:bases="clr-namespace:WpfBase.Bases;assembly=WpfBase"
+             xmlns:system="clr-namespace:System;assembly=mscorlib"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800" Background="White">
     <UserControl.DataContext>
         <viewModels:SettingsMainVM />
     </UserControl.DataContext>
+    <UserControl.Resources>
+        <bases:MyMultiValueConverter x:Key="myMultiValueConverter"/>
+    </UserControl.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="150"/>
@@ -18,11 +22,24 @@
         </Grid.ColumnDefinitions>
         <Border BorderThickness="2" BorderBrush="Pink">
             <StackPanel Orientation="Vertical" Grid.Column="0" HorizontalAlignment="Stretch">
-                <Button Content="학생정보" Style="{StaticResource ButtonWindowStyle}" Margin="0,30,0,0" Width="145" Command="{Binding ShowStudent}" CommandParameter="{Binding ElementName=settingMainStage}" FontSize="20"/>
+                <Button x:Name="StudentManageV" Content="학생정보" Style="{StaticResource ButtonWindowStyle}" Margin="0,30,0,0" Width="145" Command="{Binding ShowView}" FontSize="20">
+                    <Button.CommandParameter>
+                        <MultiBinding Converter="{StaticResource myMultiValueConverter}">
+                            <Binding ElementName="settingMainStage"/>
+                            <Binding ElementName="StudentManageV" Path="Name"/>
+                        </MultiBinding>
+                    </Button.CommandParameter>
+                </Button>
+                <Button x:Name="SampleV" Content="Test" Style="{StaticResource ButtonWindowStyle}" Margin="0,10,0,0" Width="145" Command="{Binding ShowView}" FontSize="20">
+                    <Button.CommandParameter>
+                        <MultiBinding Converter="{StaticResource myMultiValueConverter}">
+                            <Binding ElementName="settingMainStage"/>
+                            <Binding ElementName="SampleV" Path="Name"/>
+                        </MultiBinding>
+                    </Button.CommandParameter>
+                </Button>
             </StackPanel>
         </Border>
-        <Grid Grid.Column="1" x:Name="settingMainStage" Margin="0,30,0,0">
-            <local:StudentManageV/>
-        </Grid>
+        <Grid Grid.Column="1" x:Name="settingMainStage" Margin="0,30,0,0"/>
     </Grid>
 </bases:ViewBase>

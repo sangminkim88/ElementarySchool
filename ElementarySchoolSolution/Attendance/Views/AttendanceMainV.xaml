@@ -61,10 +61,14 @@
                 <Label Content="현재 파일 경로 : " Margin="20,0,0,0"/>
                 <Label Content="{Binding CurrentFilePath}"/>
             </StackPanel>
-            <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,100,0">
-                <Button Content="Import" Height="30" Margin="0,0,10,0" Style="{StaticResource ButtonWindowStyle}" Command="{Binding ImportCommand}" CommandParameter="{Binding ElementName=calendar}"/>
-                <Button Content="Export" Height="30" Margin="0,0,10,0" Style="{StaticResource ButtonWindowStyle}" Command="{Binding ExportCommand}"/>
-                <Button Content="저장" Height="30" Margin="0,0,10,0" Style="{StaticResource ButtonWindowStyle}" Command="{Binding SaveCommand}"/>
+            <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,100,0">
+                <Button Content="모두 지우기" Height="30" Width="70" Margin="0,0,10,0" Background="Red" Style="{StaticResource ButtonWindowStyle}" Command="{Binding AllClearCommand}" CommandParameter="{Binding ElementName=calendar}"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,100,0">
+                <Button Content="가져오기" Height="30" Width="70" Margin="0,0,10,0" Style="{StaticResource ButtonWindowStyle}" Command="{Binding ImportCommand}" CommandParameter="{Binding ElementName=calendar}"/>
+                <Button Content="내보내기" Height="30" Width="70" Margin="0,0,10,0" Style="{StaticResource ButtonWindowStyle}" Command="{Binding ExportCommand}"/>
+                <Button Content="저장" Height="30" Width="70" Margin="0,0,10,0" Style="{StaticResource ButtonWindowStyle}" Command="{Binding SaveCommand}"/>
+                <Button Content="초기화" Height="30" Width="70" Margin="0,0,10,0" Style="{StaticResource ButtonWindowStyle}" Command="{Binding InitCommand}" CommandParameter="{Binding ElementName=calendar}"/>
             </StackPanel>
             <Grid Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3" Margin="0,20,0,0">
                 <Grid.RowDefinitions>
@@ -100,7 +104,7 @@
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
-                    <Button Content="Clear" Command="{Binding ClearConditionCommand}" Grid.Column="0" Grid.Row="0" Style="{StaticResource ButtonWindowStyle}" Width="80" Height="30"/>
+                    <Button Content="지우기" Command="{Binding ClearConditionCommand}" Grid.Column="0" Grid.Row="0" Style="{StaticResource ButtonWindowStyle}" Width="80" Height="30"/>
                     <Button Content="+" Command="{Binding AddConditionCommand}" Grid.Column="0" Grid.Row="1" Style="{StaticResource ButtonWindowStyle}" Width="80" Height="30"/>
                 </Grid>
             </Grid>
@@ -123,7 +127,7 @@
                     </Border>
                 </DockPanel>
                 <StackPanel Grid.Column="3" Grid.Row="0" Grid.RowSpan="2" HorizontalAlignment="Stretch" Margin="10,0,0,0" Orientation="Vertical" VerticalAlignment="Bottom">
-                    <Button Content="Clear" Command="{Binding ClearResultConditionCommand}" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Style="{StaticResource ButtonWindowStyle}" MinWidth="114" Height="30" Margin="0,10,0,0"/>
+                    <Button Content="지우기" Command="{Binding ClearResultConditionCommand}" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Style="{StaticResource ButtonWindowStyle}" MinWidth="114" Height="30" Margin="0,10,0,0"/>
                 </StackPanel>
             </Grid>
             <DataGrid Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="3" Margin="20" ItemsSource="{Binding ResultAttendance}" IsReadOnly="True" AutoGenerateColumns="False">
