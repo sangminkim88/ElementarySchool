@@ -15,7 +15,10 @@
             XmlReader reader = null;
             try
             {
-                if (!File.Exists(strFileName)) return null;
+                if (!File.Exists(strFileName))
+                {
+                    File.Create(strFileName);
+                }
                 XmlSerializer xSerializer = new XmlSerializer(i_type);
 
                 fs = new FileStream(strFileName, FileMode.Open);

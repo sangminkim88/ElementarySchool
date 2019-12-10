@@ -20,7 +20,14 @@
                 Directory.CreateDirectory(defaultPath);
             }
 
-            int r = GetPrivateProfileString(section, key, def, strtemp, size, Path.Combine(defaultPath, fileName));
+            string filePath = Path.Combine(defaultPath, fileName);
+
+            if (!File.Exists(filePath))
+            {
+                File.Create(filePath);
+            }
+
+            int r = GetPrivateProfileString(section, key, def, strtemp, size, filePath);
             if (r > 0)
                 return strtemp.ToString();
             else

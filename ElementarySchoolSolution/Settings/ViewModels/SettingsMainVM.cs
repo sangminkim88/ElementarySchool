@@ -24,7 +24,10 @@
             string viewName = string.Empty;
             viewName = ConfigManager.ReadProfileString(EConfigSection.Settings.ToString(), EConfigKey.LastView.ToString(), viewName);
 
-            this.ExecuteShowView(viewName);
+            if (!viewName.Equals(string.Empty))
+            {
+                this.ExecuteShowView(viewName);
+            }
         }
 
         #endregion
