@@ -10,6 +10,7 @@
     using System.Windows.Controls;
     using System.Windows.Input;
     using System.Windows.Media;
+    using System.Windows.Media.Animation;
     using TestSolution.Views;
     using WpfBase.Bases;
     using WpfBase.Common;
@@ -159,6 +160,15 @@
                 mainW.mainStage.Children.Add(mainV);
                 backColorProperty.SetValue(this, ACTIVE_COLOR);
                 this.Title = mainV.Title;
+
+                DoubleAnimation show = new DoubleAnimation(0, 1, TimeSpan.FromSeconds(1));
+
+                Storyboard.SetTarget(show, mainV);
+                Storyboard.SetTargetProperty(show, new PropertyPath(UserControl.OpacityProperty));
+
+                Storyboard sb = new Storyboard();
+                sb.Children.Add(show);
+                sb.Begin();
             }
             //이미 생성된 이후
             else
@@ -177,7 +187,6 @@
                             tmp.Visibility = Visibility.Collapsed;
                         }
                     }
-
                     mainV.Visibility = Visibility.Visible;
                     this.Title = mainV.Title;
                 }

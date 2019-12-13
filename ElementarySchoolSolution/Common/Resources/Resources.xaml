@@ -145,4 +145,16 @@
 
     <SolidColorBrush x:Key="Brush_MainItemsBorder" Color="#FFB1B4BA"/>
     <SolidColorBrush x:Key="Brush_Foreground" Color="#FF8A9095"/>
+
+    <Style TargetType="Window" x:Key="SmoothWindow">
+        <Style.Triggers>
+            <EventTrigger RoutedEvent="Loaded">
+                <BeginStoryboard>
+                    <Storyboard Duration="00:00:3" Storyboard.TargetProperty="Opacity">
+                        <DoubleAnimation From="0" To="1"/>
+                    </Storyboard>
+                </BeginStoryboard>
+            </EventTrigger>
+        </Style.Triggers>
+    </Style>
 </ResourceDictionary>

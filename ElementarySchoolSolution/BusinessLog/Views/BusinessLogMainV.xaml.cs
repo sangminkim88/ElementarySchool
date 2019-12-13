@@ -26,7 +26,7 @@ namespace BusinessLog.Views
 
         private void Test_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-            this.test.Content = int.Parse(this.test.Content.ToString()) + 1;
+            //this.test.Content = int.Parse(this.test.Content.ToString()) + 1;
         }
     }
 }

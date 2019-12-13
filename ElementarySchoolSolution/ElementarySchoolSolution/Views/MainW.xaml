@@ -13,7 +13,7 @@
         WindowStartupLocation="CenterScreen"
         ShowInTaskbar="True" WindowState="Normal" ResizeMode="CanResizeWithGrip"
         WindowStyle="None" Background="#FF1B0C1E" AllowsTransparency="True"
-        Title="초등학교에선 무슨일이!?"
+        Title="초등학교에선 무슨일이!?" Style="{StaticResource SmoothWindow}"
         >
     <Window.DataContext>
         <viewModels:MainWVM/>
