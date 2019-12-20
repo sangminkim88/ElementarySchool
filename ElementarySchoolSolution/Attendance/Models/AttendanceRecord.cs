@@ -15,6 +15,8 @@
 
         private string documentTitle;
 
+        private string note;
+
         private Student studentRecord;
 
         private bool submitDocument;
@@ -27,13 +29,14 @@
         {
         }
 
-        public AttendanceRecord(DateTime date, Student student, EAttendance eAttendance, string documentTitle, bool submitDocument)
+        public AttendanceRecord(DateTime date, Student student, EAttendance eAttendance, string documentTitle, bool submitDocument, string note)
         {
             this.date = date;
             this.studentRecord = student;
             this._eAttendance = eAttendance;
             this.documentTitle = documentTitle;
             this.submitDocument = submitDocument;
+            this.note = note;
         }
 
         #endregion
@@ -56,6 +59,12 @@
         {
             get { return _eAttendance; }
             set { _eAttendance = value; }
+        }
+
+        public string Note
+        {
+            get { return note; }
+            set { note = value; }
         }
 
         public Student StudentRecord

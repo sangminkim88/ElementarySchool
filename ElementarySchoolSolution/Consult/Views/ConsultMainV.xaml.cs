@@ -13,6 +13,7 @@ namespace Consult.Views
         {
             InitializeComponent();
             this.Title = "상담관리";
+            this.MenuIndex = 1;
         }
 
         public override void BeginInit()

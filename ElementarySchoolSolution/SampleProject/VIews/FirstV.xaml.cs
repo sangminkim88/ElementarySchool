@@ -12,6 +12,7 @@ namespace SampleProject.Views
         public FirstV()
         {
             InitializeComponent();
+            this.IsGoodInit = true;
         }
 
         public override void BeginInit()

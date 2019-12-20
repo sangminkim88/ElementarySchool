@@ -31,7 +31,7 @@
 
         private DateTime? endDate;
 
-        private bool isEnableView;
+        private Visibility isVisibility;
 
         private ObservableCollection<AttendanceRecord> resultAttendance = new ObservableCollection<AttendanceRecord>();
 
@@ -70,14 +70,14 @@
                 {
                     this.Students.Add(item);
                 }
-                this.IsEnableView = true;
             }
             else
             {
                 MessageBox.Show("학생 정보가 없습니다. 설정을 먼저 해주세요.");
+                this.IsVisibility = Visibility.Collapsed;
                 this.Dispose();
                 var a = ViewManager.GetValue(typeof(AttendanceMainV), false);
-                this.IsEnableView = false;
+                IsGoodInit = false;
                 return;
             }
 
@@ -89,6 +89,7 @@
                     ConvertAll(x => (ICalendarData)x);
                 myCalendar.BuildCalendarOutCaller(this.attendanceRecords);
             }
+            IsGoodInit = true;
         }
 
         #endregion
@@ -96,6 +97,8 @@
         #region Properties
 
         public ICommand AddConditionCommand { get; private set; }
+
+        public ICommand AllClearCommand { get; private set; }
 
         public List<ICalendarData> AttendanceRecords
         {
@@ -122,7 +125,7 @@
         public string CurrentFilePath
         {
             get { return currentFilePath; }
-            set { SetValue(ref currentFilePath , value); }
+            set { SetValue(ref currentFilePath, value); }
         }
 
         public DateTime? EndDate
@@ -134,13 +137,13 @@
         public ICommand ExportCommand { get; private set; }
 
         public ICommand ImportCommand { get; private set; }
-        public ICommand InitCommand { get; private set; }
-        public ICommand AllClearCommand { get; private set; }
 
-        public bool IsEnableView
+        public ICommand InitCommand { get; private set; }
+
+        public Visibility IsVisibility
         {
-            get { return isEnableView; }
-            set { SetValue(ref isEnableView, value); }
+            get { return isVisibility; }
+            set { SetValue(ref isVisibility, value); }
         }
 
         public ObservableCollection<AttendanceRecord> ResultAttendance
@@ -275,6 +278,23 @@
             }
         }
 
+        private void ExecuteAllClear(object o)
+        {
+            if (MessageBox.Show("모든 내용을 지우시겠습니까?", "경고",
+                MessageBoxButton.YesNo, MessageBoxImage.Warning).Equals(MessageBoxResult.Yes))
+            {
+                this.attendanceRecords.Clear();
+
+                MyCalendar calendar = o as MyCalendar;
+                calendar.BuildCalendarOutCaller(this.attendanceRecords);
+
+                this.ExecuteClearCondition(null);
+                this.ExecuteClearResultCondition(null);
+                this.CurrentFilePath = string.Empty;
+                ConfigManager.WriteProfileString(EConfigSection.Attendance.ToString(), EConfigKey.FilePath.ToString(), this.CurrentFilePath);
+            }
+        }
+
         private void ExecuteClearCondition(object obj)
         {
             this.SelectedStudentIndex = 0;
@@ -305,7 +325,7 @@
                 {
                     MessageBox.Show("내보내기 실패하였습니다.", "실패", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
-        }
+            }
         }
 
         private void ExecuteImport(object o)
@@ -323,9 +343,9 @@
             {
                 this.CurrentFilePath = openFileDialog.FileName;
 
-                 var data = XmlManager.Deserialize(this.CurrentFilePath, typeof(List<AttendanceRecord>));
+                var data = XmlManager.Deserialize(this.CurrentFilePath, typeof(List<AttendanceRecord>));
 
-                if(data == null)
+                if (data == null)
                 {
                     MessageBox.Show("출결정보 파일이 아닙니다.", "에러", MessageBoxButton.OK, MessageBoxImage.Error);
                     return;
@@ -336,21 +356,6 @@
                 MyCalendar calendar = o as MyCalendar;
                 calendar.BuildCalendarOutCaller(this.attendanceRecords);
 
-                ConfigManager.WriteProfileString(EConfigSection.Attendance.ToString(), EConfigKey.FilePath.ToString(),
-                    this.CurrentFilePath);
-            }
-        }
-
-        private void ExecuteSave(object o)
-        {
-            if (this.CurrentFilePath.Length.Equals(0))
-            {
-                this.ExecuteExport(null);
-            }
-            else if(MessageBox.Show("변경한 내용을 저장하시겠습니까?", "확인",
-                MessageBoxButton.YesNo, MessageBoxImage.Information).Equals(MessageBoxResult.Yes))
-            {
-                XmlManager.Serialize(this.attendanceRecords.ConvertAll(x => (AttendanceRecord)x), this.CurrentFilePath);
                 ConfigManager.WriteProfileString(EConfigSection.Attendance.ToString(), EConfigKey.FilePath.ToString(),
                     this.CurrentFilePath);
             }
@@ -374,20 +379,18 @@
             }
         }
 
-        private void ExecuteAllClear(object o)
+        private void ExecuteSave(object o)
         {
-            if (MessageBox.Show("모든 내용을 지우시겠습니까?", "경고",
-                MessageBoxButton.YesNo, MessageBoxImage.Warning).Equals(MessageBoxResult.Yes))
+            if (this.CurrentFilePath.Length.Equals(0))
             {
-                this.attendanceRecords.Clear();
-
-                MyCalendar calendar = o as MyCalendar;
-                calendar.BuildCalendarOutCaller(this.attendanceRecords);
-
-                this.ExecuteClearCondition(null);
-                this.ExecuteClearResultCondition(null);
-                this.CurrentFilePath = string.Empty;
-                ConfigManager.WriteProfileString(EConfigSection.Attendance.ToString(), EConfigKey.FilePath.ToString(), this.CurrentFilePath);
+                this.ExecuteExport(null);
+            }
+            else if (MessageBox.Show("변경한 내용을 저장하시겠습니까?", "확인",
+                MessageBoxButton.YesNo, MessageBoxImage.Information).Equals(MessageBoxResult.Yes))
+            {
+                XmlManager.Serialize(this.attendanceRecords.ConvertAll(x => (AttendanceRecord)x), this.CurrentFilePath);
+                ConfigManager.WriteProfileString(EConfigSection.Attendance.ToString(), EConfigKey.FilePath.ToString(),
+                    this.CurrentFilePath);
             }
         }
 
@@ -400,7 +403,7 @@
             if (popup.ShowDialog().Value)
             {
                 this.AttendanceRecords.Add(new AttendanceRecord(mouseArgs.Date, popup.SelectedStudent,
-                    popup.EAttendanceMember, popup.DocumentTitle, popup.SubmitDocument));
+                    popup.EAttendanceMember, popup.DocumentTitle, popup.SubmitDocument, popup.Note));
                 (mouseArgs.Calendar as MyCalendar).BuildCalendarOutCaller(this.AttendanceRecords);
             }
         }

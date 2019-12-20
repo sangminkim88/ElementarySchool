@@ -125,10 +125,6 @@
       <Project>{9172ff91-306f-4602-b1f3-98d13194063c}</Project>
       <Name>MyCalendar</Name>
     </ProjectReference>
-    <ProjectReference Include="..\SampleProject\SampleProject.csproj">
-      <Project>{eabb04a3-d25d-4f10-bb54-228f7fa4f2cb}</Project>
-      <Name>SampleProject</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Settings\Settings.csproj">
       <Project>{d3bc5788-1e27-421a-8994-4df43113d9ac}</Project>
       <Name>Settings</Name>

@@ -30,17 +30,21 @@
             Save = new RelayCommand(ExcuteSave);
             Initial = new RelayCommand(ExcuteInitial);
 
-            this.CurrentFilePath = ConfigManager.ReadProfileString(EConfigSection.Students.ToString(), 
+            this.CurrentFilePath = ConfigManager.ReadProfileString(EConfigSection.Students.ToString(),
                 EConfigKey.FilePath.ToString(), this.CurrentFilePath);
             if (this.CurrentFilePath != null && !this.CurrentFilePath.Equals(string.Empty))
             {
-                this.setStudents(XmlManager.Deserialize(this.CurrentFilePath, this.Students.GetType()) as ObservableCollection<Student>);
+                var a = XmlManager.Deserialize(this.CurrentFilePath, this.Students.GetType()) as ObservableCollection<Student>;
+
+                this.setStudents(a);
             }
         }
 
         #endregion
 
         #region Properties
+
+        public ICommand AllClear { get; private set; }
 
         public string CurrentFilePath
         {
@@ -51,7 +55,6 @@
         public ICommand Export { get; private set; }
 
         public ICommand Import { get; private set; }
-        public ICommand AllClear { get; private set; }
 
         public ICommand Initial { get; private set; }
 
@@ -67,6 +70,17 @@
 
         #region Methods
 
+        private void ExcuteAllClear(object obj)
+        {
+            if (MessageBox.Show("모든 내용을 지우시겠습니까?", "경고",
+     MessageBoxButton.YesNo, MessageBoxImage.Warning).Equals(MessageBoxResult.Yes))
+            {
+                this.Students.Clear();
+                this.CurrentFilePath = string.Empty;
+                ConfigManager.WriteProfileString(EConfigSection.Students.ToString(), EConfigKey.FilePath.ToString(), this.CurrentFilePath);
+            }
+        }
+
         private void ExcuteExport(object obj)
         {
             SaveFileDialog saveFileDialog = new SaveFileDialog();
@@ -78,6 +92,9 @@
                 {
                     MessageBox.Show("내보내기 되었습니다.", "성공", MessageBoxButton.OK, MessageBoxImage.None);
                     this.CurrentFilePath = filePath;
+
+                    ConfigManager.WriteProfileString(EConfigSection.Students.ToString(),
+                        EConfigKey.FilePath.ToString(), this.CurrentFilePath);
                 }
                 else
                 {
@@ -110,19 +127,8 @@
 
                 this.CurrentFilePath = openFileDialog.FileName;
 
-                ConfigManager.WriteProfileString(EConfigSection.Students.ToString(), 
+                ConfigManager.WriteProfileString(EConfigSection.Students.ToString(),
                     EConfigKey.FilePath.ToString(), this.CurrentFilePath);
-            }
-        }
-
-        private void ExcuteAllClear(object obj)
-        {
-            if (MessageBox.Show("모든 내용을 지우시겠습니까?", "경고",
-     MessageBoxButton.YesNo, MessageBoxImage.Warning).Equals(MessageBoxResult.Yes))
-            {
-                this.Students.Clear();
-                this.CurrentFilePath = string.Empty;
-                ConfigManager.WriteProfileString(EConfigSection.Students.ToString(), EConfigKey.FilePath.ToString(), this.CurrentFilePath);
             }
         }
 
@@ -136,7 +142,7 @@
             if (MessageBox.Show("변경한 내용은 저장되지 않습니다. 그래도 진행하시겠습니까?", "경고",
                 MessageBoxButton.YesNo, MessageBoxImage.Warning).Equals(MessageBoxResult.Yes))
             {
-                this.setStudents(XmlManager.Deserialize(this.CurrentFilePath, this.Students.GetType()) as ObservableCollection<Student>);                
+                this.setStudents(XmlManager.Deserialize(this.CurrentFilePath, this.Students.GetType()) as ObservableCollection<Student>);
             }
         }
 
@@ -146,11 +152,11 @@
             {
                 this.ExcuteExport(null);
             }
-            else if(MessageBox.Show("변경한 내용을 저장하시겠습니까?", "확인",
+            else if (MessageBox.Show("변경한 내용을 저장하시겠습니까?", "확인",
                 MessageBoxButton.YesNo, MessageBoxImage.Information).Equals(MessageBoxResult.Yes))
             {
                 XmlManager.Serialize(this.Students, this.CurrentFilePath);
-                ConfigManager.WriteProfileString(EConfigSection.Students.ToString(), 
+                ConfigManager.WriteProfileString(EConfigSection.Students.ToString(),
                     EConfigKey.FilePath.ToString(), this.CurrentFilePath);
             }
         }

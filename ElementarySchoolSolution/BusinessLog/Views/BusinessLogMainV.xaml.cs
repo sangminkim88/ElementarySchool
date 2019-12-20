@@ -13,6 +13,7 @@ namespace BusinessLog.Views
         {
             InitializeComponent();
             this.Title = "업무관리";
+            this.MenuIndex = 2;
         }
 
         public override void BeginInit()

@@ -10,7 +10,7 @@
              xmlns:command="clr-namespace:WpfBase.Common;assembly=WpfBase"
              xmlns:common="clr-namespace:Common.Converters;assembly=Common"
              mc:Ignorable="d" 
-             d:DesignHeight="650" d:DesignWidth="1300" Background="White"
+             d:DesignHeight="650" d:DesignWidth="1300" Background="White" Visibility="{Binding IsVisibility}"
              >
     <UserControl.Resources>
         <ResourceDictionary>
@@ -23,7 +23,7 @@
             </Style>
         </ResourceDictionary>
     </UserControl.Resources>
-    <Grid IsEnabled="{Binding IsEnableView}">
+    <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="5"/>
@@ -144,6 +144,7 @@
                             </Style>
                         </DataGridTextColumn.CellStyle>
                     </DataGridTextColumn>
+                    <DataGridTextColumn Binding="{Binding Note}" Header="비고" Width="100" CellStyle="{StaticResource DataGridCellCenterAlign}"/>
                 </DataGrid.Columns>
 
             </DataGrid>

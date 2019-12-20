@@ -7,6 +7,7 @@
     public abstract class ViewBase : UserControl, IView, ISupportInitialize
     {
         public string Title;
+        public int MenuIndex;
         public override abstract void BeginInit();
         public override abstract void EndInit();
     }

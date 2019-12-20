@@ -17,6 +17,7 @@
             InitializeComponent();
             this.DataContext = new AttendanceMainVM(this.calendar);
             this.Title = "출석관리";
+            this.MenuIndex = 0;
             var tmp = Enum.GetNames(typeof(EAttendance)).ToList();
             tmp.Insert(0, string.Empty);
             this.attendanceCombo.ItemsSource = tmp;

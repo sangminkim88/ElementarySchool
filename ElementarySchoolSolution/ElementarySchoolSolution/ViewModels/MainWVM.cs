@@ -5,7 +5,8 @@
     using Consult.Views;
     using Settings.Views;
     using System;
-    using System.Reflection;
+    using System.Collections.Generic;
+    using System.Collections.ObjectModel;
     using System.Windows;
     using System.Windows.Controls;
     using System.Windows.Input;
@@ -15,28 +16,23 @@
     using WpfBase.Bases;
     using WpfBase.Common;
     using WpfBase.Managers;
+    using ViewBase = WpfBase.Bases.ViewBase;
 
     public class MainWVM : ViewModelBase
     {
         #region Fields
 
-        private static Brush ACTIVE_COLOR = new SolidColorBrush(Colors.Purple);
+        private static Brush ACTIVE_COLOR = new SolidColorBrush(Colors.Gold);
+
+        private static Brush CURRENT_ACTIVE_COLOR = new SolidColorBrush(Colors.MediumBlue);
 
         private static Brush UNACTIVE_COLOR = new SolidColorBrush(Colors.Pink);
 
-        private Brush attendanceColor;
-
-        private Brush businessLogColor;
-
-        private Brush consultColor;
-
-        private string DEFAULT_TITLE = "초등학교에선 무슨일이!?  v__1.0";
-
-        private WpfBase.Bases.ViewBase prevView;
-
-        private Brush settingsColor;
+        private string DEFAULT_TITLE = "초등학교에선 무슨일이!?  v__1.1";
 
         private string title;
+
+        private LinkedList<ViewBase> viewStack = new LinkedList<ViewBase>();
 
         #endregion
 
@@ -46,10 +42,10 @@
         {
             CommandShowMainViews = new RelayCommand(ExecuteShowMainViews);
 
-            this.AttendanceColor = UNACTIVE_COLOR;
-            this.ConsultColor = UNACTIVE_COLOR;
-            this.BusinessLogColor = UNACTIVE_COLOR;
-            this.SettingsColor = UNACTIVE_COLOR;
+            MenuColor.Add(UNACTIVE_COLOR);
+            MenuColor.Add(UNACTIVE_COLOR);
+            MenuColor.Add(UNACTIVE_COLOR);
+            MenuColor.Add(UNACTIVE_COLOR);
 
             this.title = DEFAULT_TITLE;
         }
@@ -58,31 +54,9 @@
 
         #region Properties
 
-        public Brush AttendanceColor
-        {
-            get { return attendanceColor; }
-            set { SetValue(ref attendanceColor, value); }
-        }
-
-        public Brush BusinessLogColor
-        {
-            get { return businessLogColor; }
-            set { SetValue(ref businessLogColor,value); }
-        }
-
         public ICommand CommandShowMainViews { get; private set; }
 
-        public Brush ConsultColor
-        {
-            get { return consultColor; }
-            set { SetValue(ref consultColor, value); }
-        }
-
-        public Brush SettingsColor
-        {
-            get { return settingsColor; }
-            set { SetValue(ref settingsColor ,value); }
-        }
+        public ObservableCollection<Brush> MenuColor { get; set; } = new ObservableCollection<Brush>();
 
         public string Title
         {
@@ -94,29 +68,24 @@
 
         #region Methods
 
-        private static void getView(object o, MainW mainW, out Type type, out PropertyInfo backColorProperty)
+        private static void getView(object o, MainW mainW, out Type type)
         {
             RoutedEventArgs e = o as RoutedEventArgs;
             int index = mainW.menuImagePanel.Children.IndexOf(e.Source as Button);
             type = null;
-            backColorProperty = null;
             switch (index)
             {
                 case 0:
                     type = typeof(AttendanceMainV).Assembly.GetType("Attendance.Views.AttendanceMainV");
-                    backColorProperty = typeof(MainWVM).GetProperty("AttendanceColor");
                     break;
                 case 1:
                     type = typeof(ConsultMainV).Assembly.GetType("Consult.Views.ConsultMainV");
-                    backColorProperty = typeof(MainWVM).GetProperty("ConsultColor");
                     break;
                 case 2:
                     type = typeof(BusinessLogMainV).Assembly.GetType("BusinessLog.Views.BusinessLogMainV");
-                    backColorProperty = typeof(MainWVM).GetProperty("BusinessLogColor");
                     break;
                 default:
                     type = typeof(SettingsMainV).Assembly.GetType("Settings.Views.SettingsMainV");
-                    backColorProperty = typeof(MainWVM).GetProperty("SettingsColor");
                     break;
             }
         }
@@ -134,84 +103,78 @@
         {
             MainW mainW = ViewManager.GetValue(typeof(MainW)) as MainW;
             Type type;
-            PropertyInfo backColorProperty;
-            getView(o, mainW, out type, out backColorProperty);
-
-            WpfBase.Bases.ViewBase mainV = ViewManager.GetValue(type, false) as WpfBase.Bases.ViewBase;
-
-            //처음 생성 시
-            if (mainV == null)
+            getView(o, mainW, out type);
+            ViewBase mainV = ViewManager.GetValue(type) as ViewBase;
+            if (((ViewModelBase)mainV.DataContext).IsGoodInit)
             {
-                mainV = ViewManager.GetValue(type) as WpfBase.Bases.ViewBase;
-
-                foreach (var item in mainW.mainStage.Children)
-                {
-                    if (item is WpfBase.Bases.ViewBase)
-                    {
-                        WpfBase.Bases.ViewBase tmp = item as WpfBase.Bases.ViewBase;
-                        if (tmp.Visibility.Equals(Visibility.Visible))
-                        {
-                            this.prevView = tmp;
-                        }
-                        tmp.Visibility = Visibility.Collapsed;
-                    }
-                }
-
-                mainW.mainStage.Children.Add(mainV);
-                backColorProperty.SetValue(this, ACTIVE_COLOR);
-                this.Title = mainV.Title;
-
-                DoubleAnimation show = new DoubleAnimation(0, 1, TimeSpan.FromSeconds(1));
-
-                Storyboard.SetTarget(show, mainV);
-                Storyboard.SetTargetProperty(show, new PropertyPath(UserControl.OpacityProperty));
-
-                Storyboard sb = new Storyboard();
-                sb.Children.Add(show);
-                sb.Begin();
-            }
-            //이미 생성된 이후
-            else
-            {
-                if (mainV.Visibility.Equals(Visibility.Collapsed))
-                {
-                    foreach (var item in mainW.mainStage.Children)
-                    {
-                        if (item is WpfBase.Bases.ViewBase)
-                        {
-                            WpfBase.Bases.ViewBase tmp = item as WpfBase.Bases.ViewBase;
-                            if (tmp.Visibility.Equals(Visibility.Visible))
-                            {
-                                this.prevView = tmp;
-                            }
-                            tmp.Visibility = Visibility.Collapsed;
-                        }
-                    }
-                    mainV.Visibility = Visibility.Visible;
-                    this.Title = mainV.Title;
-                }
-                else
+                //현재 화면일 경우
+                if (this.viewStack.Last != null && this.viewStack.Last.Value.Equals(mainV))
                 {
                     MessageBoxResult messageBoxResult = MessageBox.Show("현재 창을 닫으시겠습니까?\n저장하지 않은 정보는 사라집니다.", "경고",
-                        MessageBoxButton.YesNo, MessageBoxImage.Warning, MessageBoxResult.No);
+                                MessageBoxButton.YesNo, MessageBoxImage.Warning, MessageBoxResult.No);
 
                     if (messageBoxResult.Equals(MessageBoxResult.Yes))
                     {
-                        ViewManager.RemoveValue(type);
-                        mainW.mainStage.Children.Remove(mainV);
+                        this.MenuColor[mainV.MenuIndex] = UNACTIVE_COLOR;
 
-                        if (mainW.mainStage.Children.Count.Equals(0))
+                        mainW.mainStage.Children.Remove(mainV);
+                        this.viewStack.RemoveLast();
+                        ViewManager.RemoveValue(type);
+                        ViewModelManager.RemoveValue(mainV.DataContext.GetType());
+
+                        if (this.viewStack.Last != null)
                         {
-                            this.prevView = null;
-                            this.Title = DEFAULT_TITLE;
+                            ViewBase oldView = this.viewStack.Last.Value;
+
+                            this.MenuColor[oldView.MenuIndex] = CURRENT_ACTIVE_COLOR;
+                            oldView.Visibility = Visibility.Visible;
                         }
-                        else
-                        {
-                            this.prevView.Visibility = Visibility.Visible;
-                            this.Title = prevView.Title;
-                        }
-                        backColorProperty.SetValue(this, UNACTIVE_COLOR);
                     }
+                }
+                //과거 화면일 경우
+                else if (this.viewStack.Contains(mainV))
+                {
+                    ViewBase oldView = this.viewStack.Last.Value;
+
+                    this.MenuColor[oldView.MenuIndex] = ACTIVE_COLOR;
+                    oldView.Visibility = Visibility.Collapsed;
+
+                    this.viewStack.Remove(mainV);
+                    this.viewStack.AddLast(mainV);
+
+                    this.MenuColor[mainV.MenuIndex] = CURRENT_ACTIVE_COLOR;
+                    mainV.Visibility = Visibility.Collapsed;
+                }
+                //처음 켜는 경우
+                else
+                {
+                    if (this.viewStack.Last != null)
+                    {
+                        ViewBase oldView = this.viewStack.Last.Value;
+
+                        this.MenuColor[oldView.MenuIndex] = ACTIVE_COLOR;
+                        oldView.Visibility = Visibility.Collapsed;
+                    }
+                    this.viewStack.AddLast(mainV);
+
+                    mainW.mainStage.Children.Add(mainV);
+                    this.MenuColor[mainV.MenuIndex] = CURRENT_ACTIVE_COLOR;
+                }
+
+                if (this.viewStack.Last != null)
+                {
+                    ViewBase newView = this.viewStack.Last.Value;
+                    this.Title = newView.Title;
+                    DoubleAnimation show = new DoubleAnimation(0, 1, TimeSpan.FromSeconds(1));
+                    Storyboard.SetTarget(show, newView);
+                    Storyboard.SetTargetProperty(show, new PropertyPath(UserControl.OpacityProperty));
+                    Storyboard sb = new Storyboard();
+                    sb.Children.Add(show);
+                    sb.Begin();
+                }
+                else
+                {
+                    this.Title = DEFAULT_TITLE;
                 }
             }
         }

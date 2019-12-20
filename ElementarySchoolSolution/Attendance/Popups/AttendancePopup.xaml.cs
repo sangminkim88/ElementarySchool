@@ -76,6 +76,11 @@
         {
             get { return this.submitDocument.IsChecked is true ? true : false; }
         }
+        public string Note
+        {
+            get { return this.noteTextBox.Text; }
+        }
+
 
         #endregion
 

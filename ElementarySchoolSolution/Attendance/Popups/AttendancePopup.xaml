@@ -5,9 +5,8 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Attendance.Popups"
              xmlns:ctrl="clr-namespace:Common.Controls;assembly=Common"
-             mc:Ignorable="d" WindowState="Normal" WindowStyle="None"
-             d:DesignHeight="150" d:DesignWidth="350" ResizeMode="NoResize"
-        Height="150" Width="350" BorderThickness="3" BorderBrush="Red" Style="{StaticResource SmoothWindow}"
+             mc:Ignorable="d" WindowState="Normal" WindowStyle="None" d:DesignWidth="350" ResizeMode="NoResize"
+        Height="179" Width="350" BorderThickness="3" BorderBrush="Red" Style="{StaticResource SmoothWindow}"
         >
     <Grid>
         <Grid.ColumnDefinitions>
@@ -15,6 +14,7 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
+            <RowDefinition/>
             <RowDefinition/>
             <RowDefinition/>
             <RowDefinition Height="50"/>
@@ -35,7 +35,11 @@
             <ctrl:WaterMarkTextBox x:Name="documentTitle" WaterMark="제출서류" Margin="10,0,0,0" />
             <CheckBox x:Name="submitDocument" VerticalAlignment="Center"/>
         </StackPanel>
-        <StackPanel Grid.Row="2" Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0,0,0,10">
+        <StackPanel Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Right">
+            <Label Content="비고" />
+            <TextBox x:Name="noteTextBox" Margin="10,0,20,0" Width="252"/>
+        </StackPanel>
+        <StackPanel Grid.Row="3" Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0,0,0,10">
             <Button x:Name="addButton" Content="추가" IsDefault="True" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Style="{StaticResource ButtonWindowStyle}" Click="AddButton_Click"/>
             <Button Content="취소" IsCancel="True" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="10,0,0,0" Style="{StaticResource ButtonWindowStyle}" Click="CancelButton_Click"/>
         </StackPanel>

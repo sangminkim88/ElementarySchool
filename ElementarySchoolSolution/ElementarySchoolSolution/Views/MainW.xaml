@@ -51,7 +51,7 @@
                     <ColumnDefinition Width="200"/>
                 </Grid.ColumnDefinitions>
                 <StackPanel x:Name="menuImagePanel" Grid.Column="0" Background="Lavender" Height="130" VerticalAlignment="Top" Orientation="Horizontal" Opacity="0.8">
-                    <Button Background="{Binding AttendanceColor}" Margin="20,0,0,0" BorderThickness="0" Click="Button_Click">
+                    <Button Background="{Binding MenuColor[0]}" Margin="20,0,0,0" BorderThickness="0" Click="Button_Click">
                         <Image Source="/Common;Component/Images/attendance.png" Width="100" Height="100" Opacity="0.4" ToolTip="출결" MouseEnter="menuButton_MouseEnter" MouseLeave="menuButton_MouseLeave"/>
                         <i:Interaction.Triggers>
                             <i:EventTrigger EventName="Click">
@@ -59,7 +59,7 @@
                             </i:EventTrigger>
                         </i:Interaction.Triggers>
                     </Button>
-                    <Button Background="{Binding ConsultColor}" Margin="10,0,0,0" BorderThickness="0" Click="Button_Click">
+                    <Button Background="{Binding MenuColor[1]}" Margin="10,0,0,0" BorderThickness="0" Click="Button_Click">
                         <Image Source="/Common;Component/Images/consult.png"  Width="100" Height="100" Opacity="0.4" ToolTip="상담" MouseEnter="menuButton_MouseEnter" MouseLeave="menuButton_MouseLeave"/>
                         <i:Interaction.Triggers>
                             <i:EventTrigger EventName="Click">
@@ -67,7 +67,7 @@
                             </i:EventTrigger>
                         </i:Interaction.Triggers>
                     </Button>
-                    <Button Background="{Binding BusinessLogColor}"  Margin="10,0,0,0" BorderThickness="0" Click="Button_Click">
+                    <Button Background="{Binding MenuColor[2]}"  Margin="10,0,0,0" BorderThickness="0" Click="Button_Click">
                         <Image x:Name="businessLog" Source="/Common;Component/Images/businessLog.png"  Width="100" Height="100" ToolTip="업무" MouseEnter="menuButton_MouseEnter" MouseLeave="menuButton_MouseLeave" Opacity="0.6"/>
                         <i:Interaction.Triggers>
                             <i:EventTrigger EventName="Click">
@@ -77,7 +77,7 @@
                     </Button>
                 </StackPanel>
                 <StackPanel Grid.Column="1" Background="Lavender" Height="130" VerticalAlignment="Top" Orientation="Horizontal" Opacity="0.8" >
-                    <Button Background="{Binding SettingsColor}"  BorderThickness="0" Click="Button_Click">
+                    <Button Background="{Binding MenuColor[3]}"  BorderThickness="0" Click="Button_Click">
                         <Image Source="/Common;Component/Images/settings.png" Width="100" Height="100" Opacity="0.4" ToolTip="출결" MouseEnter="menuButton_MouseEnter" MouseLeave="menuButton_MouseLeave"/>
                         <i:Interaction.Triggers>
                             <i:EventTrigger EventName="Click">
