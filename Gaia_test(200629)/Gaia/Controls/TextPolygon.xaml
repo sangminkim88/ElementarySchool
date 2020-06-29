@@ -1,0 +1,16 @@
+﻿<Viewbox x:Class="Gaia.Controls.TextPolygon"
+               xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Gaia.Controls"
+             mc:Ignorable="d" >
+    <Viewbox.Resources>
+        <local:BooleanToSizeConverter x:Key="BooleanToSizeConverter" />
+        <local:BooleanToColorConverter x:Key="BooleanToColorConverter" />
+    </Viewbox.Resources>
+    <Grid Loaded="Grid_Loaded">
+        <Path x:Name="path" Stretch="UniformToFill" Fill="{Binding PathFill}" Stroke="Black" StrokeThickness="0.5" HorizontalAlignment="Center" VerticalAlignment="Center" MouseLeftButtonUp="Shape_MouseLeftButtonUp"/>
+        <TextBlock x:Name="textBlock" Text="{Binding PolygonText}" Foreground="{Binding IsSelected, Converter={StaticResource BooleanToColorConverter}}" FontSize="{Binding IsSelected, Converter={StaticResource BooleanToSizeConverter}}" FontFamily="Gulim" IsHitTestVisible="False"/>
+    </Grid>
+</Viewbox>

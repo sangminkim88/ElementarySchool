@@ -1,0 +1,29 @@
+﻿<frwk:AUserControl x:Class="GAIA2020.Design.B1PartDescView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:frwk="clr-namespace:HMFrameWork.Ancestor;assembly=HMFrameWork"
+             xmlns:ctrl="clr-namespace:GAIA2020.Controls"
+             xmlns:converters="clr-namespace:GAIA2020.Converters"
+             xmlns:local="clr-namespace:GAIA2020.Design"
+             mc:Ignorable="d"
+             DataContext="{Binding Path=B1PartDescViewModel, Source={StaticResource Locator}}"
+             >
+    <frwk:AUserControl.Resources>
+        <converters:BooleanToReverseConverter x:Key="BooleanToReverseConverter"/>
+        <converters:NullToBooleanConverter x:Key="NullToBooleanConverter"/>
+    </frwk:AUserControl.Resources>
+    <Grid IsEnabled="{Binding IsEnabeld}" Opacity="{Binding Opacity}">
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <ctrl:ControlTitle Code="B" Title="지층 설명" Grid.Row="0"/>
+        <ctrl:SandColumn x:Name="sandColumn" Grid.Row="0" Grid.ColumnSpan="3" IsEnabled="{Binding IsSand, Converter={StaticResource NullToBooleanConverter}}" Margin="0,23,0,0" SelectedStratum="{Binding SelectedStratum, Mode=TwoWay}"
+                         WetStatus="{Binding WetStatus, Mode=TwoWay}" DensityStatus="{Binding DensityStatus, Mode=TwoWay}" />
+        <ctrl:RockColumn1 x:Name="rockColumn" Grid.Row="1" Margin="0,30,0,0" IsEnabled="{Binding IsSand, Converter={StaticResource BooleanToReverseConverter}}" SelectedStratum="{Binding SelectedStratum, Mode=TwoWay}" RockType="{Binding RockType, Mode=TwoWay}"
+                          WeatheredStatus="{Binding WeatheredStatus, Mode=TwoWay}" StiffnessStatus="{Binding StiffnessStatus, Mode=TwoWay}"
+                          Joints="{Binding Joints, Mode=TwoWay}" PartialJoint="{Binding PartialJoint, Mode=TwoWay}" RoughStatus="{Binding RoughStatus, Mode=TwoWay}"/>
+    </Grid>
+</frwk:AUserControl>

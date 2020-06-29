@@ -1,0 +1,252 @@
+﻿<frwk:AUserControl x:Class="GAIA2020.Design.UcJointShapeView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:frwk="clr-namespace:HMFrameWork.Ancestor;assembly=HMFrameWork"
+             xmlns:local="clr-namespace:GAIA2020.Design"
+             mc:Ignorable="d"
+             d:DesignHeight="653" d:DesignWidth="238" Loaded="AUserControl_Loaded"
+             DataContext="{Binding Path=UcJointShapeViewModel, Source={StaticResource Locator}}"
+                   IsEnabledChanged="AUserControl_IsEnabledChanged"
+             >
+    <Grid x:Name="xGrid">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="15"/>
+            <ColumnDefinition Width="10"/>
+            <ColumnDefinition Width="125"/>
+            <ColumnDefinition Width="80"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="40"/>
+        </Grid.RowDefinitions>
+        
+        <Border Grid.RowSpan="2" Grid.Column="0" Grid.ColumnSpan="4" BorderThickness="1,3,1,3" BorderBrush="Black"/>
+        <Grid Grid.Row="0" Grid.Column="0" >
+            <StackPanel  HorizontalAlignment="Right">
+                <TextBlock HorizontalAlignment="Right" Margin="0,10,0,0" Text="0m" FontSize="9" Background="#263b53" Foreground="White"/>
+                <TextBlock HorizontalAlignment="Right" Margin="0,23,0,0" Text="0.2" FontSize="9"/>
+                <TextBlock HorizontalAlignment="Right" Margin="0,30,0,0" Text="0.4" FontSize="9"/>
+                <TextBlock HorizontalAlignment="Right" Margin="0,28,0,0" Text="0.6" FontSize="9"/>
+                <TextBlock HorizontalAlignment="Right" Margin="0,29,0,0" Text="0.8" FontSize="9"/>
+                <TextBlock HorizontalAlignment="Right" Margin="0,30,0,0" Text="1m" FontSize="9" Background="#263b53" Foreground="White"/>
+                <TextBlock HorizontalAlignment="Right" Margin="0,28,0,0" Text="1.2" FontSize="9"/>
+                <TextBlock HorizontalAlignment="Right" Margin="0,30,0,0" Text="1.4" FontSize="9"/>
+                <TextBlock HorizontalAlignment="Right" Margin="0,28,0,0" Text="1.6" FontSize="9"/>
+                <TextBlock HorizontalAlignment="Right" Margin="0,29,0,0" Text="1.8" FontSize="9"/>
+                <TextBlock HorizontalAlignment="Right" Margin="0,30,0,0" Text="2m" FontSize="9" Background="#263b53" Foreground="White"/>
+                <TextBlock HorizontalAlignment="Right" Margin="0,28,0,0" Text="2.2" FontSize="9"/>
+                <TextBlock HorizontalAlignment="Right" Margin="0,30,0,0" Text="2.4" FontSize="9"/>
+                <TextBlock HorizontalAlignment="Right" Margin="0,28,0,0" Text="2.6" FontSize="9"/>
+                <TextBlock HorizontalAlignment="Right" Margin="0,29,0,0" Text="2.8" FontSize="9"/>
+                <TextBlock HorizontalAlignment="Right" Margin="0,30,0,0" Text="3m" FontSize="9" Background="#263b53" Foreground="White"/>
+            </StackPanel>
+        </Grid>
+        <StackPanel Grid.Column="1" Grid.Row="0">
+            <Border Margin="0,10,0,0" BorderThickness="0,2,0,0" BorderBrush="Black"/>
+            <Border Margin="4,7,0,0" BorderThickness="0,1,0,0" BorderBrush="Black"/>
+            <Border Margin="4,7,0,0" BorderThickness="0,1,0,0" BorderBrush="Black"/>
+            <Border Margin="4,7,0,0" BorderThickness="0,1,0,0" BorderBrush="Black"/>
+            <Border Margin="4,7,0,0" BorderThickness="0,1,0,0" BorderBrush="Black"/>
+            <Border Margin="0,7,0,0" BorderThickness="0,2,0,0" BorderBrush="Black"/>
+            <Border Margin="4,7,0,0" BorderThickness="0,1,0,0" BorderBrush="Black"/>
+            <Border Margin="4,7,0,0" BorderThickness="0,1,0,0" BorderBrush="Black"/>
+            <Border Margin="4,7,0,0" BorderThickness="0,1,0,0" BorderBrush="Black"/>
+            <Border Margin="4,7,0,0" BorderThickness="0,1,0,0" BorderBrush="Black"/>
+            <Border Margin="0,7,0,0" BorderThickness="0,2,0,0" BorderBrush="Black"/>
+            <Border Margin="4,7,0,0" BorderThickness="0,1,0,0" BorderBrush="Black"/>
+            <Border Margin="4,7,0,0" BorderThickness="0,1,0,0" BorderBrush="Black"/>
+            <Border Margin="4,7,0,0" BorderThickness="0,1,0,0" BorderBrush="Black"/>
+            <Border Margin="4,7,0,0" BorderThickness="0,1,0,0" BorderBrush="Black"/>
+            <Border Margin="0,7,0,0" BorderThickness="0,2,0,0" BorderBrush="Black"/>
+            <Border Margin="4,7,0,0" BorderThickness="0,1,0,0" BorderBrush="Black"/>
+            <Border Margin="4,7,0,0" BorderThickness="0,1,0,0" BorderBrush="Black"/>
+            <Border Margin="4,7,0,0" BorderThickness="0,1,0,0" BorderBrush="Black"/>
+            <Border Margin="4,7,0,0" BorderThickness="0,1,0,0" BorderBrush="Black"/>
+            <Border Margin="0,7,0,0" BorderThickness="0,2,0,0" BorderBrush="Black"/>
+            <Border Margin="4,7,0,0" BorderThickness="0,1,0,0" BorderBrush="Black"/>
+            <Border Margin="4,7,0,0" BorderThickness="0,1,0,0" BorderBrush="Black"/>
+            <Border Margin="4,7,0,0" BorderThickness="0,1,0,0" BorderBrush="Black"/>
+            <Border Margin="4,7,0,0" BorderThickness="0,1,0,0" BorderBrush="Black"/>
+            <Border Margin="0,7,0,0" BorderThickness="0,2,0,0" BorderBrush="Black"/>
+            <Border Margin="4,7,0,0" BorderThickness="0,1,0,0" BorderBrush="Black"/>
+            <Border Margin="4,7,0,0" BorderThickness="0,1,0,0" BorderBrush="Black"/>
+            <Border Margin="4,7,0,0" BorderThickness="0,1,0,0" BorderBrush="Black"/>
+            <Border Margin="4,7,0,0" BorderThickness="0,1,0,0" BorderBrush="Black"/>
+            <Border Margin="0,7,0,0" BorderThickness="0,2,0,0" BorderBrush="Black"/>
+            <Border Margin="4,7,0,0" BorderThickness="0,1,0,0" BorderBrush="Black"/>
+            <Border Margin="4,7,0,0" BorderThickness="0,1,0,0" BorderBrush="Black"/>
+            <Border Margin="4,7,0,0" BorderThickness="0,1,0,0" BorderBrush="Black"/>
+            <Border Margin="4,7,0,0" BorderThickness="0,1,0,0" BorderBrush="Black"/>
+            <Border Margin="0,7,0,0" BorderThickness="0,2,0,0" BorderBrush="Black"/>
+            <Border Margin="4,7,0,0" BorderThickness="0,1,0,0" BorderBrush="Black"/>
+            <Border Margin="4,7,0,0" BorderThickness="0,1,0,0" BorderBrush="Black"/>
+            <Border Margin="4,7,0,0" BorderThickness="0,1,0,0" BorderBrush="Black"/>
+            <Border Margin="4,7,0,0" BorderThickness="0,1,0,0" BorderBrush="Black"/>
+            <Border Margin="0,7,0,0" BorderThickness="0,2,0,0" BorderBrush="Black"/>
+            <Border Margin="4,7,0,0" BorderThickness="0,1,0,0" BorderBrush="Black"/>
+            <Border Margin="4,7,0,0" BorderThickness="0,1,0,0" BorderBrush="Black"/>
+            <Border Margin="4,7,0,0" BorderThickness="0,1,0,0" BorderBrush="Black"/>
+            <Border Margin="4,7,0,0" BorderThickness="0,1,0,0" BorderBrush="Black"/>
+            <Border Margin="0,7,0,0" BorderThickness="0,2,0,0" BorderBrush="Black"/>
+            <Border Margin="4,7,0,0" BorderThickness="0,1,0,0" BorderBrush="Black"/>
+            <Border Margin="4,7,0,0" BorderThickness="0,1,0,0" BorderBrush="Black"/>
+            <Border Margin="4,7,0,0" BorderThickness="0,1,0,0" BorderBrush="Black"/>
+            <Border Margin="4,7,0,0" BorderThickness="0,1,0,0" BorderBrush="Black"/>
+            <Border Margin="0,7,0,0" BorderThickness="0,2,0,0" BorderBrush="Black"/>
+            <Border Margin="4,7,0,0" BorderThickness="0,1,0,0" BorderBrush="Black"/>
+            <Border Margin="4,7,0,0" BorderThickness="0,1,0,0" BorderBrush="Black"/>
+            <Border Margin="4,7,0,0" BorderThickness="0,1,0,0" BorderBrush="Black"/>
+            <Border Margin="4,7,0,0" BorderThickness="0,1,0,0" BorderBrush="Black"/>
+            <Border Margin="0,7,0,0" BorderThickness="0,2,0,0" BorderBrush="Black"/>
+            <Border Margin="4,7,0,0" BorderThickness="0,1,0,0" BorderBrush="Black"/>
+            <Border Margin="4,7,0,0" BorderThickness="0,1,0,0" BorderBrush="Black"/>
+            <Border Margin="4,7,0,0" BorderThickness="0,1,0,0" BorderBrush="Black"/>
+            <Border Margin="4,7,0,0" BorderThickness="0,1,0,0" BorderBrush="Black"/>
+            <Border Margin="0,7,0,0" BorderThickness="0,2,0,0" BorderBrush="Black"/>
+            <Border Margin="4,7,0,0" BorderThickness="0,1,0,0" BorderBrush="Black"/>
+            <Border Margin="4,7,0,0" BorderThickness="0,1,0,0" BorderBrush="Black"/>
+            <Border Margin="4,7,0,0" BorderThickness="0,1,0,0" BorderBrush="Black"/>
+            <Border Margin="4,7,0,0" BorderThickness="0,1,0,0" BorderBrush="Black"/>
+            <Border Margin="0,7,0,0" BorderThickness="0,2,0,0" BorderBrush="Black"/>
+            <Border Margin="4,7,0,0" BorderThickness="0,1,0,0" BorderBrush="Black"/>
+            <Border Margin="4,7,0,0" BorderThickness="0,1,0,0" BorderBrush="Black"/>
+            <Border Margin="4,7,0,0" BorderThickness="0,1,0,0" BorderBrush="Black"/>
+            <Border Margin="4,7,0,0" BorderThickness="0,1,0,0" BorderBrush="Black"/>
+            <Border Margin="0,7,0,0" BorderThickness="0,2,0,0" BorderBrush="Black"/>
+            <Border Margin="4,7,0,0" BorderThickness="0,1,0,0" BorderBrush="Black"/>
+            <Border Margin="4,7,0,0" BorderThickness="0,1,0,0" BorderBrush="Black"/>
+            <Border Margin="4,7,0,0" BorderThickness="0,1,0,0" BorderBrush="Black"/>
+            <Border Margin="4,7,0,0" BorderThickness="0,1,0,0" BorderBrush="Black"/>
+            <Border Margin="0,7,0,0" BorderThickness="0,2,0,0" BorderBrush="Black"/>
+            <Border Margin="4,7,0,0" BorderThickness="0,1,0,0" BorderBrush="Black"/>
+            <Border Margin="4,7,0,0" BorderThickness="0,1,0,0" BorderBrush="Black"/>
+            <Border Margin="4,7,0,0" BorderThickness="0,1,0,0" BorderBrush="Black"/>
+            <Border Margin="4,7,0,0" BorderThickness="0,1,0,0" BorderBrush="Black"/>
+        </StackPanel>
+        <StackPanel Grid.Column="1" Grid.Row="0">
+            <Polygon Points="0,0 14,0 0,12" Fill="#263b53" Margin="0,10,0,0"/>
+            <Polygon Points="0,0 14,6 0,12" Fill="#263b53" Margin="0,188,0,0"/>
+            <Polygon Points="0,0 14,6 0,12" Fill="#263b53" Margin="0,193,0,0"/>
+            <Polygon Points="0,0 14,6 0,12" Fill="#263b53" Margin="0,193,0,0"/>
+        </StackPanel>
+
+        <Grid Grid.Row="0" Grid.Column="1" Margin="13,3,3,3" Grid.ColumnSpan="2" x:Name="gridForCanvas">
+            <Canvas 
+                    x:Name="canvas"
+                    AllowDrop="True"
+                    MouseWheel="Canvas_MouseWheel"
+                    Width="{Binding ElementName=gridForCanvas, Path=ActualWidth}"
+                    Height="{Binding ElementName=gridForCanvas, Path=ActualHeight}"
+                    MouseDown="Canvas_MouseDown"
+                    MouseMove="Canvas_MouseMove"
+                    MouseUp="Canvas_MouseUp"
+                    Background="Transparent"
+                    ClipToBounds="True">
+
+                <Image 
+                        x:Name="canvasImage"
+                        Canvas.Left="0" Canvas.Top="0"
+                        Source="{Binding Img, UpdateSourceTrigger=PropertyChanged}"
+                        Cursor="Hand"
+                        MouseDown="Image_MouseDown"
+                        MouseMove="Image_MouseMove"
+                        MouseUp="Image_MouseUp">
+
+                    <Image.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform x:Name="scaleTransfrom"/>
+                            <RotateTransform x:Name="rotateTransfrom"/>
+                            <TranslateTransform x:Name="panTransform"/>
+                        </TransformGroup>
+                    </Image.RenderTransform>
+                </Image>
+
+                <Rectangle 
+                        x:Name="canvasRect" 
+                        Panel.ZIndex="2"
+                        Stroke="Yellow" 
+                        StrokeThickness="3"
+                        Canvas.Left="0" Canvas.Top="0" 
+                        Width="{Binding ElementName=gridForCanvas, Path=ActualWidth}"
+                        Height="{Binding ElementName=gridForCanvas, Path=ActualHeight}">
+                    <!--<Rectangle.Fill>
+                            <SolidColorBrush Color="AliceBlue" Opacity="0.5"></SolidColorBrush>
+                        </Rectangle.Fill>-->
+                </Rectangle>
+
+            </Canvas>
+        </Grid>
+
+        <Grid Grid.Column="3" Grid.Row="0" Margin="10,14,10,10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <StackPanel>
+                <Button Content="시료사진&#xa;가져오기" Style="{StaticResource roundButton}" 
+                        FontSize="10" Width="60" Height="58" HorizontalAlignment="Stretch" 
+                        HorizontalContentAlignment="Stretch"
+                        Command="{Binding CommandJointShape}" CommandParameter="cmd=open">
+                </Button>
+                <Border Margin="0,11,0,11" BorderThickness=".7" BorderBrush="Silver"/>
+                <Button Style="{StaticResource roundButton}" FontSize="9.5" Content="영역선택" 
+                        Background="Silver" Foreground="{StaticResource Theme.DefaultForeground}"
+                        Command="{Binding CommandJointShape}" CommandParameter="cmd=crop"
+                        x:Name="btnCrop" Click="BtnCrop_Click"/>
+                <Border Margin="0,11,0,11" BorderThickness=".7" BorderBrush="Silver"/>
+                <Button Visibility="Collapsed" Style="{StaticResource roundButton}" FontSize="9" Margin="0,0,0,6" HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch" Background="#817258">
+                    <StackPanel HorizontalAlignment="Center" Margin="0,5,0,5">
+                        <TextBlock Text="절리형상" />
+                        <TextBlock Text="그리기" HorizontalAlignment="Center"/>
+                    </StackPanel>
+                </Button>
+                <Button Style="{StaticResource roundButton}" FontSize="9" Margin="0,0,0,6" Content="직접 그리기" Background="#a39886" Foreground="Black"
+                        Command="{Binding CommandJointShape}" CommandParameter="cmd=draw"/>
+                <Button Style="{StaticResource roundButton}" FontSize="9" Margin="0,0,0,6" Content="삭   제" Background="#a39886" Foreground="Black"
+                        Command="{Binding CommandJointShape}" CommandParameter="cmd=delete"/>
+                <Border Visibility="Collapsed" Margin="0,11,0,11" BorderThickness=".7" BorderBrush="Silver"/>
+                <Button Visibility="Collapsed" Style="{StaticResource roundButton}" FontSize="9" Margin="0,0,0,6" Content="재시작" Background="#a39886" Foreground="Black"
+                        Command="{Binding CommandJointShape}" CommandParameter="cmd=reset"/>
+                <Border Margin="0,11,0,11" BorderThickness=".7" BorderBrush="Silver"/>
+                <Button Style="{StaticResource roundButton}" FontSize="12" VerticalContentAlignment="Center" Content="완   료" Background="#303030" Height="58"
+                        Command="{Binding CommandJointShape}" CommandParameter="cmd=finish"/>
+                <Border Margin="0,11,0,11" BorderThickness=".7" BorderBrush="Silver"/>
+            </StackPanel>
+
+            <Grid Grid.Row="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="20"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Grid.Row="0" Grid.ColumnSpan="2" HorizontalAlignment="Center" Text="자동생성"/>
+
+                <Slider Grid.Row="1" Grid.Column="0" x:Name="sldrCannyMax" HorizontalAlignment="Center"
+                        Maximum="255" Minimum="0"
+                        Orientation="Vertical"
+                        Value="{Binding nCannyThres1}"
+                        ValueChanged="SldrCannyMax_ValueChanged">
+                </Slider>
+                <Slider Grid.Row="1" Grid.Column="1" x:Name="sldrCannyMin"  HorizontalAlignment="Center"
+                        Maximum="255" Minimum="0"
+                        Orientation="Vertical"
+                        Value="{Binding nCannyThres2}"
+                        ValueChanged="SldrCannyMin_ValueChanged">
+                </Slider>
+            </Grid>
+        </Grid>
+
+        <Slider Grid.Row="1" Grid.ColumnSpan="4" VerticalAlignment="Center" Margin="2" 
+                Maximum="45" Minimum="-45" 
+                x:Name="sldrRotate"
+                ValueChanged="SldrRotate_ValueChanged">
+        </Slider>
+    </Grid>
+</frwk:AUserControl>
